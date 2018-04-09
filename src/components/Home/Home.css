@@ -1,0 +1,41 @@
+/* LoggedOut --------------------------- */
+
+.loggedOut header {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 44px;
+}
+
+.loggedOut section {
+    display: flex;
+    align-items: center;
+}
+
+.loggedOut span:nth-child(1) {
+    color: var(--main-blue);
+    border-right: 1px solid;
+    line-height: 2;
+    padding-right: 16px;
+}
+
+.loggedOut span {
+    color: var(--main-gray);
+    cursor: pointer;
+}
+
+.loggedOut span:hover {
+    color: var(--main-blue)
+}
+
+
+
+
+
+
+
+
+/* LoggedIn --------------------------- */
