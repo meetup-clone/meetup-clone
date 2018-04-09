@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "massive": "^4.7.1",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
   },
@@ -14,5 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "main": "server/index.js",
+  "proxy": "http://localhost:4242"
 }
