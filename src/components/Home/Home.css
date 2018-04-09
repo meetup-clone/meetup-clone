@@ -8,6 +8,7 @@
 
 .logo {
     height: 44px;
+    cursor: pointer;
 }
 
 .loggedOut section {
@@ -16,19 +17,19 @@
 }
 
 .loggedOut span:nth-child(1) {
-    color: var(--main-blue);
-    border-right: 1px solid;
+    color: var(--blue);
+    border-right: 1px solid var(--gray);
     line-height: 2;
     padding-right: 16px;
 }
 
 .loggedOut span {
-    color: var(--main-gray);
+    color: var(--gray);
     cursor: pointer;
 }
 
 .loggedOut span:hover {
-    color: var(--main-blue)
+    color: var(--blue)
 }
 
 
