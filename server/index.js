@@ -56,7 +56,7 @@ passport.deserializeUser((id, done) => {
 // AUTH ENDPOINTS
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/',
+    successRedirect: 'http://localhost:3000/#/home',
     failueRedirect: 'http://localhost:3000/#/'
 }))
 app.get('/auth/me', auth_ctrl.checkUser)
