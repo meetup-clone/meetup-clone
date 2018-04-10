@@ -13,7 +13,7 @@ export default class LoggedIn extends Component {
     render() {
         return (
             <div className='loggedIn'>
-              
+              <h1>LoggedIn</h1>
             </div>
         )
     }
