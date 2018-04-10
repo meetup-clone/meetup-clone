@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-.logo {
+.header .logo {
     height: 44px;
     cursor: pointer;
 }
@@ -12,22 +12,33 @@
 .header section {
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    margin: 0 5%;
 }
 
 .header span:nth-child(1) {
-    color: var(--blue);
+    color: var(--pink);
     border-right: 1px solid var(--gray);
     line-height: 2;
-    padding-right: 16px;
+    min-width: 150px;
+    font-weight: bold; 
 }
 
 .header span {
     color: var(--gray);
     cursor: pointer;
-    padding: 0 1%;
+    margin: 0 1.5%;
 }
 
 .header span:hover {
     color: var(--blue)
+}
+
+.header .profile {
+    height: 35px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header .caret {
+    font-size: 25%;
 }
