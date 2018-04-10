@@ -1,5 +1,5 @@
 /* LoggedOut --------------------------- */
-h2, h4 {
+h2, h4, p {
     margin: 0;
 }
 
@@ -134,4 +134,102 @@ video {
     grid-area: 5 / 1 / 6 / 2;   
     z-index: 1;
     background: white; 
+}
+
+/* EventCards --------------------------- */
+
+.eventCards {
+    width: 100%;
+    min-height: 364px;
+    /* background: lightblue; */
+    display: flex;
+    justify-content: center;
+}
+
+.eventCard {
+    max-width: 330px;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0px 3px 5px #bbb;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#thirdEvent {
+    margin: 0;
+}
+
+.eventCard img {
+    width: 330px;
+    height: 175px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.eventCardDate {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #f6f7f8;
+    padding: 12px;
+    border-radius: 10px;
+    /* min-height:  */
+}
+
+.eventCardDate p:nth-child(1) {
+    color: var(--pink);
+    font-size: 16px;
+}
+
+.eventCardDate p {
+    font-size: 12px;
+}
+
+.eventCardContent {
+    width: 100%;
+    height: 189px;
+    box-sizing: border-box;
+    padding: 16px 24px 16px 20px;
+    text-align: left;
+}
+
+.eventCard h4 {
+    color: var(--gray);
+    margin-bottom: 16px;
+}
+
+.eventCardAvatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: lawngreen;
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+}
+
+.hosted{
+    position: absolute;
+    left: 72px;
+    bottom: 22px;
+    font-size: 16px;
+}
+
+.from {
+    position: absolute;
+    left: 72px;
+    bottom: 12px;
+    font-size: 16px;
+}
+
+#from {
+    color: var(--gray);
+    border: none;
+    margin: 0;
+    margin-right: 4px;
+    font-size: 16px;
+    padding: 0;
 }
