@@ -14,12 +14,16 @@ export default function LoggedOut() {
                 </section>
             </header>
 
-            <video src='https://www.meetup.com/mu_static/en-US/dddafbfe4574fc19c6718950691dcb78.mp4' autoPlay loop />
-            <div className='videoContent'>
-                <h2>What do you love?</h2>
-                <h4>Do more of it with Meetup</h4>
-                <button className='pinkBtn'>Sign Up</button>
+            <div className='videoHolder'>
+                <video src='https://www.meetup.com/mu_static/en-US/dddafbfe4574fc19c6718950691dcb78.mp4' autoPlay loop />
+                <div className='videoContent'>
+                    <h2>What do you love?</h2>
+                    <h4>Do more of it with Meetup</h4>
+                    <button className='pinkBtn'>Sign Up</button>
+                </div>
             </div>
+            
+
             <div className='categoryRow'>
                 <button>Join a movement</button>
                 <button>Learn to cook</button>
@@ -28,6 +32,7 @@ export default function LoggedOut() {
                 <button>Hike a mountain</button>
                 <button>Practice a language</button>
             </div>
+
             <section className='mainBlock'>
 
             </section>

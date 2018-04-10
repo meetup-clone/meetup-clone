@@ -35,11 +35,16 @@
 a {
     color: var(--gray);
     text-decoration: none;
-  }
+}
   
-  a:hover {
+a:hover {
     color: var(--blue)
-  }
+}
+
+.videoHolder {
+    position: relative;
+
+}
 
 video {
     min-width: 100%;
@@ -50,7 +55,21 @@ video {
 
 .videoContent {
     position: absolute;
-    top: 0
+    top: 20%;
+    color: white;
+    left: 50%;
+}
+
+.videoContent h2 {
+    font-size: 40px;
+}
+
+.videoContent h4 {
+    font-size: 20px;
+}
+
+.pinkBtn {
+    
 }
 
 .categoryRow {
