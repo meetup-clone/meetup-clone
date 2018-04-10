@@ -10,8 +10,8 @@ export default function LoggedOut() {
                 <img src={logo} alt="logo" className='logo' />
                 <section>
                     <span>Create a Meetup</span>
-                    <a href={process.env.REACT_APP_LOGIN}>Log in</a>
-                    <span>Sign up</span>
+                    <a href={process.env.REACT_APP_LOGIN} className='login'>Log in</a>
+                    <a href={process.env.REACT_APP_LOGIN}>Sign up</a>
                 </section>
             </header>
 
@@ -20,15 +20,17 @@ export default function LoggedOut() {
                 <div className='videoContent'>
                     <h2>What do you love?</h2>
                     <h4>Do more of it with Meetup</h4>
-                    <button className='pinkBtn'>Sign Up</button>
+                    <a href={process.env.REACT_APP_LOGIN}><button className='pinkBtn'>Sign Up</button></a>
                 </div>
                 <div className='categoryRow'>
-                    <button>Join a movement</button>
-                    <button>Learn to cook</button>
-                    <button>Train for a marathon</button>
-                    <button>Build a mobile app</button>
-                    <button>Hike a mountain</button>
-                    <button>Practice a language</button>
+                    <div>
+                    <button className='grayBtn'>Join a movement</button>
+                    <button className='grayBtn'>Learn to cook</button>
+                    <button className='grayBtn'>Train for a marathon</button>
+                    <button className='grayBtn'>Build a mobile app</button>
+                    <button className='grayBtn'>Hike a mountain</button>
+                    <button className='grayBtn'>Practice a language</button>
+                    </div>
                 </div>
                 <section className='mainBlock'>
 
