@@ -15,7 +15,10 @@ export default class LoggedIn extends Component {
         return (
             <div className='loggedIn'>
                 <Header />
-              <h1>LoggedIn</h1>
+                <div className='nextMeetup'>
+                
+                </div>
+              
             </div>
         )
     }

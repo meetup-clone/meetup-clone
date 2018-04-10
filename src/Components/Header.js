@@ -7,7 +7,8 @@ export default class Header extends Component {
     constructor() {
         super()
         this.state = {
-            user: {}
+            user: {},
+            toggle: false
         }
     }
     componentDidMount() {
@@ -16,15 +17,27 @@ export default class Header extends Component {
     render() {
         return (
             <div className='header'>
-                <img src={logo} alt='logo' className='logo' />
-                <section>
-                    <span>Create a Meetup</span>
-                    <span>Explore</span>
-                    <span>Messages</span>
-                    <span>Notifications</span>
-                    <img src={this.state.user.image} alt='profile' className='profile'/>
-                    <span className='caret'>╲╱</span>
-                </section>
+                <div className='nav'>
+                    <img src={logo} alt='logo' className='logo' />
+                    <section>
+                        <span>Create a Meetup</span>
+                        <span>Explore</span>
+                        <span>Messages</span>
+                        <span>Notifications</span>
+                        <div className='toggle' onClick={() => this.setState({ toggle: !this.state.toggle })}>
+                            <img src={this.state.user.image} alt='profile' className='profile'/>
+                            <span className='caret'>╲╱</span>
+                        </div>
+                    </section>
+                </div>
+                {this.state.toggle ? 
+                    <div className='dropdown'>
+                        <span>Profile</span>
+                        <span>Settings</span>
+                        <span>Log out</span>
+                    </div>
+                : null }
+                
             </div>
         )
     }

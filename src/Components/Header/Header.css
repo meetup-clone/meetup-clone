@@ -1,4 +1,4 @@
-.header {
+.header .nav {
     display: flex;
     padding: 20px;
     justify-content: space-between;
@@ -41,4 +41,23 @@
 
 .header .caret {
     font-size: 25%;
+    margin: 0 5px;
+}
+
+.header .toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header .dropdown {
+    position: absolute;
+    height: 100px;
+    width: 200px;
+    background: white;
+    box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
+    border-radius: 3px;
+    min-width: auto;
+    top: auto;
+    right: 0;
 }
