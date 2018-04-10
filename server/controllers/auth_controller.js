@@ -4,7 +4,7 @@ module.exports = {
             res.status(200).send(req.user);
         }
         else {
-            res.status(401).send('Nice try suckaaaaaa!!!!!!');
+            res.status(401).send('Authentication failed.');
         }
     },
     redirectUser: (req, res) => {
@@ -18,7 +18,7 @@ module.exports = {
                 res.status(200).send(user[0]);
             }
             else {
-                res.status(401).send('Nice try suckaaaaaa!!!!!!');
+                res.status(401).send('Authentication failed.');
             }
         });
     }

@@ -33,21 +33,21 @@ passport.use(new Auth0Strategy({
     scope: 'openid profile'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
-    db.find_user([profile.id]).then(users => {
+    db.findUser([profile.id]).then(users => {
         if (!users[0]) {
-            db.create_user([profile.displayName, profile.id]).then(user => {
-                done(null, user[0].id);
+            db.createUser([profile.id, profile.displayName, profile.picture]).then(user => {
+                done(null, user[0].user_id);
             });
         }
         else {
-            done(null, users[0].id);
+            done(null, users[0].user_id);
         }
     });
 }));
 
 passport.serializeUser((id, done) => done(null, id));
 passport.deserializeUser((id, done) => {
-    app.get('db').find_session_user([id]).then(user => {
+    app.get('db').findSessionUser([id]).then(user => {
         done(null, user[0]);
     })
 });
@@ -56,8 +56,8 @@ passport.deserializeUser((id, done) => {
 // AUTH ENDPOINTS
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/home',
-    failueRedirect: 'http://localhost:3000/'
+    successRedirect: 'http://localhost:3000/#/',
+    failueRedirect: 'http://localhost:3000/#/'
 }));
 app.get('/auth/me', auth_ctrl.checkUser);
 app.get('/auth/logout', auth_ctrl.redirectUser);
