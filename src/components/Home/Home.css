@@ -32,11 +32,29 @@
     color: var(--blue)
 }
 
+video {
+    min-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    position: relative;
+}
 
+.videoContent {
+    position: absolute;
+    top: 0
+}
 
+.categoryRow {
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 20vh;
+    background: white;
+}
 
-
-
+.mainBlock {
+    
+}
 
 
 /* LoggedIn --------------------------- */
