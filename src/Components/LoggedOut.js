@@ -23,14 +23,12 @@ export default function LoggedOut() {
                     <a href={process.env.REACT_APP_LOGIN}><button className='pinkBtn'>Sign Up</button></a>
                 </div>
                 <div className='categoryRow'>
-                    <div>
                     <button className='grayBtn'>Join a movement</button>
                     <button className='grayBtn'>Learn to cook</button>
                     <button className='grayBtn'>Train for a marathon</button>
                     <button className='grayBtn'>Build a mobile app</button>
                     <button className='grayBtn'>Hike a mountain</button>
-                    <button className='grayBtn'>Practice a language</button>
-                    </div>
+                    <button className='grayBtn' id='practiceLanguageBtn'>Practice a language</button>
                 </div>
                 <section className='mainBlock'>
 
