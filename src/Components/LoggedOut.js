@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../Assets/Meetup_logo.svg'
+import logo from '../Assets/Meetup_logo.svg'
 
 
 export default function LoggedOut() {
