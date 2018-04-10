@@ -9,7 +9,7 @@ export default function LoggedOut() {
                 <img src={logo} alt="logo" className='logo'/>
                 <section>
                     <span>Create a Meetup</span>
-                    <span>Log in</span>
+                    <a href={process.env.REACT_APP_LOGIN}>Log in</a>
                     <span>Sign up</span>
                 </section>
             </header>

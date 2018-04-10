@@ -4,4 +4,4 @@ create table if not exits group_comments (
     group_id references groups(group_id),
     comment varchar(10000),
     date varchar(500)
-);
+)

@@ -8,4 +8,4 @@ create table if not exists groups (
     members int,
     organizer references users(user_id),
     category varchar(100)
-);
+)

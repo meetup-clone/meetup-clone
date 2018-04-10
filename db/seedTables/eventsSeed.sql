@@ -10,4 +10,4 @@ create table if not exists events (
     venue_state varchar(200),
     venue_address varchar(500),
     venue_directions varchar(5000)
-);
+)
