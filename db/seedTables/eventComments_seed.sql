@@ -4,4 +4,4 @@ create table if not exits event_comments (
     event_id references events(event_id),
     comment varchar(10000),
     date varchar(500)
-);
+)

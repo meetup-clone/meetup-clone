@@ -6,4 +6,4 @@ create table if not exists users (
     state varchar(100),
     city varchar(100),
     category varchar(100)
-);
+)
