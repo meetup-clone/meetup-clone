@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 44px;
+    cursor: pointer;
+}
+
+.header section {
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.header span:nth-child(1) {
+    color: var(--blue);
+    border-right: 1px solid var(--gray);
+    line-height: 2;
+    padding-right: 16px;
+}
+
+.header span {
+    color: var(--gray);
+    cursor: pointer;
+    padding: 0 1%;
+}
+
+.header span:hover {
+    color: var(--blue)
+}
