@@ -3,6 +3,13 @@ h2, h4 {
     margin: 0;
 }
 
+button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;    
+}
+
 .loggedOut header {
     display: flex;
     padding: 20px;
@@ -24,15 +31,16 @@ h2, h4 {
     border-right: 1px solid var(--gray);
     line-height: 2;
     padding-right: 16px;
-}
-
-.loggedOut span {
-    color: var(--gray);
+    margin-right: 16px;
     cursor: pointer;
 }
 
 .loggedOut span:hover {
     color: var(--blue)
+}
+
+.login {
+    margin-right: 16px;    
 }
 
 a {
@@ -71,10 +79,19 @@ video {
 
 .videoContent h4 {
     font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .pinkBtn {
-    
+    background: var(--pink);
+    color: white;
+    font-size: 16px;
+    padding: 16px 112px;
+}
+
+.pinkBtn:hover {
+    background: var(--darkPink)
 }
 
 .categoryRow {
@@ -84,6 +101,22 @@ video {
     background: white;
     border: 1px solid rgba(46,62,72,.12);
     z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.categoryRow div {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.grayBtn {
+    padding: 8px 16px;
+}
+
+.grayBtn:hover {
+
 }
 
 .mainBlock {
