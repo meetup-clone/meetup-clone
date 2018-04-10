@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../Assets/Meetup_logo.svg'
 import './LoggedOut/LoggedOut.css'
+import EventCards from './LoggedOut/EventCards'
 
 
 export default function LoggedOut() {
@@ -30,9 +31,10 @@ export default function LoggedOut() {
                     <button className='grayBtn'>Hike a mountain</button>
                     <button className='grayBtn' id='practiceLanguageBtn'>Practice a language</button>
                 </div>
-                <section className='mainBlock'>
-
-                </section>
+                <div className='mainBlock'>
+                    <h2>Popular Meetups nearby</h2>
+                    <EventCards />
+                </div>
 
             </div>
 
