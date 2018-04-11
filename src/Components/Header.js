@@ -29,32 +29,36 @@ export default class Header extends Component {
                         <span>Messages</span>
                         <span>Notifications</span>
                         <div className='toggle' onClick={() => this.setState({ toggle: !this.state.toggle })}>
-                            <img src={this.state.user.image} alt='profile' className='profile'/>
+                            <img src={this.state.user.image} alt='profile' className='profile' />
                             <span className='caret'>╲╱</span>
                         </div>
                     </section>
                 </div>
-                {this.state.toggle ? 
-                    <div className='dropdown'>
-                        <div className='groups'>
-                            {groups.length > 0 ? 
-                                <div>
-                                    <Link to={`/${groups[0].url_name}`}><h4>{groups[0].group_name}</h4></Link>
-                                </div>
-                            :
-                                <div>
-                                    <h3>You're not a member of any Meetup Groups yet.</h3>
-                                </div>
-                            }
+                <div className='shadow' onClick={() => this.setState({ toggle: !this.state.toggle })}>
+                    {this.state.toggle ?
+                        <div className='dropdown' onClick={(e) => e.stopPropagation()}>
+                            <div className='groups'>
+                                {groups.length > 0 ?
+                                    <div>
+                                        <Link to={`/${groups[0].url_name}`} className='hoverPink'><h4>{groups[0].group_name}</h4></Link>
+                                    </div>
+                                    :
+                                    <div>
+                                        <h3>You're not a member of any Meetup Groups yet.</h3>
+                                    </div>
+                                }
+                            </div>
+                            <div className='links'>
+                                <Link to='/' className='hoverPink'>Profile</Link>
+                                <hr />
+                                <Link to='/' className='hoverPink'>Settings</Link>
+                                <hr />
+                                <a href={process.env.REACT_APP_LOGOUT} className='hoverPink'>Log out</a>
+                            </div>
                         </div>
-                        <div className='links'>
-                            <Link to='/'>Profile</Link>
-                            <Link to='/'>Settings</Link>
-                            <a href={process.env.REACT_APP_LOGOUT}>Log out</a>
-                        </div>
-                    </div>
-                : null }
-                
+                        : null}
+                </div>
+
             </div>
         )
     }
