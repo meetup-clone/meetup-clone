@@ -17,7 +17,6 @@ massive(CONNECTION_STRING).then(db => app.set('db', db))
 
 app.use(bodyParser.json())
 app.use(cors())
-
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -68,6 +67,7 @@ app.put('/user', authCtrl.createUser)
 
 // GROUP ENDPOINTS
 app.get('/api/groups', groupCtrl.getGroups)
+app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 
 // GROUP COMMENT ENDPOINTS
 
