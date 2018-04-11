@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from './Header'
 
 export default class Group extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class Group extends Component {
     render() {
         return (
             <div className='Group'>
+            <Header/>
                 <h1>Group</h1>
             </div>
         )

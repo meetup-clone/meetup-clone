@@ -16,7 +16,6 @@ massive(CONNECTION_STRING).then(db => app.set('db', db))
 
 app.use(bodyParser.json())
 app.use(cors())
-
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
