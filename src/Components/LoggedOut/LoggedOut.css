@@ -42,12 +42,12 @@ button {
     margin-right: 16px;    
 }
 
-a {
+.loggedOut a {
     color: var(--gray);
     text-decoration: none;
 }
   
-a:hover {
+.loggedOut a:hover {
     color: var(--blue)
 }
 
@@ -105,6 +105,8 @@ video {
 
 .categoryRow button {
     margin-right: 20px;
+    font-weight: 700;
+    color: #444;
 }
 
 #practiceLanguageBtn {
@@ -129,9 +131,6 @@ video {
     padding-left: 20%;
     text-align: left;
     position: relative;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
 }
 
 /* EventCards --------------------------- */
@@ -140,7 +139,6 @@ video {
     display: flex;
     flex-direction: column;
     max-width: 1030px;
-    /* align-items: center; */
 }
 
 .eventCards h2:nth-child(1) {
@@ -151,7 +149,6 @@ video {
 .eventsHolder {
     min-width: 1030px;
     min-height: 364px;
-    /* background: lightblue; */
     display: flex;
     justify-content: center;
 }
@@ -211,8 +208,8 @@ video {
 }
 
 .eventCardAvatar {
-    width: 45px;
-    height: 45px;
+    max-width: 45px;
+    max-height: 45px;
     border-radius: 50%;
     background: lawngreen;
     position: absolute;
@@ -310,6 +307,8 @@ video {
 
 .createAMeetup {
     padding-left: 200px;
+    width: 390px;
+    
 }
 
 .findCreate h3 {
@@ -328,7 +327,6 @@ video {
     margin-top: 32px;
     cursor: pointer;
     display: flex;
-
 }
 
 #arrowSpan {
@@ -379,3 +377,104 @@ video {
 #learnMoreArrow {
     margin: 0;
 }
+
+/* ------------------------------ */
+
+.meetupCompanyInfo {
+    width: 100%;
+    height: 490px;
+    background: #353e48;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+}
+
+.meetupCompanyInfoContent {
+    max-width: 1100px;
+    text-align: left    
+}
+
+.companyInfoTop {
+    padding: 40px 0px;
+    border-bottom: 1px solid #666;
+    margin-bottom: 40px;
+}
+
+.companyInfoTop p {
+    text-decoration: underline;
+    cursor: pointer;    
+}
+
+.companyInfoColumns {
+    display: flex;
+}
+
+.companyInfoColumn {
+ margin-right: 50px;
+}
+
+.companyInfoColumn h3 {
+    cursor: pointer;
+    width: 200px;
+    font-size: 16px;    
+}
+
+.companyInfoColumn h4 {
+    color: #a9a9a9;
+    margin-top: 32px;
+    cursor: pointer;  
+    font-size: 16px;      
+}
+
+.socialMediaHolder {
+    display: flex;
+    margin-bottom: 44px;
+}
+
+.socialMediaHolder img {
+    width: 24px;
+    height: 24px;
+    margin-right: 45px;
+}
+
+.languageDropdown {
+    width: 340px;
+    height: 55px;
+    background: var(--black);
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.downloadBtnsHolder {
+    display: flex
+}
+
+.downloadAppBtn {
+    margin-top: 48px;
+    max-width: 160px;
+    max-height: 49px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* ---------------------------------- */
+
+.loggedOut footer {
+    width: 100%;
+    height: 60px;
+    background: #2f363f;
+    font-size: 13px;
+    display: flex;
+    color: #eee;
+    align-items: center;
+    justify-content: center;
+}
+
+footer h3 {
+    font-weight: 300;
+    padding-left: 10px;
+}
+
