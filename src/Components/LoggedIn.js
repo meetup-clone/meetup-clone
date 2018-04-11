@@ -22,7 +22,6 @@ export default class LoggedIn extends Component {
             return (
                 <div className='eventCards' key={e.event_name + e.event_id + i}>
                     <div className='eventTime'>
-                    <time itemprop="startDate" datetime="2018-04-11T15:00:00-06:00">5:00<span class="period">PM</span></time>
                         {e.start_date}
                     </div>
                     <div className='eventDetails'>
@@ -42,9 +41,13 @@ export default class LoggedIn extends Component {
                         <div>
                             <h5>YOUR NEXT MEETUP</h5>
                             <hr/>
-                            <h1>{myEvents[0].event_name}</h1>
-                            <h4>{myEvents[0].group_name}</h4>
-                            <h4>{myEvents[0].attendees}</h4>
+                            <Link to={`/${myEvents[0].url_name}/events/${myEvents[0].event_id}`}>
+                                <h1>{myEvents[0].event_name}</h1>
+                            </Link>
+                            <Link to={`/${myEvents[0].url_name}`}>
+                                <h4>{myEvents[0].group_name}</h4>
+                            </Link>
+                            <h4>{`${myEvents[0].attendees} Members`}</h4>
                             <h3>{myEvents[0].start_date}</h3>
                             <h3>{myEvents[0].venue_name}</h3>
                             <h3>{myEvents[0].venue_address}</h3>

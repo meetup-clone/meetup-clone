@@ -1,4 +1,4 @@
-select events.*, groups.group_name,
+select events.*, groups.group_name, groups.url_name,
 (select count(event_id) from attendees where event_id =
 (select attendees.event_id from attendees where user_id = $1)) as attendees
 from events
