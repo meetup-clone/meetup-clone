@@ -8,5 +8,8 @@ module.exports = {
         req.app.get('db').getAllEvents().then(events => {
             res.status(200).send(events)
         })
+    },
+    getEvent: (req, res) => {
+        req.app.get('db').getEvent([req.params.id])
     }
 }
