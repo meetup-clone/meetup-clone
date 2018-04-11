@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import Header from './Header';
 import './Group/Group.css'
+import axios from "axios"
 
 export default class Group extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            group: {}
         }
+    }
+
+    componentDidMount() {
+        axios.get('/api/groups').then(res => {
+            console.log(res.data)
+            this.setState({
+                group: res.data
+            })
+        })
     }
 
     render() {
