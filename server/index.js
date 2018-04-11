@@ -60,7 +60,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     failueRedirect: 'http://localhost:3000/#/'
 }))
 app.get('/auth/me', authCtrl.checkUser)
-app.get('/auth/logout', authCtrl.redirectUser)
+app.get('/auth/logout', authCtrl.logoutUser)
 app.put('/user', authCtrl.createUser)
 
 
