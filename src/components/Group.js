@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header';
 import './Group/Group.css'
 import axios from "axios"
+import GroupEventCard from './Group/GroupEventCard';
 
 export default class Group extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ export default class Group extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className='group'>
                 <Header />
@@ -53,6 +55,18 @@ export default class Group extends Component {
                         <li>Discussions</li>
                         <li>More</li>
                     </ul>
+                </div>
+                <div className="grayBackground">
+                    <GroupEventCard eventName={this.state.events.event_name}
+                    eventDescription={this.state.events.event_description} 
+                    venueName={this.state.events.venue_name} 
+                    venueCity={this.state.events.venue_city} 
+                    venueAddress={this.state.events.venue_address} 
+                    groupUrl={this.state.group.url_name} 
+                    eventId={this.state.events.event_id} 
+                    startDate={this.state.events.start_date}
+                    endDate={this.state.events.end_date}
+                    />
                 </div>
             </div>
         )
