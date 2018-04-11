@@ -1,3 +1,8 @@
+.header a {
+    color: var(--gray);
+    text-decoration: none;
+}
+
 .header .nav {
     display: flex;
     padding: 20px;

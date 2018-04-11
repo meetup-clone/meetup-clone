@@ -1,29 +1,108 @@
+.loggedIn {
+    height: 400px;
+}
+
+.loggedIn .nextMeetup a {
+    color: white;
+    text-decoration: none;
+}
+
 .loggedIn .nextMeetup {
     background: var(--pink);
-    height: 500px;
-    padding: 1% 5%;
+    height: 300px;
     text-align: left;
+    color: white;
+    text-decoration: none;
+}
+
+.loggedIn .findContent {
+    padding: 5% 5%;
+}
+
+.loggedIn .eventContent {
+    padding: 2% 5%;
+}
+
+.loggedIn .filter {
+    position: absolute;
+    top: auto;
+    bottom: 365px;
+    z-index: 2;
+    background: var(--black);
+    height: 50px;
+    width: 75%;
+    margin: 0 12%;
     color: white;
 }
 
-.loggedIn .eventCards {
+.loggedIn .meetupsFilter {
+    position: absolute;
+    height: 150px;
+    width: 500px;
+    background: white;
+    box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+.loggedIn .events {
+    margin-top: 50px;
+    margin-left: 100px;
+    position: relative;
+    justify-content: center;
     border: 1px;
-    border-radius: 7px;
+    border-radius: 3px;
     border-style: solid;
     border-color: #d1d1d1;
     background-color: white;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 700px;
+}
+
+.loggedIn .eventCards {
+    border-bottom: 1px solid #d1d1d1;
     flex-direction: row;
     justify-content: center;
     align-content: space-around;
+    width: 94%;
+    padding: 3%;
+    text-align: left;
 }
 
 .loggedIn .eventTime {
-    display: flex;
-    flex-direction: column;
+    width: 100px;
+    color: var(--gray);
 }
 
 .loggedIn .eventDetails {
     display: flex;
     flex-direction: column;
+    color: var(--gray);
+    width: 85%;
+}
+
+.loggedIn .eventDetails a {
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.loggedIn .groupName {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+}
+
+.loggedIn .eventName {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    color: black;
 }
