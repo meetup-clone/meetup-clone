@@ -16,8 +16,6 @@ import film from '../../Assets/film.jpeg'
 import scifi from '../../Assets/scifi.jpeg'
 import beliefs from '../../Assets/beliefs.jpeg'
 
-
-
 export default function CategoryGrid() {
     return (
         <div className='categoryGrid'>
@@ -104,8 +102,6 @@ export default function CategoryGrid() {
                     <h3>Beliefs</h3>
                 </div>
             </div>
-
-
         </div>
     )
 }
