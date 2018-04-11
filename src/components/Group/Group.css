@@ -1,0 +1,16 @@
+.groupCard {
+    border-top: 1px solid rgba(46, 62, 72, .12);
+    border-bottom: 1px solid rgba(46, 62, 72, .12);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    height: 50vh;
+}
+.groupInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
