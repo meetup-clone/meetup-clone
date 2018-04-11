@@ -75,6 +75,7 @@ app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 // EVENT ENDPOINTS
 app.get('/api/userEvents', eventCtrl.getUserEvents)
 app.get('/api/allEvents', eventCtrl.getAllEvents)
+app.get('/api/event/:id', eventCtrl.getEvent)
 
 // EVENT COMMENT ENDPOINTS
 
