@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Header/Header.css'
 import logo from '../Assets/Meetup_logo.svg'
 import axios from 'axios'
@@ -32,9 +33,9 @@ export default class Header extends Component {
                 </div>
                 {this.state.toggle ? 
                     <div className='dropdown'>
-                        <span>Profile</span>
-                        <span>Settings</span>
-                        <span>Log out</span>
+                        <Link to='/'>Profile</Link>
+                        <Link to='/'>Settings</Link>
+                        <a href={process.env.REACT_APP_LOGOUT}>Log out</a>
                     </div>
                 : null }
                 

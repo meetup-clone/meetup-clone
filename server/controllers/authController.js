@@ -7,9 +7,9 @@ module.exports = {
             res.status(401).send('Authentication failed.')
         }
     },
-    redirectUser: (req, res) => {
+    logoutUser: (req, res) => {
         req.logOut()
-        res.redirect('http://localhost:3000/')
+        res.redirect('http://localhost:3000/#/')
     },
     createUser: (req, res) => {
         const db = req.app.get('db')
