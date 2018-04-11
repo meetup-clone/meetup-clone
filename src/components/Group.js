@@ -9,28 +9,34 @@ export default class Group extends Component {
         this.state = {
             events: {},
             group: {},
-            groupComment: {},
-            members: {}
+            groupComments: {},
+            members: []
         }
     }
 
     componentDidMount() {
         console.log(this.props.match.params.group)
-        axios.get(`/api/groups/2`).then(res => {
-            console.log(res.data)
+        axios.get(`/api/groups/${this.props.match.group}`).then(res => {
+            this.setState({
+                events: res.data.events,
+                group: res.data.group,
+                groupComments: res.data.groupComments,
+                members: res.data.members
+            })
         })
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className='group'>
                 <Header />
                 <div className="groupCard">
-                <img src="https://secure.meetupstatic.com/photos/event/b/0/3/600_468662819.jpeg" alt="logo"/>
+                <img className="groupImage" src={this.state.group.img} alt="logo"/>
                     <div className="groupInfo">
-                        <h1>Silicon Slopes</h1>
-                        <p>Lehi, UT</p>
-                        <p>members</p>
+                        <h1>{this.state.group.group_name}</h1>
+                        <p>{this.state.group.city}, {this.state.group.state}</p>
+                        <p>members - {this.state.group.members}</p>
                         <p>organizer</p>
                         <div>
                             <button>Join us</button>
@@ -38,6 +44,16 @@ export default class Group extends Component {
                             <button>right arrow</button>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <ul className="groupNavBar">
+                        <li>Our Group</li>
+                        <li>Meetups</li>
+                        <li>Members</li>
+                        <li>Photos</li>
+                        <li>Discussions</li>
+                        <li>More</li>
+                    </ul>
                 </div>
             </div>
         )
