@@ -1,4 +1,3 @@
-/* LoggedOut --------------------------- */
 h2, h3, h4, p {
     margin: 0;
 }
@@ -63,7 +62,6 @@ video {
     min-height: 100%;
     overflow: hidden;
     z-index: 0;
-    /* row-start, column-start, row-end, column-end */
     grid-area: 1 / 1 / 6 / 2;
 }
 
@@ -104,12 +102,6 @@ video {
     display: flex;
     justify-content: center;
 }
-
-/* .categoryRow div {
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
-} */
 
 .categoryRow button {
     margin-right: 20px;
@@ -289,5 +281,8 @@ video {
     color: #666;
     margin-top: 12px;
     cursor: pointer;
+}
+
+.howMeetupWorks {
     
 }

@@ -5,7 +5,6 @@ import EventCards from './LoggedOut/EventCards'
 import CategoryGrid from './LoggedOut/CategoryGrid'
 
 
-
 export default function LoggedOut() {
     return (
         <div className='loggedOut'>
@@ -37,8 +36,11 @@ export default function LoggedOut() {
                     <EventCards />
                     <h2 className='exploreBy'>Explore by category</h2>
                     <CategoryGrid />
-                </div>
+                    <div className='howMeetupWorks'>
 
+                    </div>
+                </div>
+                
             </div>
 
 
