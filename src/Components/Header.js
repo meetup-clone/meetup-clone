@@ -50,9 +50,9 @@ export default class Header extends Component {
                             </div>
                             <div className='links'>
                                 <Link to='/' className='hoverPink'>Profile</Link>
-                                <hr />
+                                <hr/>
                                 <Link to='/' className='hoverPink'>Settings</Link>
-                                <hr />
+                                <hr/>
                                 <a href={process.env.REACT_APP_LOGOUT} className='hoverPink'>Log out</a>
                             </div>
                         </div>
