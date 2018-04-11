@@ -3,6 +3,11 @@ import logo from '../Assets/Meetup_logo.svg'
 import './LoggedOut/LoggedOut.css'
 import EventCards from './LoggedOut/EventCards'
 import CategoryGrid from './LoggedOut/CategoryGrid'
+import rightArrow from '../Assets/right-arrow.svg'
+import magnifying from '../Assets/magnifying.svg'
+import phone from '../Assets/holdingPhone.png'
+import apple from '../Assets/downloadApple.png'
+import google from '../Assets/downloadGoogle.png'
 
 
 export default function LoggedOut() {
@@ -37,8 +42,46 @@ export default function LoggedOut() {
                     <h2 className='exploreBy'>Explore by category</h2>
                     <CategoryGrid />
                     <div className='howMeetupWorks'>
-
+                        <h2>How Meetup Works</h2>
+                        <div className='findCreate'>
+                            <div className='findAMeetup'>
+                                <h3>Find a Meetup</h3>
+                                <h4>Discover local Meetups for all the things you love.</h4>
+                                <div className='blueText'>
+                                    <h4>Sign up</h4>
+                                    <img src={rightArrow} alt=""/>
+                                </div>
+                            </div>
+                            <div className='createAMeetup'>
+                                <h3>Create a Meetup</h3>
+                                <h4>Create your own Meetup, and draw from a community of millions.</h4>
+                                <div className='blueText'>
+                                    <h4>Create a Meetup</h4>
+                                    <img src={rightArrow} alt="img"/>
+                                </div>
+                                
+                            </div>
+                            {/* <img src={magnifying} alt=""/> */}
+                        </div>
                     </div>
+                </div>
+                <div className='getTheApp'>
+                    <div className='getTheAppContent'>
+                        <h2>Get the app</h2>
+                        <div className='blueText' id='learnMoreBlueText'>
+                            <h4>Learn more</h4>
+                            <img src={rightArrow} alt="img" id='learnMoreArrow'/>                            
+                        </div>
+                        <div>
+                            <img src={apple} alt="img"/>
+                            <img src={google} alt="img"/>
+                        </div>
+                        
+                    </div>
+                    <img id='phone' src={phone} alt="img"/>
+                </div>
+                <div className=''>
+
                 </div>
                 
             </div>
