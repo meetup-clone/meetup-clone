@@ -6,4 +6,24 @@
     color: white;
 }
 
+.loggedIn .eventCards {
+    border: 1px;
+    border-radius: 7px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
 
+.loggedIn .eventTime {
+    display: flex;
+    flex-direction: column;
+}
+
+.loggedIn .eventDetails {
+    display: flex;
+    flex-direction: column;
+}

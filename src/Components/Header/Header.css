@@ -54,7 +54,7 @@
     z-index: 20;
 }
 
-.header .toggle {
+.header .menu {
     display: flex;
     align-items: center;
     cursor: pointer;
