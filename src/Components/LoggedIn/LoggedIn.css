@@ -8,6 +8,7 @@
 }
 
 .loggedIn .nextMeetup {
+    position: relative;
     background: var(--pink);
     height: 300px;
     text-align: left;
@@ -24,9 +25,8 @@
 }
 
 .loggedIn .filter {
-    position: absolute;
-    top: auto;
-    bottom: 365px;
+    position: relative;
+    bottom: -70px;
     z-index: 2;
     background: var(--black);
     height: 50px;

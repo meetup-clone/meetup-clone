@@ -39,7 +39,7 @@ export default class LoggedIn extends Component {
                         <Link to={`/${e.url_name}/events/${e.event_id}`}>
                             <span className='eventName'>{e.event_name}</span>
                         </Link>
-                            <span className='attendees'>{`${e.attendees} Members going`}</span>
+                        <span className='attendees'>{`${e.attendees} Members going`}</span>
                     </div>
                 </div>
             )
@@ -69,25 +69,26 @@ export default class LoggedIn extends Component {
                             <h4>500 Meetups nearby</h4>
                         </div>
                     }
-                </div>
-                <div className='filter'>
-                    <input placeholder='All Meetups' onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })}/>
-                    <span>within</span>
-                    <select>
-                        <option value="2">2 miles</option>
-                        <option value="5">5 miles</option>
-                        <option value="10">10 miles</option>
-                        <option value="25">25 miles</option>
-                        <option value="50">50 miles</option>
-                        <option value="100">100 miles</option>
-                        <option value="any">any distance</option>
-                    </select>
-                </div>
-                {this.state.meetupsToggle ?
-                    <div className='meetupsFilter'>
-                        
+                    <div className='filter'>
+                        <input placeholder='All Meetups' onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })} />
+                        <span>within</span>
+                        <select>
+                            <option value="2">2 miles</option>
+                            <option value="5">5 miles</option>
+                            <option value="10">10 miles</option>
+                            <option value="25">25 miles</option>
+                            <option value="50">50 miles</option>
+                            <option value="100">100 miles</option>
+                            <option value="any">any distance</option>
+                        </select>
                     </div>
-                : null}
+                    {this.state.meetupsToggle ?
+                        <div className='meetupsFilter'>
+
+                        </div>
+                        : null}
+                    
+                </div>
                 <div className='events'>
                     {eventsList}
                 </div>
