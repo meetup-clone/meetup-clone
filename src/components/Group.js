@@ -16,7 +16,7 @@ export default class Group extends Component {
 
     componentDidMount() {
         console.log(this.props.match.params.group)
-        axios.get(`/api/groups/${this.props.match.group}`).then(res => {
+        axios.get(`/api/groups/${this.props.match.params.group}`).then(res => {
             this.setState({
                 events: res.data.events,
                 group: res.data.group,
@@ -27,7 +27,6 @@ export default class Group extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className='group'>
                 <Header />
