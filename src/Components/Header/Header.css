@@ -52,14 +52,16 @@
 
 .header .dropdown {
     position: absolute;
-    height: 100px;
-    width: 200px;
+    height: 150px;
+    width: 500px;
     background: white;
     box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
     border-radius: 3px;
     min-width: auto;
     top: auto;
     right: 0;
+    padding: 0 2%;
+    display: flex;
 }
 
 .header .dropdown:before {
@@ -68,4 +70,19 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 5px solid black;
+}
+
+.header .groups {
+    text-align: left;
+}
+
+.header .groups:hover {
+    background: var(--pink);
+    color: white;
+}
+
+.header .links {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
 }

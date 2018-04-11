@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Header/Header.css'
 import logo from '../Assets/Meetup_logo.svg'
 import axios from 'axios'
@@ -8,13 +9,16 @@ export default class Header extends Component {
         super()
         this.state = {
             user: {},
+            groups: [],
             toggle: false
         }
     }
     componentDidMount() {
         axios.get('/auth/me').then(res => this.setState({ user: res.data }))
+        axios.get('api/groups').then(res => this.setState({ groups: res.data }))
     }
     render() {
+        let { groups } = this.state
         return (
             <div className='header'>
                 <div className='nav'>
@@ -32,9 +36,22 @@ export default class Header extends Component {
                 </div>
                 {this.state.toggle ? 
                     <div className='dropdown'>
-                        <span>Profile</span>
-                        <span>Settings</span>
-                        <span>Log out</span>
+                        <div className='groups'>
+                            {groups.length > 0 ? 
+                                <div>
+                                    <Link to={`/${groups[0].url_name}`}><h4>{groups[0].group_name}</h4></Link>
+                                </div>
+                            :
+                                <div>
+                                    <h3>You're not a member of any Meetup Groups yet.</h3>
+                                </div>
+                            }
+                        </div>
+                        <div className='links'>
+                            <Link to='/'>Profile</Link>
+                            <Link to='/'>Settings</Link>
+                            <a href={process.env.REACT_APP_LOGOUT}>Log out</a>
+                        </div>
                     </div>
                 : null }
                 

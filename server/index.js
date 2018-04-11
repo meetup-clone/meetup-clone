@@ -9,6 +9,7 @@ const massive = require('massive')
 const { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, CONNECTION_STRING } = process.env
 const authCtrl = require('./controllers/authController.js')
 const eventCtrl = require('./controllers/eventController.js')
+const groupCtrl = require('./controllers/groupController.js')
 
 const app = express()
 
@@ -61,18 +62,18 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     failueRedirect: 'http://localhost:3000/#/'
 }))
 app.get('/auth/me', authCtrl.checkUser)
-app.get('/auth/logout', authCtrl.redirectUser)
+app.get('/auth/logout', authCtrl.logoutUser)
 app.put('/user', authCtrl.createUser)
 
 
 // GROUP ENDPOINTS
-
+app.get('/api/groups', groupCtrl.getGroups)
 
 // GROUP COMMENT ENDPOINTS
 
 
 // EVENT ENDPOINTS
-app.get('/api/events/', eventCtrl.getEvents);
+app.get('/api/events', eventCtrl.getEvents)
 
 // EVENT COMMENT ENDPOINTS
 
