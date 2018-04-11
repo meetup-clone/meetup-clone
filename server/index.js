@@ -7,7 +7,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const massive = require('massive')
 const { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, CONNECTION_STRING } = process.env
-const auth_ctrl = require('./controllers/auth_controller.js')
+const authCtrl = require('./controllers/authController.js')
+const eventCtrl = require('./controllers/eventController.js')
 
 const app = express()
 
@@ -59,9 +60,9 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: 'http://localhost:3000/#/home',
     failueRedirect: 'http://localhost:3000/#/'
 }))
-app.get('/auth/me', auth_ctrl.checkUser)
-app.get('/auth/logout', auth_ctrl.redirectUser)
-app.put('/user', auth_ctrl.createUser)
+app.get('/auth/me', authCtrl.checkUser)
+app.get('/auth/logout', authCtrl.redirectUser)
+app.put('/user', authCtrl.createUser)
 
 
 // GROUP ENDPOINTS
@@ -71,7 +72,7 @@ app.put('/user', auth_ctrl.createUser)
 
 
 // EVENT ENDPOINTS
-
+app.get('/api/events/', eventCtrl.getEvents);
 
 // EVENT COMMENT ENDPOINTS
 

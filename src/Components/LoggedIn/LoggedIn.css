@@ -1,0 +1,9 @@
+.loggedIn .nextMeetup {
+    background: var(--pink);
+    height: 500px;
+    padding: 1% 5%;
+    text-align: left;
+    color: white;
+}
+
+
