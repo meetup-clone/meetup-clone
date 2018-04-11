@@ -6,6 +6,8 @@ import tennis from '../../Assets/tennis.jpg'
 export default function EventCards() {
     return (
         <div className='eventCards'>
+            <h2>Popular Meetups nearby</h2>
+            <div className='eventsHolder'>
             <section className='eventCard'>
                 <img src={laptop} alt="img"/>
                 <div className='eventCardDate'>
@@ -50,6 +52,8 @@ export default function EventCards() {
                     <h2 className='from'><span id='from'>From</span>The Rise</h2>
                 </div>
             </section>
+            </div>
+            
         </div>
     )
 }
