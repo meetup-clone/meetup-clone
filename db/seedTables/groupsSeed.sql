@@ -6,6 +6,6 @@ create table if not exists groups (
     state varchar(100), 
     city varchar(100),
     members int,
-    organizer references users(user_id),
+    organizer integer references users(user_id),
     category varchar(100)
 )
