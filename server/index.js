@@ -67,6 +67,7 @@ app.put('/user', authCtrl.createUser)
 
 // GROUP ENDPOINTS
 app.get('/api/groups', groupCtrl.getGroups)
+app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 
 // GROUP COMMENT ENDPOINTS
 

@@ -7,16 +7,17 @@ export default class Group extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            group: {}
+            events: {},
+            group: {},
+            groupComment: {},
+            members: {}
         }
     }
 
     componentDidMount() {
-        axios.get('/api/groups').then(res => {
+        console.log(this.props.match.params.group)
+        axios.get(`/api/groups/2`).then(res => {
             console.log(res.data)
-            this.setState({
-                group: res.data
-            })
         })
     }
 
