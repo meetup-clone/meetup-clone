@@ -9,7 +9,7 @@ export default (
     <Switch>
         <Route path='/' component={LoggedOut} exact />
         <Route path='/home' component={LoggedIn} />
-        <Route path='/:group' component={Group} />
+        <Route path='/:group' component={Group} exact/>
         <Route path='/:group/events/:event' component={Events} />
     </Switch>
 )
