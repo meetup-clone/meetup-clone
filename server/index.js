@@ -9,6 +9,7 @@ const massive = require('massive')
 const { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, CONNECTION_STRING } = process.env
 const authCtrl = require('./controllers/authController.js')
 const eventCtrl = require('./controllers/eventController.js')
+const groupCtrl = require('./controllers/groupController.js')
 
 const app = express()
 
@@ -66,13 +67,13 @@ app.put('/user', authCtrl.createUser)
 
 
 // GROUP ENDPOINTS
-
+app.get('/api/groups', groupCtrl.getGroups)
 
 // GROUP COMMENT ENDPOINTS
 
 
 // EVENT ENDPOINTS
-app.get('/api/events/', eventCtrl.getEvents);
+app.get('/api/events', eventCtrl.getEvents)
 
 // EVENT COMMENT ENDPOINTS
 
