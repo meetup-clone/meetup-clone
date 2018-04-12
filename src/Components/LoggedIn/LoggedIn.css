@@ -11,14 +11,25 @@
 .loggedIn .nextMeetup {
     position: relative;
     background: var(--pink);
-    min-height: 170px;
+    min-height: 250px;
     text-align: left;
     color: white;
     text-decoration: none;
 }
 
 .loggedIn .myEventContent {
-    padding: 2% 15%;
+    margin: 0 5%;
+    padding: 1% 5%;
+}
+
+.loggedIn .myEventContent h5 {
+    margin: 15px 0 0 0;
+}
+
+.loggedIn .myEventContent hr {
+    border-style: solid;
+    border-width: 0.3px;
+    margin: 10px;
 }
 
 .loggedIn .myEventInfo {
@@ -28,6 +39,8 @@
 
 .loggedIn .myEventName {
     width: 65%;
+    margin-right: 50px;
+    padding: 1%;
 }
 
 .loggedIn .myEventTime {
