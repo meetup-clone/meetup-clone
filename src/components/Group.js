@@ -3,6 +3,7 @@ import Header from './Header';
 import './Group/Group.css'
 import axios from "axios"
 import GroupEventCard from './Group/GroupEventCard';
+import Footer from './Footer'
 import dots from '../Assets/dots.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
 
@@ -78,19 +79,29 @@ export default class Group extends Component {
                     <div className="groupNavBarFiller"></div>
                 </div>
                 <div className="grayBackground">
-                    <p>Next Meetup</p>
-                    <p>See All</p>
-                    <GroupEventCard eventName={this.state.events.event_name}
-                        eventDescription={this.state.events.event_description}
-                        venueName={this.state.events.venue_name}
-                        venueCity={this.state.events.venue_city}
-                        venueAddress={this.state.events.venue_address}
-                        groupUrl={this.state.group.url_name}
-                        eventId={this.state.events.event_id}
-                        startDate={this.state.events.start_date}
-                        endDate={this.state.events.end_date}
-                    />
+                    <div className="aligner">
+                        <div className="flexBetween">
+                            <p>Next Meetup</p>
+                            <p>See All</p>
+                        </div>
+                        <GroupEventCard eventName={this.state.events.event_name}
+                            eventDescription={this.state.events.event_description}
+                            venueName={this.state.events.venue_name}
+                            venueCity={this.state.events.venue_city}
+                            venueAddress={this.state.events.venue_address}
+                            groupUrl={this.state.group.url_name}
+                            eventId={this.state.events.event_id}
+                            startDate={this.state.events.start_date}
+                            endDate={this.state.events.end_date}
+                        />
+                        <div className="groupDescription">
+                            <p>
+                                {this.state.group.description}
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <Footer />
             </div>
         )
     }
