@@ -1,5 +1,6 @@
 .loggedIn {
-    height: 400px;
+    background: #FAFAFA;
+    height: 1500px;
 }
 
 .loggedIn .nextMeetup a {
@@ -69,18 +70,22 @@
     font-weight: 100;
 }
 
-.loggedIn .filter {
+.loggedIn .filterContainer {
+    width: 100%;
     position: absolute;
     bottom: -35px;
     z-index: 2;
+}
+
+.loggedIn .filter {
     background: var(--black);
     height: 70px;
-    width: 1000px;
-    margin: 0 14%;
+    width: 90%;
+    min-width: 900px;
+    margin: auto;
     color: white;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
 }
 
 .loggedIn .allMeetups {
@@ -99,22 +104,25 @@
     z-index: 4;
 }
 
-.loggedIn .distance {
-    background: var(--black);
-    color: white;
-    border: none;
+.loggedIn .filterDistance {
+    margin-left: 0;
+    display: flex;
+    align-items: center;
 }
 
 .loggedIn select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding: 13px;
-    margin: 13px;
+    padding: 13px 2px;
+    margin: 13px 2px;
     font-size: 17px;
     font-weight: 300;
-    width: auto;
     text-align: center;
-    resize: both;
+    cursor: pointer;
+    background: var(--black);
+    color: white;
+    border: none;
+    text-align-last: center;
 }
 
 .loggedIn select option {
@@ -122,6 +130,7 @@
     color: #979797;
     border: none;
     width: auto;
+    text-align: center;
 }
 
 .loggedIn select option:active {
@@ -136,21 +145,27 @@
     background: var(--black);
     color: white;
     border: none;
-    padding: 13px;
-    margin: 13px;
+    padding: 13px 0;
+    margin: 13px 0;
     font-size: 17px;
     font-weight: 300;
+    cursor: pointer;
+    width: 150px;
+    min-width: 50px;
 }
 
-.loggedIn .buttons {
+.loggedIn .viewButtons {
     display: flex;
     border: 1px;
     border-radius: 3px;
     border-style: solid;
     border-color: #454A51;
-    margin-right: 13px;
     text-align: center;
+    margin: 12px;
+    position: absolute;
+    right: 0;
     color: #BABCBE;
+    cursor: pointer;
 }
 
 .loggedIn .calendar {
@@ -164,8 +179,14 @@
     padding: 13px;
 }
 
+.loggedIn .activeView {
+    background: #454A51;
+    color: white;
+    font-weight: bold;
+}
+
 .loggedIn .events {
-    margin-left: 100px;
+    margin-left: 80px;
     position: relative;
     justify-content: center;
     border: 1px;
@@ -226,7 +247,8 @@
 }
 
 .loggedIn .today {
-    margin-top: 100px;
+    margin-top: 60px;
+    margin-bottom: 20px;
     margin-left: 100px;
     stroke: transparent;
     fill: rgba(0,0,0,.87);
