@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './LoggedIn/LoggedIn.css'
 import Header from './Header.js'
-import axios from 'axios'
+import pinkCal from '../Assets/pinkCalendar.svg'
+import pinkPin from '../Assets/pinkPin.svg'
+
 
 export default class LoggedIn extends Component {
     constructor() {
@@ -11,7 +14,8 @@ export default class LoggedIn extends Component {
             myEvents: [],
             allEvents: [],
             meetupsToggle: false,
-            cityToggle: false
+            cityToggle: false,
+            currentCity: 'Provo, UT' 
         }
         this.convertTime = this.convertTime.bind(this)
     }
@@ -25,7 +29,7 @@ export default class LoggedIn extends Component {
         return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
     }
     render() {
-        let { myEvents, allEvents } = this.state;
+        let { myEvents, allEvents } = this.state
         let eventsList = allEvents.map((e, i) => {
             return (
                 <div className='eventCards' key={e.event_name + e.event_id + i}>
@@ -49,19 +53,34 @@ export default class LoggedIn extends Component {
                 <Header />
                 <div className='nextMeetup'>
                     {myEvents.length > 0 ?
-                        <div className='eventContent'>
+                        <div className='myEventContent'>
                             <h5>YOUR NEXT MEETUP</h5>
                             <hr />
-                            <Link to={`/${myEvents[0].url_name}/events/${myEvents[0].event_id}`}>
-                                <h1>{myEvents[0].event_name}</h1>
-                            </Link>
-                            <Link to={`/${myEvents[0].url_name}`}>
-                                <h4>{myEvents[0].group_name}</h4>
-                            </Link>
-                            <h4>{`${myEvents[0].attendees} Members`}</h4>
-                            <h3>{myEvents[0].start_date}</h3>
-                            <h3>{myEvents[0].venue_name}</h3>
-                            <h3>{myEvents[0].venue_address}</h3>
+                            <div className='myEventInfo'>
+                                <div className='myEventName'>
+                                    <Link to={`/${myEvents[0].url_name}/events/${myEvents[0].event_id}`}>
+                                        <h1>{myEvents[0].event_name}</h1>
+                                    </Link>
+                                    <Link to={`/${myEvents[0].url_name}`}>
+                                        <h5>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h5>
+                                    </Link>
+                                </div>
+                                <div className='myEventTime'>
+                                    <div className='myEventCal'>
+                                        <img src={pinkCal} alt='cal'/>
+                                        <div className='myEventCalText'>
+                                            <h4>{(new Date(myEvents[0].start_date)).toLocaleString()}</h4>
+                                        </div>
+                                    </div>
+                                    <div className='myEventVenue'>
+                                        <img src={pinkPin} alt='pin'/>
+                                        <div className='myEventVenueText'>
+                                            <h4>{myEvents[0].venue_name}</h4>
+                                            <h4>{myEvents[0].venue_address}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         :
                         <div className='findContent'>
@@ -70,9 +89,9 @@ export default class LoggedIn extends Component {
                         </div>
                     }
                     <div className='filter'>
-                        <input placeholder='All Meetups' onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })} />
+                        <input placeholder='All Meetups' onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })} className='allMeetups' />
                         <span>within</span>
-                        <select>
+                        <select className='distance'>
                             <option value="2">2 miles</option>
                             <option value="5">5 miles</option>
                             <option value="10">10 miles</option>
@@ -81,14 +100,23 @@ export default class LoggedIn extends Component {
                             <option value="100">100 miles</option>
                             <option value="any">any distance</option>
                         </select>
+                        <span>of</span>
+                        <div className='filterByCity'>
+                                <input value={this.state.currentCity} onChange={(e) => this.setState({ currentCity: e.target.value })}/>
+                            </div>
+                        <div className='buttons'>
+                            <div className='groups'>Groups</div>
+                            <div className='calendar'>Calendar</div>
+                        </div>
                     </div>
                     {this.state.meetupsToggle ?
                         <div className='meetupsFilter'>
 
                         </div>
                         : null}
-                    
+
                 </div>
+                <div className='today'>{(new Date(Date.now()).toDateString()).toUpperCase()}</div>
                 <div className='events'>
                     {eventsList}
                 </div>
