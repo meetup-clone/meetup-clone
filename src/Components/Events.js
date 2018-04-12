@@ -8,19 +8,26 @@ export default class Events extends Component {
         super()
 
         this.state = {
-            event: {}
+            event: {},
+            attendees: []
         }
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.event)
         axios.get(`/api/event/${this.props.match.params.event}`).then(res => {
-            console.log(res.data)
-            this.setState({event: res.data})
+            this.setState({event: res.data[0]})
+        })
+        axios.get(`/api/attendees/${this.props.match.params.event}`).then(res => {
+            this.setState({attendees: res.data})
         })
     }
 
     render() {
+        console.log(this.state, 'thisstate')
+        const {start_date, end_date, event_description, 
+               event_name, venue_address, venue,city, 
+               venue_directions, venue_name} = this.state.event
+
         return (
             <div>
                 <Header />
@@ -41,3 +48,14 @@ export default class Events extends Component {
         )
     }
 }
+// end_date:1523502000000
+// event_description:"6:30 – 7:30 JS Learners Meetup"
+// event_id:3
+// event_name:"UtahJS SLC Meetup"
+// group_id:1
+// start_date:1523494800000
+// venue_address:"1930 S. State St"
+// venue_city:"Salt Lake City"
+// venue_directions:"Southwest end of O.C. Tanner Campus"
+// venue_name:"O.C. Tanner Event Center"
+// venue_state:"UT"

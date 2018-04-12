@@ -10,6 +10,13 @@ module.exports = {
         })
     },
     getEvent: (req, res) => {
-        req.app.get('db').getEvent([req.params.id])
+        req.app.get('db').getEvent([req.params.id]).then(event => {
+            res.status(200).send(event)
+        })
+    },
+    getAttendees: (req, res) => {
+        req.app.get('db').getAttendees([req.params.id]).then(attendees => {
+            res.status(200).send(attendees)
+        })
     }
 }
