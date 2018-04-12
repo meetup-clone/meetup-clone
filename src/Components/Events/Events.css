@@ -6,7 +6,7 @@
     justify-content: space-around;
     box-sizing: border-box;
     padding-top: 24px;
-    padding-left: 40px;
+    padding-left: 20px;
     padding-right: 15%;
     text-align: left;
 }
@@ -121,3 +121,96 @@
     height: 24px;
     cursor: pointer;
 }
+
+/* ------------------------------------------------ */
+
+.eventsBody {
+    text-align: left;
+    min-height: 700px;
+    background: #f6f7f8;
+    display: flex;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 20px;
+}
+
+.eventsBody h2 {
+    font-size: 20px;
+}
+
+.eventsDetails {
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
+
+.eventsDetails h3 {
+    font-weight: 300;
+    font-size: 16px;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.eventsAttendees {
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
+
+.eventsAttendeesTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+.eventsAttendeesTop span {
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.attendeesCards {
+    display: flex;
+}
+
+/* ----------------------------- */
+
+.attendeeCard {
+    width: 134px;
+    height: 176px;
+    box-sizing: border-box;
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    margin-right: 16px;
+    cursor: pointer;
+    transition: .3s
+}
+
+.attendeeCard:hover {
+    box-shadow: 0px 4px 6px #ccc;
+    transform: translate(0px, -2px);
+}
+
+.attendeeCard img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+}
+
+.attendeeCard h4 {
+    font-size: 14px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.attendeeCard h5 {
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 12px;
+}
+
+/* ---------------------------------- */
