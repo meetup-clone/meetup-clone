@@ -3,6 +3,121 @@
     min-height: 195px;
     border: 1px solid #ddd;
     display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding-top: 24px;
+    padding-left: 40px;
+    padding-right: 15%;
+    text-align: left;
+}
+
+.eventsTopContent h4 {
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4;    
+}
+
+.eventsTopImageContent {
+    display: flex;
     align-items: center;
-    justify-content: center;
+}
+
+.eventsTopContent h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.eventsTopContent h5 {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 4px;
+    font-weight: 300;
+}
+
+#eventDateIcon {
+    height: 54px;
+    width: 54px;
+    position: relative;
+    top:0;
+    left:0;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+    margin-right: 20px;
+    padding: 8px;
+}
+
+#eventDateIcon p:nth-child(1) {
+    font-size: 20px;
+}
+
+#organizerAvatar {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-right: 20px;
+}
+
+.eventsTopContent h5 span {
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.eventsTopGoing h3 {
+    font-size: 16px;
+}
+
+.eventsTopGoing h3 span {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+.eventsGoingBtns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-bottom: 20px;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+.eventsGoingBtns button {
+    width: 46%;
+    height: 32px;
+    color: #eee;
+    background: var(--blue);
+    font-size: 16px;
+}
+
+.eventsGoingBtns button:hover {
+    opacity: .8;
+}
+
+.eventsSocialHolder {
+    display: flex;
+    align-items: center;
+    padding: 14px 14px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;    
+}
+
+.eventsSocialHolder h4 {
+    font-weight: 300;
+    color: #666;
+    padding-left: 10px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.eventsSocialHolder h4:nth-child(6) {
+    padding-right: 0;
+}
+
+.eventsTopGoing img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
