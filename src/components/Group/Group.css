@@ -7,16 +7,24 @@
     padding-top: 16px;
     margin-bottom: 16px;
     display: flex;
-    height: 50vh;
+    height: 42vh;
+    align-items: center;
+    justify-content: center;
+    font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
 }
 .groupInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 24px;
+    height: 100%;
+    justify-content: space-between;
 }
 .groupImage {
     border-radius: 8px;
     width: 600px;
+    height: 337.5px;
+
 }
 .groupNavBar {
     width: 100%;
@@ -29,13 +37,40 @@
     display: flex;
     justify-content: center;
 }
+.tinyText {
+    font-size: .75rem;
+    line-height: 1.6;
+    color: var(--gray)
+}
+.joinBtn {
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #fff;
+    background: #f13a59;
+    text-align: center;
+    padding-left: 56px;
+    padding-right: 56px;
+    width: 10vw;
+    height: 40px;
+
+}
+.whiteBtn {
+    height: 40px;
+    width: 3.5vw;
+    background: white;
+    border: 1px solid #d7d9db;
+    color: #7F868C;
+}
 /* ---------------- Group Event Card --------------- */
 .groupEventCard {
     background-color: white;
-    border-radius: 8px;
-    height: 45vh;
-    width: 90vw;
+    border-radius: 10px;
+    height: 41vh;
+    width: 63vw;
     margin-top: 100px;
+    cursor: pointer;
+    font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
 }
 .linkDiv {
     height: 93%;
@@ -45,4 +80,98 @@
 }
 .groupEventCard a {
     text-decoration: none;
+}
+.groupEventCard button {
+    width: 100%;
+    background-color: #00a2c7;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    vertical-align: middle;
+    height: 40px;
+}
+.mainGroupEventCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    width: 45vw;
+    padding-top: 15px;
+}
+.groupEventCard p {
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--gray)
+}
+#blackP {
+    color: var(--black)
+}
+#blackBold {
+    font-weight: 500!important;
+    color: var(--black)
+}
+.groupEventCardRight {
+    width: 18vw;
+    height: 100%;
+    padding: 15px;
+}
+.groupEventCardRight p {
+    font-size: .875rem;
+    line-height: 1.6;
+}
+.groupEventCardLeft {
+    border: 1px solid #d7d9db;
+    height: 36px;
+    width: 36px;
+    background: #f6f7f8;
+    padding: 8px;
+    border-radius: 8px;
+}
+.groupEventCardLeft p {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 1.1;
+    font-size: .75rem;
+}
+.groupEventCardLeft p:nth-child(1) {
+    color: var(--pink);
+    font-size: 20px;
+}
+.groupEventCard ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.groupEventCard li {
+height: 28px;
+width: 28px;
+border-radius: 50%;
+display: inline-block;
+border: 1px solid white;
+margin-left: -8px; 
+background-repeat: no-repeat;
+background-position: 50%;
+background-size: cover;
+vertical-align: middle;
+}
+.groupEventCard li:nth-child(odd) {
+    margin-top: 5px;
+}
+#peopleGoing {
+    margin-left: 8px;
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--gray);
+    border: none;
+    width: 50px;
+    height: 100%;
+    display: inline-block;
+}
+.groupAvatarHolder {
+    background-color: #f6f7f8;
+    border-radius: 36px;
+    width: 8vw;
+    height: 45px;
 }
