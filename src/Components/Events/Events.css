@@ -3,6 +3,71 @@
     min-height: 195px;
     border: 1px solid #ddd;
     display: flex;
-    align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    padding-top: 24px;
+    text-align: left;
+}
+
+.eventsTopContent h4 {
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4;    
+}
+
+.eventsTopImageContent {
+    display: flex;
+    align-items: center;
+}
+
+.eventsTopContent h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.eventsTopContent h5 {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 4px;
+    font-weight: 300;
+}
+
+#eventDateIcon {
+    height: 54px;
+    width: 54px;
+    position: relative;
+    top:0;
+    left:0;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+    margin-right: 20px;
+    padding: 8px;
+}
+
+#eventDateIcon p:nth-child(1) {
+    font-size: 20px;
+}
+
+#organizerAvatar {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-right: 20px;
+}
+
+.eventsTopContent h5 span {
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.eventsTopGoing h3 {
+    font-size: 16px;
+}
+
+.eventsTopGoing h3 span {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 10px;
 }
