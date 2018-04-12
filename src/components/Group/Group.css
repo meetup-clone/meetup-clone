@@ -1,14 +1,12 @@
 .groupCard {
     border-top: 1px solid rgba(46, 62, 72, .12);
-    border-bottom: 1px solid rgba(46, 62, 72, .12);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 16px;
     margin-bottom: 16px;
     display: flex;
-    height: 42vh;
-    align-items: center;
+    height: 38vh;
     justify-content: center;
     font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
 }
@@ -16,8 +14,17 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 24px;
-    height: 100%;
+    padding-left: 48px;
+    height: 337.5px;
+    justify-content: space-between;
+    width: 325px;
+    text-align: left;
+}
+.groupInfoHolder {
+    display: flex;
+    flex-direction: column;
+    margin-top: -95px;
+    height: 175px;
     justify-content: space-between;
 }
 .groupImage {
@@ -27,8 +34,28 @@
 
 }
 .groupNavBar {
+    width: 600px;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+.groupNavBar li {
+    cursor: pointer;
+}
+.groupNavBarWrapper {
     width: 100%;
-    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    height: 55px;
+    box-shadow: 0 0 2px 0 rgba(46,62,72,.12), 0 2px 4px 0 rgba(46,62,72,.12);
+    margin-bottom: 3px;
+    padding-top: 5px;
+}
+.groupNavBarFiller {
+    width: 325px;
+    padding-left: 87px;
 }
 .grayBackground {
     width: 100%;
@@ -61,6 +88,25 @@
     background: white;
     border: 1px solid #d7d9db;
     color: #7F868C;
+}
+.groupButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.groupOrganizerAvatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+.organizerWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+.innerOrganizerDiv {
+    display: flex;
+    flex-direction: column;
 }
 /* ---------------- Group Event Card --------------- */
 .groupEventCard {
