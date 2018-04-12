@@ -78,13 +78,13 @@
     text-align: center;
     padding-left: 56px;
     padding-right: 56px;
-    width: 10vw;
-    height: 40px;
+    width: 160px;
+    height: 38px;
 
 }
 .whiteBtn {
     height: 40px;
-    width: 3.5vw;
+    width: 55px;
     background: white;
     border: 1px solid #d7d9db;
     color: #7F868C;
@@ -108,15 +108,23 @@
     display: flex;
     flex-direction: column;
 }
+.aligner {
+    width: 1021px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 /* ---------------- Group Event Card --------------- */
 .groupEventCard {
     background-color: white;
     border-radius: 10px;
     height: 41vh;
-    width: 63vw;
+    width: 100%;
     margin-top: 100px;
     cursor: pointer;
     font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    margin-right: 84px;
 }
 .linkDiv {
     height: 93%;
@@ -135,15 +143,17 @@
     font-size: 14px;
     line-height: 1.6;
     vertical-align: middle;
-    height: 40px;
+    height: 38px;
 }
 .mainGroupEventCardContent {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%;
+    height: 90%;
     width: 45vw;
     padding-top: 15px;
+    justify-content: space-between;
+    text-align: left;
 }
 .groupEventCard p {
     font-size: .875rem;
@@ -158,9 +168,11 @@
     color: var(--black)
 }
 .groupEventCardRight {
-    width: 18vw;
+    width: 385px;
     height: 100%;
     padding: 15px;
+    padding-top: 33px;
+    padding-right: 20px;
 }
 .groupEventCardRight p {
     font-size: .875rem;
@@ -220,4 +232,41 @@ vertical-align: middle;
     border-radius: 36px;
     width: 8vw;
     height: 45px;
+}
+.dateAndTitleDiv {
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.5px;
+
+}
+.dateAndTitleDiv h1 {
+    font-size: 1.75rem;
+}
+.hostedAvatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+}
+.groupAddress {
+    text-align: left;
+    padding-left: 25px;
+    font-size: .875rem;
+    line-height: 1.6;
+}
+.flexBetween {
+    display: flex;
+    justify-content: space-between;
+}
+/* ------------------- Group Description --------------------- */
+.groupDescription {
+    text-align: left;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
+    line-height: 1.8;
 }
