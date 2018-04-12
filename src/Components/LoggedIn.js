@@ -141,6 +141,8 @@ export default class LoggedIn extends Component {
                 <div className='events'>
                     {eventsList}
                 </div>
+                <div >
+                </div>
             </div>
         )
     }
