@@ -3,6 +3,8 @@ import Header from './Header';
 import './Group/Group.css'
 import axios from "axios"
 import GroupEventCard from './Group/GroupEventCard';
+import dots from '../Assets/dots.svg'
+import bigRightArrow from '../Assets/bigRightArrow.svg'
 
 export default class Group extends Component {
     constructor(props) {
@@ -36,13 +38,21 @@ export default class Group extends Component {
                 <img className="groupImage" src={this.state.group.img} alt="logo"/>
                     <div className="groupInfo">
                         <h1>{this.state.group.group_name}</h1>
-                        <p>{this.state.group.city}, {this.state.group.state}</p>
-                        <p>members - {this.state.group.members}</p>
-                        <p>organizer</p>
                         <div>
-                            <button>Join us</button>
-                            <button>...</button>
-                            <button>right arrow</button>
+                        <p className="tinyText">location</p>
+                        <p id="blackBold">{this.state.group.city}, {this.state.group.state}</p>
+                        </div>
+                        <div>
+                        <p className="tinyText">members</p>
+                        <p id="blackBold">{this.state.group.members}</p>
+                        </div>
+                        <div>
+                        <p className="tinyText">organizer</p>
+                        </div>
+                        <div>
+                            <button className="joinBtn">Join us</button>
+                            <button className="whiteBtn"><img style={{height: 10, width: 10}} src={dots} alt="..."/></button>
+                            <button className="whiteBtn"><img style={{height: 15, width: 15}} src={bigRightArrow} alt="big right arrow"/></button>
                         </div>
                     </div>
                 </div>

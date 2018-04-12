@@ -1,5 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import mapPin from '../../Assets/mapPin.svg'
 
 
 export default function GroupEventCard(props) {
@@ -13,30 +14,39 @@ export default function GroupEventCard(props) {
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
     var splicedTime = `${time.substring(0, time.length - 6)} ${time.substring(time.length - 3, time.length)}`
-    return(
+    return (
         <div className="groupEventCard">
-        <Link to={`/${props.groupUrl}/events/${props.eventId}`}>
-        <div className="linkDiv">
-        <div>
-            <h3>short month</h3>
-            <h3>{date}</h3>
-        </div>
-        <div>
-            <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
-            <br /> 
-            <h1>{props.eventName}</h1>
-            <br />
-            <h3>{props.eventDescription}</h3>
-            <br />
-            <p># of people going</p>
-        </div>
-        <div>
-        <h3>{props.venueName}</h3>
-        <p>{props.venueCity}</p>
-        <p>{props.venueAddress}</p>
-        </div>
-        </div>
-        </Link>
+            <Link to={`/${props.groupUrl}/events/${props.eventId}`}>
+                <div className="linkDiv">
+                <div style={{padding: 20}}>
+                    <div className="groupEventCardLeft">
+                        <p>{date}</p>
+                        <p>mon</p>
+                    </div>
+                    </div>
+                    <div className="mainGroupEventCardContent">
+                        <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
+                        <h1>{props.eventName}</h1>
+                        <p id="blackP">{props.eventDescription}</p>
+                        <div className="groupAvatarHolder">
+                            <ul>
+                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
+                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
+                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
+                                <li id="peopleGoing">3 going</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="groupEventCardRight">
+                        <button>Attend</button>
+                        <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
+                        <p id="blackBold">{props.venueName}</p>
+                        <p>{props.venueCity}</p>
+                        <p>{props.venueAddress}</p>
+                        <time datetime={props.startDate}></time>
+                    </div>
+                </div>
+            </Link>
         </div>
     )
 }
