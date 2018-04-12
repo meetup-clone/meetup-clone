@@ -4,6 +4,7 @@ import Header from './Header'
 import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
+import Footer from './Footer'
 
 export default class Events extends Component {
     constructor() {
@@ -54,31 +55,41 @@ export default class Events extends Component {
                 <Header />
                 <div className='events'>
                     <div className='eventsTopSection'>
-                        <div className='eventCardDate' id='eventDateIcon'>
-                            <p>{this.dateNumber}</p>
-                            <p>{this.month}</p>
-                        </div>
-                        <div className='eventsTopContent'>
-                            <h4>{this.dateString}</h4>
-                            <h2>{event_name}</h2>
-                            <div className='eventsTopImageContent'>
-                                <img className='eventCardAvatar' id='organizerAvatar' src={attendees[0].image} alt="img" />
-                                <div>
-                                    <h5>Hosted by <span>{attendees[0].username}</span></h5>
-                                    <h5>From <span>{group_name}</span></h5>
+                        <div style={{display: 'flex'}}>
+                            <div className='eventCardDate' id='eventDateIcon'>
+                                <p>{this.dateNumber}</p>
+                                <p>{this.month}</p>
+                            </div>
+                            <div className='eventsTopContent'>
+                                <h4>{this.dateString}</h4>
+                                <h2>{event_name}</h2>
+                                <div className='eventsTopImageContent'>
+                                    <img className='eventCardAvatar' id='organizerAvatar' src={attendees[0].image} alt="img" />
+                                    <div>
+                                        <h5>Hosted by <span>{attendees[0].username}</span></h5>
+                                        <h5>From <span>{group_name}</span></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className='eventsTopGoing'>
                             <h3>Are you going? <span>{`${attendees.length} people going`}</span></h3>
-                            <button>✔</button>
-                            <button>X</button>
+                            <div className='eventsGoingBtns'>
+                                <button>✔</button>
+                                <button>X</button>
+                            </div>
                             <div className='eventsSocialHolder'>
-                                <img src={facebook} alt="img"/>
+                                <img src={facebook} alt="img" />
+                                <h4>Share</h4>
+                                <img src={twitter} alt="img" />
+                                <h4>Tweet</h4>
+                                <img src={twitter} alt="img" />
+                                <h4>Invite</h4>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }
