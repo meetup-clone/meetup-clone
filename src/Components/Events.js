@@ -4,6 +4,7 @@ import Header from './Header'
 import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
+import AttendeeCard from './Events/AttendeeCard'
 import Footer from './Footer'
 
 export default class Events extends Component {
@@ -45,17 +46,21 @@ export default class Events extends Component {
     }
 
     render() {
-        console.log(this.state, 'thisstate')
+        // console.log(this.state, 'thisstate')
         const { start_date, end_date, event_description,
             event_name, venue_address, venue, city,
             venue_directions, venue_name, group_name } = this.state.event
         const { attendees } = this.state
+
+        const mappedAttendees = attendees.map((x, i) => {
+            return <AttendeeCard key={x.attendees_id} index={i} image={x.image} username={x.username} />
+        })
         return (
             <div>
                 <Header />
                 <div className='events'>
                     <div className='eventsTopSection'>
-                        <div style={{display: 'flex'}}>
+                        <div style={{ display: 'flex' }}>
                             <div className='eventCardDate' id='eventDateIcon'>
                                 <p>{this.dateNumber}</p>
                                 <p>{this.month}</p>
@@ -87,6 +92,38 @@ export default class Events extends Component {
                                 <h4>Invite</h4>
                             </div>
                         </div>
+                    </div>
+
+                    {/* ---------------------------------------------------- */}
+                    <div className='eventsBody'>
+                        <section className='eventsBodyContent'>
+                            <div className='eventsDetails'>
+                                <h2>Details</h2>
+                                <h3>{event_description}</h3>
+                            </div>
+                            <div className='eventsAttendees'>
+                                <div className='eventsAttendeesTop'>
+                                    <h2>{`Attendees (${attendees.length})`}</h2>
+                                    <span>See all</span>
+                                </div>
+                                <div className='attendeesCards'>
+                                    {mappedAttendees}
+                                </div>
+                            </div>
+                            <div className='eventsComments'>
+                                <h2>Comments</h2>
+                            </div>
+
+                        </section>
+                        <section className='eventsMap'>
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                            {/* map */}
+                        </section>
                     </div>
                 </div>
                 <Footer />
