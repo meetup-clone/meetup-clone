@@ -63,7 +63,7 @@ export default class LoggedIn extends Component {
                                         <h1>{myEvents[0].event_name}</h1>
                                     </Link>
                                     <Link to={`/${myEvents[0].url_name}`}>
-                                        <h5>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h5>
+                                        <h4>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h4>
                                     </Link>
                                 </div>
                                 <div className='myEventTime'>
@@ -140,6 +140,8 @@ export default class LoggedIn extends Component {
                 <div className='today'>{(new Date(Date.now()).toDateString()).toUpperCase()}</div>
                 <div className='events'>
                     {eventsList}
+                </div>
+                <div >
                 </div>
             </div>
         )
