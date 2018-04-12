@@ -10,29 +10,83 @@
 .loggedIn .nextMeetup {
     position: relative;
     background: var(--pink);
-    height: 300px;
+    min-height: 170px;
     text-align: left;
     color: white;
     text-decoration: none;
 }
 
-.loggedIn .findContent {
-    padding: 5% 5%;
+.loggedIn .myEventContent {
+    padding: 2% 15%;
 }
 
-.loggedIn .eventContent {
-    padding: 2% 5%;
+.loggedIn .myEventInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.loggedIn .myEventName {
+    width: 65%;
+}
+
+.loggedIn .myEventTime {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.loggedIn .myEventCal {
+    display: flex;
+    margin: 10px;
+}
+
+.loggedIn .myEventCalText {
+    margin: 0 10px;
+}
+
+.loggedIn .myEventVenue {
+    display: flex;
+    margin: 10px;
+}
+
+.loggedIn .myEventVenueText {
+    margin: 0 10px;
+}
+
+.loggedIn img {
+    height: 30px;
+}
+
+.loggedIn .findContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loggedIn .findContent h4 {
+    color: #FCC7D0;
+    font-weight: 100;
 }
 
 .loggedIn .filter {
-    position: relative;
-    bottom: -70px;
+    position: absolute;
+    bottom: -35px;
     z-index: 2;
     background: var(--black);
-    height: 50px;
-    width: 75%;
-    margin: 0 12%;
+    height: 70px;
+    width: 1000px;
+    margin: 0 14%;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loggedIn .allMeetups {
+    margin: 13px;
+    padding: 13px;
+    width: 250px;
 }
 
 .loggedIn .meetupsFilter {
@@ -45,8 +99,72 @@
     z-index: 4;
 }
 
+.loggedIn .distance {
+    background: var(--black);
+    color: white;
+    border: none;
+}
+
+.loggedIn select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 13px;
+    margin: 13px;
+    font-size: 17px;
+    font-weight: 300;
+    width: auto;
+    text-align: center;
+    resize: both;
+}
+
+.loggedIn select option {
+    background: white;
+    color: #979797;
+    border: none;
+    width: auto;
+}
+
+.loggedIn select option:active {
+    border: none;
+}
+
+.loggedIn .filterByCity {
+    margin-left: 10px;
+}
+
+.loggedIn .filterByCity input {
+    background: var(--black);
+    color: white;
+    border: none;
+    padding: 13px;
+    margin: 13px;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.loggedIn .buttons {
+    display: flex;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #454A51;
+    margin-right: 13px;
+    text-align: center;
+    color: #BABCBE;
+}
+
+.loggedIn .calendar {
+    width: 100px;
+    padding: 13px;
+}
+
+.loggedIn .groups {
+    border-right: 1px solid #454A51;
+    width: 100px;
+    padding: 13px;
+}
+
 .loggedIn .events {
-    margin-top: 50px;
     margin-left: 100px;
     position: relative;
     justify-content: center;
@@ -105,4 +223,18 @@
     letter-spacing: -.02em;
     word-spacing: .1em;
     color: black;
+}
+
+.loggedIn .today {
+    margin-top: 100px;
+    margin-left: 100px;
+    stroke: transparent;
+    fill: rgba(0,0,0,.87);
+    color: rgba(0,0,0,.87);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    text-align: left;
 }

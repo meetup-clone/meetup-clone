@@ -37,25 +37,31 @@ export default class Header extends Component {
                 {menu ?
                     <div className='shadow' onClick={() => this.setState({ menu: false })}>
                         <div className='dropdown' onClick={(e) => e.stopPropagation()}>
-                            <div className='groups'>
+                            <div className='headerGroups'>
                                 {groups.length > 0 ?
-                                    <div>
-                                        <Link to={`/${groups[0].url_name}`} className='hoverPink'>
+                                    <div className='hoverPink'>
+                                        <Link to={`/${groups[0].url_name}`} className='headerGroupText'>
                                             <h4>{groups[0].group_name}</h4>
                                         </Link>
                                     </div>
                                     :
-                                    <div>
+                                    <div className='noGroupsYet'>
                                         <h3>You're not a member of any Meetup Groups yet.</h3>
                                     </div>
                                 }
                             </div>
                             <div className='links'>
-                                <Link to='/' className='hoverPink'>Profile</Link>
+                                <div className='hoverPink'>
+                                    <Link to='/' className='linkText'>Profile</Link>
+                                </div>
                                 <hr />
-                                <Link to='/' className='hoverPink'>Settings</Link>
+                                <div className='hoverPink'>
+                                    <Link to='/' className='linkText'>Settings</Link>
+                                </div>
                                 <hr />
-                                <a href={process.env.REACT_APP_LOGOUT} className='hoverPink'>Log out</a>
+                                <div className='hoverPink'>
+                                    <a href={process.env.REACT_APP_LOGOUT} className='linkText'>Log out</a>
+                                </div>
                             </div>
                         </div>
                     </div>
