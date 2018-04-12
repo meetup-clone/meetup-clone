@@ -15,7 +15,8 @@ export default class LoggedIn extends Component {
             allEvents: [],
             meetupsToggle: false,
             cityToggle: false,
-            currentCity: 'Provo, UT' 
+            currentCity: 'Provo, UT',
+            calToggle: true
         }
         this.convertTime = this.convertTime.bind(this)
     }
@@ -67,13 +68,13 @@ export default class LoggedIn extends Component {
                                 </div>
                                 <div className='myEventTime'>
                                     <div className='myEventCal'>
-                                        <img src={pinkCal} alt='cal'/>
+                                        <img src={pinkCal} alt='cal' />
                                         <div className='myEventCalText'>
                                             <h4>{(new Date(myEvents[0].start_date)).toLocaleString()}</h4>
                                         </div>
                                     </div>
                                     <div className='myEventVenue'>
-                                        <img src={pinkPin} alt='pin'/>
+                                        <img src={pinkPin} alt='pin' />
                                         <div className='myEventVenueText'>
                                             <h4>{myEvents[0].venue_name}</h4>
                                             <h4>{myEvents[0].venue_address}</h4>
@@ -88,25 +89,45 @@ export default class LoggedIn extends Component {
                             <h4>500 Meetups nearby</h4>
                         </div>
                     }
-                    <div className='filter'>
-                        <input placeholder='All Meetups' onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })} className='allMeetups' />
-                        <span>within</span>
-                        <select className='distance'>
-                            <option value="2">2 miles</option>
-                            <option value="5">5 miles</option>
-                            <option value="10">10 miles</option>
-                            <option value="25">25 miles</option>
-                            <option value="50">50 miles</option>
-                            <option value="100">100 miles</option>
-                            <option value="any">any distance</option>
-                        </select>
-                        <span>of</span>
-                        <div className='filterByCity'>
-                                <input value={this.state.currentCity} onChange={(e) => this.setState({ currentCity: e.target.value })}/>
+                    <div className='filterContainer'>
+                        <div className='filter'>
+                            <input
+                                placeholder='All Meetups'
+                                onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })}
+                                className='allMeetups'
+                            />
+                            <div className='filterDistance'>
+                                <span>within</span>
+                                <select>
+                                    <option value='2'>2 miles</option>
+                                    <option value='5'>5 miles</option>
+                                    <option value='10' selected='selected'>10 miles</option>
+                                    <option value='25'>25 miles</option>
+                                    <option value='50'>50 miles</option>
+                                    <option value='100'>100 miles</option>
+                                </select>
+                                <span>of</span>
+                                <div className='filterByCity'>
+                                    <input
+                                        value={this.state.currentCity}
+                                        onChange={(e) => this.setState({ currentCity: e.target.value })}
+                                    />
+                                </div>
                             </div>
-                        <div className='buttons'>
-                            <div className='groups'>Groups</div>
-                            <div className='calendar'>Calendar</div>
+                            <div className='viewButtons'>
+                                <div
+                                    className={this.state.calToggle ? 'groups' : 'groups activeView'}
+                                    onClick={() => this.setState({ calToggle: !this.state.calToggle })}
+                                >
+                                    Groups
+                                </div>
+                                <div
+                                    className={this.state.calToggle ? 'calendar activeView' : 'calendar'}
+                                    onClick={() => this.setState({ calToggle: !this.state.calToggle })}
+                                >
+                                    Calendar
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {this.state.meetupsToggle ?
