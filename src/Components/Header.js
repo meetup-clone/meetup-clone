@@ -22,9 +22,9 @@ export default class Header extends Component {
         return (
             <div className='header'>
                 <div className='nav'>
-                    <img src={logo} alt='logo' className='logo' />
+                    <Link to='/home'><img src={logo} alt='logo' className='logo' /></Link>
                     <section>
-                        <span>Create a Meetup</span>
+                        <Link to='/create'><span>Create a Meetup</span></Link>
                         <span>Explore</span>
                         <span>Messages</span>
                         <span>Notifications</span>
@@ -36,7 +36,7 @@ export default class Header extends Component {
                 </div>
                 {menu ?
                     <div className='shadow' onClick={() => this.setState({ menu: false })}>
-                        <div className='dropdown' onClick={(e) => e.stopPropagation()}>
+                        <div className='dropdown' onClick={(e) => e.stopPropagation()} >
                             <div className='headerGroups'>
                                 {groups.length > 0 ?
                                     <div className='hoverPink'>
