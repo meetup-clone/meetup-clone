@@ -3,6 +3,7 @@ import Header from './Header';
 import './Group/Group.css'
 import axios from "axios"
 import GroupEventCard from './Group/GroupEventCard';
+import PastEventCard from './Group/PastEventCard';
 import Footer from './Footer'
 import dots from '../Assets/dots.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
@@ -84,6 +85,7 @@ export default class Group extends Component {
                             <p>Next Meetup</p>
                             <p>See All</p>
                         </div>
+                        <div className="groupEventCardSpacer"></div>
                         <GroupEventCard eventName={this.state.events.event_name}
                             eventDescription={this.state.events.event_description}
                             venueName={this.state.events.venue_name}
@@ -94,10 +96,17 @@ export default class Group extends Component {
                             startDate={this.state.events.start_date}
                             endDate={this.state.events.end_date}
                         />
+                        <div className="descriptionSpacer"></div>
                         <div className="groupDescription">
-                            <p>
-                                {this.state.group.description}
-                            </p>
+                            <div className="groupDescriptionDiv">
+                                <p>{this.state.group.description}</p>
+                            </div>
+                            <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date} 
+                                eventName={this.state.events.event_name} 
+                                groupUrl={this.state.group.url_name} 
+                                />
                         </div>
                     </div>
                 </div>
