@@ -39,7 +39,11 @@
 .loggedIn .myEventName {
     width: 65%;
     margin-right: 50px;
-    padding: 1%;
+    padding: 0 1%;
+}
+
+.loggedIn .myEventName h1 {
+    margin-top: 0;
 }
 
 .loggedIn .myEventTime {
@@ -84,9 +88,10 @@
 
 .loggedIn .filterContainer {
     width: 100%;
-    position: absolute;
-    bottom: -35px;
+    position: sticky;
+    top: 0;
     z-index: 2;
+    margin-top: -35px;
 }
 
 .loggedIn .filter {
@@ -106,6 +111,16 @@
     width: 250px;
 }
 
+.loggedIn .shadow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0);
+    z-index: 20;
+}
+
 .loggedIn .meetupsFilter {
     position: absolute;
     height: 150px;
@@ -114,6 +129,8 @@
     box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
     border-radius: 3px;
     z-index: 4;
+    top: 350px;
+    left: 50px;
 }
 
 .loggedIn .filterDistance {
@@ -234,6 +251,7 @@
 
 .loggedIn .loggedInEventCard {
     border-bottom: 1px solid #d1d1d1;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: space-around;
@@ -242,7 +260,7 @@
     text-align: left;
 }
 
-.loggedIn .loggedInEventCard:last-child{
+.loggedIn .loggedInEventCard:last-child {
     border: 0;
 }
 
@@ -315,7 +333,7 @@
     flex-direction: column;
     text-align: left;
     width: 270px;
-    height: 142px;
+    height: 154px;
 }
 
 .loggedIn .meetupCategories hr {
@@ -351,6 +369,7 @@
     background: white;
     margin-top: 30px;
     margin-left: 198px;
+    cursor: pointer;
 }
 
 .loggedIn .calendarComponent {
