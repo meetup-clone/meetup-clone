@@ -160,7 +160,6 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding-bottom: 20px;
 }
 
 .eventsAttendeesTop span {
@@ -185,8 +184,9 @@
     background: white;
     border-radius: 16px;
     margin-right: 16px;
+    margin-top: 20px;
     cursor: pointer;
-    transition: .3s
+    transition: .3s;
 }
 
 .attendeeCard:hover {
