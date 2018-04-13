@@ -315,7 +315,7 @@
     flex-direction: column;
     text-align: left;
     width: 270px;
-    height: 143px;
+    height: 142px;
 }
 
 .loggedIn .meetupCategories hr {
@@ -328,6 +328,7 @@
 .loggedIn .meetupCategories span {
     padding: 3% 3% 3% 8%;
     border-bottom: 1px solid #d1d1d1;
+    cursor: pointer;
 }
 
 .loggedIn .meetupCategories span:last-child{
