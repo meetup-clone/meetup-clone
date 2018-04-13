@@ -4,9 +4,11 @@ import './Group/Group.css'
 import axios from "axios"
 import GroupEventCard from './Group/GroupEventCard';
 import PastEventCard from './Group/PastEventCard';
+import AttendeeCard from './Events/AttendeeCard'
 import Footer from './Footer'
 import dots from '../Assets/dots.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
+
 
 export default class Group extends Component {
     constructor(props) {
@@ -107,6 +109,15 @@ export default class Group extends Component {
                                 eventName={this.state.events.event_name} 
                                 groupUrl={this.state.group.url_name} 
                                 />
+                        </div>
+                        <div className="descriptionSpacer"></div>
+                        <div className="memberCardHolder">
+                            <AttendeeCard /> 
+                            <AttendeeCard /> 
+                            <AttendeeCard /> 
+                            <AttendeeCard /> 
+                            <AttendeeCard /> 
+                            <AttendeeCard /> 
                         </div>
                     </div>
                 </div>
