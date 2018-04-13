@@ -5,7 +5,9 @@ import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
 import AttendeeCard from './Events/AttendeeCard'
+import mapPin from '../Assets/mapPin.svg'
 import Footer from './Footer'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 export default class Events extends Component {
     constructor() {
@@ -20,7 +22,8 @@ export default class Events extends Component {
         this.dateNumber = ''
         this.dateString = ''
         this.month = ''
-
+        this.startTime = ''
+        this.endTime = ''
     }
 
     componentDidMount() {
@@ -34,9 +37,8 @@ export default class Events extends Component {
             this.month = this.months[month]
             this.dateNumber = dateNumber
             this.dateString = `${this.days[today]}, ${this.months[month]} ${dateNumber}, ${fullYear}`
-            // console.log('this.dateString: ', this.dateString)
-            // console.log(this.month)
-            // console.log(this.dateNumber)
+            this.startTime = ''
+            this.endTime = ''
         })
         axios.get(`/api/attendees/${this.props.match.params.event}`).then(res => {
             this.setState({ attendees: res.data })
@@ -55,6 +57,18 @@ export default class Events extends Component {
         const mappedAttendees = attendees.map((x, i) => {
             return <AttendeeCard key={x.attendees_id} index={i} image={x.image} username={x.username} />
         })
+
+        const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+            <GoogleMap
+                defaultZoom={12}
+                defaultCenter={{ lat: 40.760654, lng: -111.891096 }}
+            >
+                <Marker
+                    position={{ lat: 40.760654, lng: -111.891096 }}
+                />
+            </GoogleMap>
+        ))
+        console.log(process.env.REACT_APP_GOOGLE_MAPS_KEY)
         return (
             <div>
                 <Header />
@@ -116,13 +130,22 @@ export default class Events extends Component {
 
                         </section>
                         <section className='eventsMap'>
-                            <div>
-
+                            <div className='eventsTimeHolder'>
+                                <img src={mapPin} alt="img"/>
+                                <div>
+                                    <h5>{this.dateString}</h5>
+                                    <h5></h5>
+                                </div>
                             </div>
                             <div>
-
+                                map below
                             </div>
-                            {/* map */}
+                            <MapWithAMarker
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `400px` }} />}
+                                mapElement={<div style={{ height: `212px` }} />}
+                            />
                         </section>
                     </div>
                 </div>

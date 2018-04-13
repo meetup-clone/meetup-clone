@@ -214,3 +214,18 @@
 }
 
 /* ---------------------------------- */
+
+.eventsMap {
+    width: 340px;
+    height: 445px;
+    border-radius: 10px
+}
+
+.eventsTimeHolder {
+    display: flex;
+}
+
+.eventsMap img {
+    width: 24px;
+    height: 24px;
+}
