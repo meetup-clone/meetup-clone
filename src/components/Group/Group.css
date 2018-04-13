@@ -52,6 +52,10 @@
     box-shadow: 0 0 2px 0 rgba(46,62,72,.12), 0 2px 4px 0 rgba(46,62,72,.12);
     margin-bottom: 3px;
     padding-top: 5px;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 75;
 }
 .groupNavBarFiller {
     width: 325px;
@@ -124,6 +128,11 @@
     cursor: pointer;
     font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
     margin-right: 84px;
+    transition: .3s;
+}
+.groupEventCard:hover {
+    box-shadow: 0px 4px 6px #ccc;
+    transform: translate(0px, -2px);
 }
 .linkDiv {
     height: 93%;
@@ -297,6 +306,11 @@ vertical-align: middle;
     width: 310px;
     height: 187px;
     border-radius: 8px;
+    transition: .3s;
+}
+.miniEventMainDiv:hover {
+    box-shadow: 0px 4px 6px #ccc;
+    transform: translate(0px, -2px);
 }
 .miniEventDate {
     font-size: .875rem;
@@ -325,4 +339,11 @@ vertical-align: middle;
     line-height: 1.2;
     font-weight: 600;
     color: var(--black)
+}
+/* ---------------- Member Card ---------------------- */
+.memberCardHolder {
+    width: 600px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
