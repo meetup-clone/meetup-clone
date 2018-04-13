@@ -121,7 +121,6 @@
     border-radius: 10px;
     height: 41vh;
     width: 100%;
-    margin-top: 100px;
     cursor: pointer;
     font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
     margin-right: 84px;
@@ -155,6 +154,11 @@
     justify-content: space-between;
     text-align: left;
 }
+.mainGroupEventCardContent p {
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--gray)
+}
 .groupEventCard p {
     font-size: .875rem;
     line-height: 1.6;
@@ -185,6 +189,8 @@
     background: #f6f7f8;
     padding: 8px;
     border-radius: 8px;
+    text-align: center;
+    color: var(--gray);
 }
 .groupEventCardLeft p {
     font-size: 12px;
@@ -202,7 +208,7 @@
     margin: 0;
     padding: 0;
 }
-.groupEventCard li {
+.groupAvatarHolder li {
 height: 28px;
 width: 28px;
 border-radius: 50%;
@@ -262,6 +268,10 @@ vertical-align: middle;
     display: flex;
     justify-content: space-between;
 }
+.groupEventCardSpacer {
+    width: 100%;
+    height: 100px;
+}
 /* ------------------- Group Description --------------------- */
 .groupDescription {
     text-align: left;
@@ -269,4 +279,50 @@ vertical-align: middle;
     word-break: break-word;
     word-wrap: break-word;
     line-height: 1.8;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+}
+.groupDescriptionDiv {
+    width: 600px;
+    height: auto;
+}
+.descriptionSpacer {
+    width: 100%;
+    height: 100px;
+}
+/* ----------------- Mini Event Card ----------------------------- */
+.miniEventMainDiv {
+    background-color: white;
+    width: 310px;
+    height: 187px;
+    border-radius: 8px;
+}
+.miniEventDate {
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--gray);
+    text-align: center;
+}
+.miniEventContainer {
+    padding-top: 20px;
+    width: 78%;
+    display: flex;
+    justify-content: space-around;
+}
+.miniDateAndTitleDiv {
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.5px;
+    font-size: .875rem;
+    color: var(--gray);
+    margin-right: -70px;
+}
+.miniDateAndTitleDiv h2 {
+    font-size: .875rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--black)
 }
