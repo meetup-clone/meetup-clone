@@ -6,7 +6,7 @@ import Welcome from './Components/Welcome.js';
 import Group from './Components/Group.js'
 import Events from './Components/Events.js'
 import Create from './Components/Create.js'
-import Schedule from './Components/ScheduleEvent.js'
+import Schedule from './Components/Schedule.js'
 
 export default (
     <Switch>
