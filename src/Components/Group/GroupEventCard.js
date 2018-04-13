@@ -25,8 +25,14 @@ export default function GroupEventCard(props) {
                     </div>
                     </div>
                     <div className="mainGroupEventCardContent">
+                    <div className="dateAndTitleDiv">
                         <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
                         <h1>{props.eventName}</h1>
+                        </div>
+                        <div style={{width: 180, alignItems: "center"}} className="organizerWrapper">
+                        <img className="hostedAvatar" src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="avatar"/>
+                        <p>hosted by Erin Valenti</p>
+                        </div>
                         <p id="blackP">{props.eventDescription}</p>
                         <div className="groupAvatarHolder">
                             <ul>
@@ -39,11 +45,13 @@ export default function GroupEventCard(props) {
                     </div>
                     <div className="groupEventCardRight">
                         <button>Attend</button>
+                        <div className="organizerWrapper" style={{width: '100%', paddingTop: 25}}>
                         <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
+                        <div className="groupAddress">
                         <p id="blackBold">{props.venueName}</p>
-                        <p>{props.venueCity}</p>
-                        <p>{props.venueAddress}</p>
-                        <time datetime={props.startDate}></time>
+                        <p>{props.venueAddress} - {props.venueCity}, UT</p>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </Link>

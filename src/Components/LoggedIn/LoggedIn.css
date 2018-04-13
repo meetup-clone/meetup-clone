@@ -1,6 +1,5 @@
 .loggedIn {
     background: #FAFAFA;
-    height: 1500px;
 }
 
 .loggedIn .nextMeetup a {
@@ -11,14 +10,25 @@
 .loggedIn .nextMeetup {
     position: relative;
     background: var(--pink);
-    min-height: 170px;
+    min-height: 250px;
     text-align: left;
     color: white;
     text-decoration: none;
 }
 
 .loggedIn .myEventContent {
-    padding: 2% 15%;
+    margin: 0 5%;
+    padding: 1% 5%;
+}
+
+.loggedIn .myEventContent h5 {
+    margin: 15px 0 0 0;
+}
+
+.loggedIn .myEventContent hr {
+    border-style: solid;
+    border-width: 0.3px;
+    margin: 10px;
 }
 
 .loggedIn .myEventInfo {
@@ -28,6 +38,8 @@
 
 .loggedIn .myEventName {
     width: 65%;
+    margin-right: 50px;
+    padding: 1%;
 }
 
 .loggedIn .myEventTime {
@@ -185,8 +197,28 @@
     font-weight: bold;
 }
 
+.loggedIn .eventsContainer {
+    display: flex;
+    margin-top: 50px;
+}
+
+.loggedIn .leftCol {
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+.loggedIn .todaysDate {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    text-align: left;
+}
+
 .loggedIn .events {
-    margin-left: 80px;
     position: relative;
     justify-content: center;
     border: 1px;
@@ -196,13 +228,11 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
     width: 700px;
+    margin-right: 20px;
 }
 
-.loggedIn .eventCards {
+.loggedIn .loggedInEventCard {
     border-bottom: 1px solid #d1d1d1;
     flex-direction: row;
     justify-content: center;
@@ -210,6 +240,10 @@
     width: 94%;
     padding: 3%;
     text-align: left;
+}
+
+.loggedIn .loggedInEventCard:last-child{
+    border: 0;
 }
 
 .loggedIn .eventTime {
@@ -246,17 +280,84 @@
     color: black;
 }
 
-.loggedIn .today {
-    margin-top: 60px;
-    margin-bottom: 20px;
-    margin-left: 100px;
-    stroke: transparent;
-    fill: rgba(0,0,0,.87);
-    color: rgba(0,0,0,.87);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.6;
-    letter-spacing: -.02em;
-    word-spacing: .1em;
+.loggedIn .showMore {
+    width: 700px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    padding: 15px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.loggedIn .showMore:hover {
+    background: #E8E8E8;
+}
+
+.loggedIn .rightCol {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-top: 32px;
+}
+
+.loggedIn .meetupCategories {
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
     text-align: left;
+    width: 270px;
+    height: 143px;
+}
+
+.loggedIn .meetupCategories hr {
+    width: 100%;
+    border-style: solid;
+    border-width: 0.3px;
+    border-color: #d1d1d1;
+}
+
+.loggedIn .meetupCategories span {
+    padding: 3% 3% 3% 8%;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.loggedIn .meetupCategories span:last-child{
+    border-bottom: 0;
+}
+
+.loggedIn .activeCategory {
+    background: #EDEDFA;
+    color: #2429CB;
+    border-left: 5px solid #2429CB;
+}
+
+.loggedIn .today {
+    height: 20px;
+    width: 70px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background: white;
+    margin-top: 30px;
+    margin-left: 198px;
+}
+
+.loggedIn .calendarComponent {
+    height: 300px;
+    max-width: 270px;
+    margin-top: 10px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
 }

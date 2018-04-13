@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './LoggedIn/LoggedIn.css'
 import Header from './Header.js'
+import Footer from './Footer.js'
 import pinkCal from '../Assets/pinkCalendar.svg'
 import pinkPin from '../Assets/pinkPin.svg'
-
+import Calendar from 'react-calendar'
 
 export default class LoggedIn extends Component {
     constructor() {
@@ -16,24 +17,35 @@ export default class LoggedIn extends Component {
             meetupsToggle: false,
             cityToggle: false,
             currentCity: 'Provo, UT',
-            calToggle: true
+            calToggle: true,
+            cat1: true,
+            cat2: false,
+            cat3: false,
+            cat4: false,
+            date: new Date()
         }
+        this.filterEvents = this.filterEvents.bind(this)
+        this.listEvents = this.listEvents.bind(this)
         this.convertTime = this.convertTime.bind(this)
     }
+
     componentDidMount() {
         axios.get('/api/userEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
     }
-    convertTime(mil) {
-        let time = new Date(mil)
-        let newTime = time.toLocaleTimeString()
-        return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
+
+    filterEvents() {
+        let filteredEvents = this.state.allEvents.filter(e => {
+            return e.start_date >= Date.now()
+        })
+        return filteredEvents
     }
-    render() {
-        let { myEvents, allEvents } = this.state
-        let eventsList = allEvents.map((e, i) => {
+
+    listEvents() {
+        let filteredEvents = this.filterEvents()
+        return filteredEvents.map((e, i) => {
             return (
-                <div className='eventCards' key={e.event_name + e.event_id + i}>
+                <div className='loggedInEventCard' key={e.event_name + e.event_id + i}>
                     <div className='eventTime'>
                         {this.convertTime(e.start_date)}
                     </div>
@@ -49,6 +61,16 @@ export default class LoggedIn extends Component {
                 </div>
             )
         })
+    }
+
+    convertTime(mil) {
+        let time = new Date(mil)
+        let newTime = time.toLocaleTimeString()
+        return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
+    }
+
+    render() {
+        let { myEvents } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -63,7 +85,7 @@ export default class LoggedIn extends Component {
                                         <h1>{myEvents[0].event_name}</h1>
                                     </Link>
                                     <Link to={`/${myEvents[0].url_name}`}>
-                                        <h5>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h5>
+                                        <h4>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h4>
                                     </Link>
                                 </div>
                                 <div className='myEventTime'>
@@ -101,7 +123,7 @@ export default class LoggedIn extends Component {
                                 <select>
                                     <option value='2'>2 miles</option>
                                     <option value='5'>5 miles</option>
-                                    <option value='10' selected='selected'>10 miles</option>
+                                    <option value='10' selected>10 miles</option>
                                     <option value='25'>25 miles</option>
                                     <option value='50'>50 miles</option>
                                     <option value='100'>100 miles</option>
@@ -137,10 +159,51 @@ export default class LoggedIn extends Component {
                         : null}
 
                 </div>
-                <div className='today'>{(new Date(Date.now()).toDateString()).toUpperCase()}</div>
-                <div className='events'>
-                    {eventsList}
+                <div className='eventsContainer'>
+                    <div className='leftCol'>
+                        <div className='todaysDate'>{new Date(Date.now()).toDateString()}</div>
+                        <div className='events'>
+                            {this.listEvents()}
+                        </div>
+                        <div className='showMore'>
+                            Show more
+                        </div>
+                    </div>
+                    <div className='rightCol'>
+                        <div className='meetupCategories'>
+                            <span
+                                className={this.state.cat1 ? 'activeCategory' : null}
+                                onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false })}
+                            >
+                                All Meetups
+                        </span>
+                            <span
+                                className={this.state.cat2 ? 'activeCategory' : null}
+                                onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false })}
+                            >
+                                My Meetups & suggestions
+                        </span>
+                            <span
+                                className={this.state.cat3 ? 'activeCategory' : null}
+                                onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false })}
+                            >
+                                My Meetups
+                        </span>
+                            <span
+                                className={this.state.cat4 ? 'activeCategory' : null}
+                                onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true })}
+                            >
+                                I'm Going
+                        </span>
+                        </div>
+                        <div className='today'>Today</div>
+                        <Calendar
+                            value={this.state.date}
+                            className='calendarComponent'
+                        />
+                    </div>
                 </div>
+                <Footer />
             </div>
         )
     }
