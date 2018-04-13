@@ -24,22 +24,28 @@ export default class LoggedIn extends Component {
             cat4: false,
             date: new Date()
         }
+        this.filterEvents = this.filterEvents.bind(this)
+        this.listEvents = this.listEvents.bind(this)
         this.convertTime = this.convertTime.bind(this)
     }
+
     componentDidMount() {
         axios.get('/api/userEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
     }
-    convertTime(mil) {
-        let time = new Date(mil)
-        let newTime = time.toLocaleTimeString()
-        return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
+
+    filterEvents() {
+        let filteredEvents = this.state.allEvents.filter(e => {
+            return e.start_date >= Date.now()
+        })
+        return filteredEvents
     }
-    render() {
-        let { myEvents, allEvents } = this.state
-        let eventsList = allEvents.map((e, i) => {
+
+    listEvents() {
+        let filteredEvents = this.filterEvents()
+        return filteredEvents.map((e, i) => {
             return (
-                <div className='eventCards' key={e.event_name + e.event_id + i}>
+                <div className='loggedInEventCard' key={e.event_name + e.event_id + i}>
                     <div className='eventTime'>
                         {this.convertTime(e.start_date)}
                     </div>
@@ -55,6 +61,16 @@ export default class LoggedIn extends Component {
                 </div>
             )
         })
+    }
+
+    convertTime(mil) {
+        let time = new Date(mil)
+        let newTime = time.toLocaleTimeString()
+        return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
+    }
+
+    render() {
+        let { myEvents } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -107,7 +123,7 @@ export default class LoggedIn extends Component {
                                 <select>
                                     <option value='2'>2 miles</option>
                                     <option value='5'>5 miles</option>
-                                    <option value='10' selected='selected'>10 miles</option>
+                                    <option value='10' selected>10 miles</option>
                                     <option value='25'>25 miles</option>
                                     <option value='50'>50 miles</option>
                                     <option value='100'>100 miles</option>
@@ -143,11 +159,11 @@ export default class LoggedIn extends Component {
                         : null}
 
                 </div>
-                <div className='todaysDate'>{(new Date(Date.now()).toDateString()).toUpperCase()}</div>
                 <div className='eventsContainer'>
                     <div className='leftCol'>
+                        <div className='todaysDate'>{new Date(Date.now()).toDateString()}</div>
                         <div className='events'>
-                            {eventsList}
+                            {this.listEvents()}
                         </div>
                         <div className='showMore'>
                             Show more
