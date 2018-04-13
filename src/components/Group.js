@@ -105,19 +105,29 @@ export default class Group extends Component {
                             </div>
                             <PastEventCard
                                 startDate={this.state.events.start_date}
-                                endDate={this.state.events.end_date} 
-                                eventName={this.state.events.event_name} 
-                                groupUrl={this.state.group.url_name} 
-                                />
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
                         </div>
                         <div className="descriptionSpacer"></div>
+                        <div className="groupOrganizerCard">
+                            <img src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="organizer" />
+                            <div className="innerOrganizerDiv">
+                                <p className="tinyText">Organizers</p>
+                                <p id="blackBold">Erin Valenti</p>
+                            </div>
+                            <div>
+                                <p>Messages</p>
+                            </div>
+                        </div>
                         <div className="memberCardHolder">
-                            <AttendeeCard /> 
-                            <AttendeeCard /> 
-                            <AttendeeCard /> 
-                            <AttendeeCard /> 
-                            <AttendeeCard /> 
-                            <AttendeeCard /> 
+                            <AttendeeCard />
+                            <AttendeeCard />
+                            <AttendeeCard />
+                            <AttendeeCard />
+                            <AttendeeCard />
+                            <AttendeeCard />
                         </div>
                     </div>
                 </div>
