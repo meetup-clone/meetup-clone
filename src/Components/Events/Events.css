@@ -129,13 +129,22 @@
     min-height: 700px;
     background: #f6f7f8;
     display: flex;
+    justify-content: center;
     box-sizing: border-box;
     padding-top: 40px;
     padding-left: 20px;
+    margin-left:auto;
 }
 
 .eventsBody h2 {
     font-size: 20px;
+}
+
+.eventsBodyContent {
+    max-width: 700px;
+    min-width: 500px;
+    box-sizing: border-box;
+    padding-right: 100px;
 }
 
 .eventsDetails {
@@ -216,9 +225,10 @@
 /* ---------------------------------- */
 
 .eventsMap {
-    width: 340px;
+    min-width: 340px;
     height: 445px;
-    border-radius: 10px
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .eventsTimeHolder {
