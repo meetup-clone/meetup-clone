@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './Header/Header.css'
-import logo from '../Assets/Meetup_logo.svg'
 import axios from 'axios'
+import './Header/Header.css'
+import avatar from '../Assets/avatar-icon.svg'
 
 export default class Header extends Component {
     constructor() {
@@ -22,14 +22,14 @@ export default class Header extends Component {
         return (
             <div className='header'>
                 <div className='nav'>
-                    <Link to='/home'><img src={logo} alt='logo' className='logo' /></Link>
+                    <Link to='/home' className='logo'></Link>
                     <section>
-                        <Link to='/create'><span>Create a Meetup</span></Link>
-                        <span>Explore</span>
-                        <span>Messages</span>
-                        <span>Notifications</span>
+                        <Link to='/create'>Create a Meetup</Link>
+                        <Link to='/'>Explore</Link>
+                        <Link to='/'>Messages</Link>
+                        <Link to='/'>Notifications</Link>
                         <div className='menu' onClick={() => this.setState({ menu: !menu })}>
-                            <img src={user.image} alt='profile' className='profile' />
+                            <img src={user.image? user.image : avatar} alt='profile' className='profile' />
                             <span className='caret'>╲╱</span>
                         </div>
                     </section>

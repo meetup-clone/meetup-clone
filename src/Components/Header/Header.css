@@ -1,13 +1,29 @@
 .header .nav {
     display: flex;
+    height: 40px;
     padding: 16px 16px 12px 16px;
     justify-content: space-between;
     font-size: 14px;
 }
 
 .header .logo {
-    height: 44px;
+    height: 45px;
+    width: 125px;
+    background: url('../../Assets/Meetup_logo.svg');
+    background-size: 125px;
+    background-repeat: no-repeat;
     cursor: pointer;
+}
+
+@media (max-width: 850px) {
+    .header .logo {
+        height: 50px;
+        width: 50px;
+        background: url('../../Assets/meetup-mini.svg');
+        background-size: 50px;
+        background-repeat: no-repeat;
+        margin-bottom: 50px;
+    }
 }
 
 .header .nav section {
@@ -15,29 +31,26 @@
     align-items: center;
     justify-content: flex-end;
     width: 500px;
+    font-size: 15px;
 }
 
 .header .nav a {
-    text-decoration: none;
-    width: 140px;
-}
-
-.header .nav span {
     color: var(--gray);
     cursor: pointer;
-    margin: 0 1.5%;
+    text-decoration: none;
+    margin: 0 7px;
 }
 
-.header .nav span:nth-child(1) {
+.header .nav section a:nth-child(1) {
     color: var(--pink);
     border-right: 1px solid var(--gray);
-    padding-right: 12px;
+    padding-right: 13px;
     font-size: 16px;
     font-weight: bold;
-    width: 200px;
+    width: 120px;
 }
 
-.header span:hover {
+.header section a:hover {
     color: var(--blue)
 }
 
@@ -45,6 +58,7 @@
     height: 35px;
     cursor: pointer;
     border-radius: 50%;
+    margin-left: 5px;
 }
 
 .header .caret {
@@ -106,6 +120,7 @@
     display: flex;
     text-align: left;
     align-items: center;
+    cursor: pointer;
 }
 
 .header .hoverPink a {
@@ -130,5 +145,5 @@
 }
 
 .header .noGroupsYet {
-    margin: 25px;
+    margin: 30px;
 }
