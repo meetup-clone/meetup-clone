@@ -15,7 +15,7 @@ export default class Header extends Component {
     }
     componentDidMount() {
         axios.get('/auth/me').then(res => this.setState({ user: res.data }))
-        axios.get('api/groups').then(res => this.setState({ groups: res.data }))
+        axios.get('api/myGroups').then(res => this.setState({ groups: res.data }))
     }
     render() {
         let { user, groups, menu } = this.state
@@ -29,7 +29,7 @@ export default class Header extends Component {
                         <Link to='/'>Messages</Link>
                         <Link to='/'>Notifications</Link>
                         <div className='menu' onClick={() => this.setState({ menu: !menu })}>
-                            <img src={user.image? user.image : avatar} alt='profile' className='profile' />
+                            <img src={user.image ? user.image : avatar} alt='profile' className='profile' />
                             <span className='caret'>╲╱</span>
                         </div>
                     </section>
@@ -39,11 +39,11 @@ export default class Header extends Component {
                         <div className='dropdown' onClick={(e) => e.stopPropagation()} >
                             <div className='headerGroups'>
                                 {groups.length > 0 ?
-                                    <div className='hoverPink'>
-                                        <Link to={`/${groups[0].url_name}`} className='headerGroupText'>
+                                    <Link to={`/${groups[0].url_name}`}>
+                                        <div className='hoverPink'>
                                             <h4>{groups[0].group_name}</h4>
-                                        </Link>
-                                    </div>
+                                        </div>
+                                    </Link>
                                     :
                                     <div className='noGroupsYet'>
                                         <h3>You're not a member of any Meetup Groups yet.</h3>
@@ -51,21 +51,27 @@ export default class Header extends Component {
                                 }
                             </div>
                             <div className='links'>
-                                <div className='hoverPink'>
-                                    <Link to='/' className='linkText'>Profile</Link>
-                                </div>
+                                <Link to='/'>
+                                    <div className='hoverPink'>
+                                        Profile
+                                    </div>
+                                </Link>
                                 <hr />
-                                <div className='hoverPink'>
-                                    <Link to='/' className='linkText'>Settings</Link>
-                                </div>
+                                <Link to='/'>
+                                    <div className='hoverPink'>
+                                        Settings
+                                    </div>
+                                </Link>
                                 <hr />
-                                <div className='hoverPink'>
-                                    <a href={process.env.REACT_APP_LOGOUT} className='linkText'>Log out</a>
-                                </div>
+                                <a href={process.env.REACT_APP_LOGOUT}>
+                                    <div className='hoverPink'>
+                                        Log out
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                : null}
+                    : null}
             </div>
         )
     }

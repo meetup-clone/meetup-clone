@@ -66,7 +66,7 @@ app.put('/user', authCtrl.createUser)
 
 
 // GROUP ENDPOINTS
-app.get('/api/userGroups', groupCtrl.getUserGroups)
+app.get('/api/myGroups', groupCtrl.getUserGroups)
 app.get('/api/allGroups', groupCtrl.getAllGroups)
 app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 
@@ -75,7 +75,7 @@ app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 
 
 // EVENT ENDPOINTS
-app.get('/api/userEvents', eventCtrl.getUserEvents)
+app.get('/api/myEvents', eventCtrl.getUserEvents)
 app.get('/api/allEvents', eventCtrl.getAllEvents)
 app.get('/api/event/:id', eventCtrl.getEvent)
 app.get('/api/attendees/:id', eventCtrl.getAttendees)
