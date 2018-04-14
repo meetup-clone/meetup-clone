@@ -1,3 +1,7 @@
+.header a {
+    text-decoration: none;
+}
+
 .header .nav {
     display: flex;
     height: 40px;
@@ -37,7 +41,6 @@
 .header .nav a {
     color: var(--gray);
     cursor: pointer;
-    text-decoration: none;
     margin: 0 7px;
 }
 
@@ -110,29 +113,26 @@
     margin: 0;
 }
 
-.header .linkText {
-    padding-left: 15px;
-}
-
 .header .hoverPink {
     height: 50px;
-    width: 100%;
     display: flex;
     text-align: left;
     align-items: center;
     cursor: pointer;
+    padding-left: 15px;
+    color: var(--gray);
 }
 
-.header .hoverPink a {
-    color: var(--gray);
-    text-decoration: none;
+.header .hoverPink h4 {
+    color: black;
+}
+
+.header .hoverPink:hover h4 {
+    color: white;
 }
 
 .header .hoverPink:hover {
     background: var(--pink);
-}
-
-.header .hoverPink:hover a {
     color: white;
 }
 

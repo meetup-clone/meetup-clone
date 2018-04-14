@@ -25,9 +25,9 @@ export default class LoggedIn extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/userEvents').then(res => this.setState({ myEvents: res.data }))
+        axios.get('/api/myEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
-        axios.get('/api/userGroups').then(res => this.setState({ myGroups: res.data }))
+        axios.get('/api/myGroups').then(res => this.setState({ myGroups: res.data }))
         axios.get('/api/allGroups').then(res => this.setState({ allGroups: res.data }))
     }
 
