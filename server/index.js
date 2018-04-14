@@ -78,6 +78,7 @@ app.get('/api/allEvents', eventCtrl.getAllEvents)
 app.get('/api/event/:id', eventCtrl.getEvent)
 app.get('/api/attendees/:id', eventCtrl.getAttendees)
 // EVENT COMMENT ENDPOINTS
+app.get('/api/event/comments/:id', eventCtrl.getEventComments)
 
 
 
