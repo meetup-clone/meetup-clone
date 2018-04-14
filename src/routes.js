@@ -15,7 +15,7 @@ export default (
         <Route path='/welcome' component={Welcome} />
         <Route path='/create' component={Create} />
         <Route path='/schedule' component={Schedule} />
-        <Route path='/:group' component={Group} exact/>
+        <Route path='/:group' component={Group} exact />
         <Route path='/:group/events/:event' component={Events} />
     </Switch>
 )

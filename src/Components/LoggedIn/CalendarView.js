@@ -62,7 +62,7 @@ export default class CalendarView extends Component {
                     </div>
                     <div className='showMore'>
                         Show more
-                        </div>
+                    </div>
                 </div>
                 <div className='rightCol'>
                     <div className='meetupCategories'>

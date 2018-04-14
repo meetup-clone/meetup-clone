@@ -15,6 +15,7 @@ export default class LoggedIn extends Component {
         this.state = {
             myEvents: [],
             allEvents: [{}],
+            myGroups: [],
             allGroups: [{}],
             meetupsToggle: false,
             cityToggle: false,
@@ -26,6 +27,7 @@ export default class LoggedIn extends Component {
     componentDidMount() {
         axios.get('/api/userEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
+        axios.get('/api/userGroups').then(res => this.setState({ myGroups: res.data }))
         axios.get('/api/allGroups').then(res => this.setState({ allGroups: res.data }))
     }
 
@@ -57,7 +59,7 @@ export default class LoggedIn extends Component {
                                             </div>
                                         </div>
                                         <div className='myEventVenue'>
-                                            <img src={pinkPin} alt='pin' />
+                                            <img src={pinkPin} alt='pin' id='pinkPin' />
                                             <div className='myEventVenueText'>
                                                 <h4>{myEvents[0].venue_name}</h4>
                                                 <h4>{myEvents[0].venue_address}</h4>
@@ -125,7 +127,7 @@ export default class LoggedIn extends Component {
                 {this.state.viewToggle ?
                     <CalendarView allEvents={this.state.allEvents} />
                     :
-                    <GroupsView allGroups={this.state.allGroups} />
+                    <GroupsView myGroups={this.state.myGroups} allGroups={this.state.allGroups} />
                 }
                 <Footer />
             </div >

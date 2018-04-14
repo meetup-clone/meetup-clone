@@ -66,7 +66,7 @@ app.put('/user', authCtrl.createUser)
 
 
 // GROUP ENDPOINTS
-app.get('/api/groups', groupCtrl.getGroups)
+app.get('/api/userGroups', groupCtrl.getUserGroups)
 app.get('/api/allGroups', groupCtrl.getAllGroups)
 app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 
