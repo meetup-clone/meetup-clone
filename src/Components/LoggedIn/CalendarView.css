@@ -1,0 +1,167 @@
+.calendarView {
+    display: flex;
+    margin-top: 30px;
+}
+
+.calendarView .leftCol {
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+.calendarView .todaysDate {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    text-align: left;
+}
+
+.calendarView .events {
+    position: relative;
+    justify-content: center;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin-right: 20px;
+}
+
+.calendarView .eventListCard {
+    border-bottom: 1px solid #d1d1d1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    width: 94%;
+    padding: 3%;
+    text-align: left;
+}
+
+.calendarView .eventListCard:last-child {
+    border: 0;
+}
+
+.calendarView .eventTime {
+    width: 100px;
+    color: var(--gray);
+}
+
+.calendarView .eventDetails {
+    display: flex;
+    flex-direction: column;
+    color: var(--gray);
+    width: 85%;
+}
+
+.calendarView .eventDetails a {
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.calendarView .groupName {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+}
+
+.calendarView .eventName {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    color: black;
+}
+
+.calendarView .showMore {
+    width: 700px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    padding: 15px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.calendarView .showMore:hover {
+    background: #E8E8E8;
+}
+
+.calendarView .rightCol {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-top: 32px;
+}
+
+.calendarView .meetupCategories {
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 270px;
+    height: 154px;
+}
+
+.calendarView .meetupCategories hr {
+    width: 100%;
+    border-style: solid;
+    border-width: 0.3px;
+    border-color: #d1d1d1;
+}
+
+.calendarView .meetupCategories span {
+    padding: 3% 3% 3% 8%;
+    border-bottom: 1px solid #d1d1d1;
+    cursor: pointer;
+}
+
+.calendarView .meetupCategories span:last-child{
+    border-bottom: 0;
+}
+
+.calendarView .activeCategory {
+    background: #EDEDFA;
+    color: #2429CB;
+    border-left: 5px solid #2429CB;
+}
+
+.calendarView .today {
+    height: 20px;
+    width: 70px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background: white;
+    margin-top: 30px;
+    margin-left: 198px;
+    cursor: pointer;
+}
+
+.calendarView .calendarComponent {
+    height: 300px;
+    max-width: 270px;
+    margin-top: 10px;
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+}

@@ -1,0 +1,11 @@
+.groupsView {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.groupsView .groupCard {
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+}

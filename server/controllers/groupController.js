@@ -4,6 +4,11 @@ module.exports = {
             res.status(200).send(groups)
         })
     },
+    getAllGroups: (req, res) => {
+        req.app.get('db').getAllGroups().then(groups => {
+            res.status(200).send(groups)
+        })
+    },
     getGroupByGroup: (req, res) => {
         const db = req.app.get('db');
         const {params} = req;
