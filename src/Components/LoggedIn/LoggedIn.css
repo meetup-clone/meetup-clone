@@ -1,7 +1,3 @@
-.loggedIn {
-    background: #FAFAFA;
-}
-
 .loggedIn .nextMeetup a {
     color: white;
     text-decoration: none;
@@ -71,8 +67,12 @@
     margin: 0 10px;
 }
 
-.loggedIn img {
+.loggedIn .myEventTime img {
     height: 30px;
+}
+
+.loggedIn #pinkPin {
+    margin-left: 5px;
 }
 
 .loggedIn .findContent {

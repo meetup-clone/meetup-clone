@@ -1,6 +1,7 @@
 .calendarView {
     display: flex;
-    margin-top: 30px;
+    padding-top: 30px;
+    background: #FAFAFA;
 }
 
 .calendarView .leftCol {
@@ -94,6 +95,7 @@
     padding: 15px 0;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
 }
 
 .calendarView .showMore:hover {
@@ -154,6 +156,7 @@
     margin-top: 30px;
     margin-left: 198px;
     cursor: pointer;
+    text-align: center;
 }
 
 .calendarView .calendarComponent {
