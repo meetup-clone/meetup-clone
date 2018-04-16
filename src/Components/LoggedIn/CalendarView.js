@@ -18,11 +18,29 @@ export default class CalendarView extends Component {
         this.convertTime = this.convertTime.bind(this)
     }
 
+    componentDidMount() {
+        if (window.scrollY > 283) window.scrollTo(0, 283)
+    }
+
     filterEvents() {
-        let filteredEvents = this.props.allEvents.filter(e => {
-            return e.start_date >= Date.now()
-        })
-        return filteredEvents
+        if (this.state.cat1) {
+            let filteredEvents = this.props.allEvents.filter(e => {
+                return e.start_date >= Date.now()
+            })
+            return filteredEvents
+        }
+        else if (this.state.cat2) {
+            let filteredEvents = this.props.allEvents.filter(e => {
+                return e.start_date >= Date.now()
+            })
+            return filteredEvents
+        }
+        else if (this.state.cat3) {
+            return this.props.myEvents
+        }
+        else if (this.state.cat4) {
+            return this.props.myEvents
+        }
     }
 
     listEvents() {

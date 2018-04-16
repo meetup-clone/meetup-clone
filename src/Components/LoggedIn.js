@@ -14,6 +14,7 @@ export default class LoggedIn extends Component {
         super()
         this.state = {
             myEvents: [],
+            myGroupsEvents: [],
             allEvents: [{}],
             myGroups: [],
             allGroups: [{}],
@@ -25,6 +26,7 @@ export default class LoggedIn extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         axios.get('/api/myEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
         axios.get('/api/myGroups').then(res => this.setState({ myGroups: res.data }))
@@ -101,13 +103,13 @@ export default class LoggedIn extends Component {
                         <div className='viewButtons'>
                             <div
                                 className={this.state.viewToggle ? 'groupsToggle' : 'groupsToggle activeView'}
-                                onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
+                                onClick={() => this.setState({ viewToggle: false })}
                             >
                                 Groups
                                     </div>
                             <div
                                 className={this.state.viewToggle ? 'calendarToggle activeView' : 'calendarToggle'}
-                                onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
+                                onClick={() => this.setState({ viewToggle: true })}
                             >
                                 Calendar
                                     </div>
@@ -123,7 +125,7 @@ export default class LoggedIn extends Component {
                     }
                 </div>
                 {this.state.viewToggle ?
-                    <CalendarView allEvents={this.state.allEvents} />
+                    <CalendarView myEvents={this.state.myEvents} allEvents={this.state.allEvents} />
                     :
                     <GroupsView myGroups={this.state.myGroups} allGroups={this.state.allGroups} />
                 }
