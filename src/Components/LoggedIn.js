@@ -34,95 +34,93 @@ export default class LoggedIn extends Component {
     render() {
         let { myEvents } = this.state
         return (
-            <div>
+            <div className='loggedIn'>
                 <Header />
-                <div className='loggedIn'>
-                    <div className='nextMeetup'>
-                        {myEvents.length > 0 ?
-                            <div className='myEventContent'>
-                                <h5>YOUR NEXT MEETUP</h5>
-                                <hr />
-                                <div className='myEventInfo'>
-                                    <div className='myEventName'>
-                                        <Link to={`/${myEvents[0].url_name}/events/${myEvents[0].event_id}`}>
-                                            <h1>{myEvents[0].event_name}</h1>
-                                        </Link>
-                                        <Link to={`/${myEvents[0].url_name}`}>
-                                            <h4>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h4>
-                                        </Link>
-                                    </div>
-                                    <div className='myEventTime'>
-                                        <div className='myEventCal'>
-                                            <img src={pinkCal} alt='cal' />
-                                            <div className='myEventCalText'>
-                                                <h4>{(new Date(myEvents[0].start_date)).toLocaleString()}</h4>
-                                            </div>
+                <div className='nextMeetup'>
+                    {myEvents.length > 0 ?
+                        <div className='myEventContent'>
+                            <h5>YOUR NEXT MEETUP</h5>
+                            <hr />
+                            <div className='myEventInfo'>
+                                <div className='myEventName'>
+                                    <Link to={`/${myEvents[0].url_name}/events/${myEvents[0].event_id}`}>
+                                        <h1>{myEvents[0].event_name}</h1>
+                                    </Link>
+                                    <Link to={`/${myEvents[0].url_name}`}>
+                                        <h4>{`${myEvents[0].group_name} • ${myEvents[0].attendees} Members`}</h4>
+                                    </Link>
+                                </div>
+                                <div className='myEventTime'>
+                                    <div className='myEventCal'>
+                                        <img src={pinkCal} alt='cal' />
+                                        <div className='myEventCalText'>
+                                            <h4>{(new Date(myEvents[0].start_date)).toLocaleString()}</h4>
                                         </div>
-                                        <div className='myEventVenue'>
-                                            <img src={pinkPin} alt='pin' id='pinkPin' />
-                                            <div className='myEventVenueText'>
-                                                <h4>{myEvents[0].venue_name}</h4>
-                                                <h4>{myEvents[0].venue_address}</h4>
-                                            </div>
+                                    </div>
+                                    <div className='myEventVenue'>
+                                        <img src={pinkPin} alt='pin' id='pinkPin' />
+                                        <div className='myEventVenueText'>
+                                            <h4>{myEvents[0].venue_name}</h4>
+                                            <h4>{myEvents[0].venue_address}</h4>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            :
-                            <div className='findContent'>
-                                <h1>Find a Meetup</h1>
-                                <h4>500 Meetups nearby</h4>
-                            </div>
-                        }
-                    </div>
-                    <div className='filterContainer'>
-                        <div className='filter'>
-                            <input
-                                placeholder='All Meetups'
-                                onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })}
-                                className='allMeetups'
-                            />
-                            <div className='filterDistance'>
-                                <span>within</span>
-                                <select defaultValue='10'>
-                                    <option value='2'>2 miles</option>
-                                    <option value='5'>5 miles</option>
-                                    <option value='10'>10 miles</option>
-                                    <option value='25'>25 miles</option>
-                                    <option value='50'>50 miles</option>
-                                    <option value='100'>100 miles</option>
-                                </select>
-                                <span>of</span>
-                                <input
-                                    value={this.state.currentCity}
-                                    onChange={(e) => this.setState({ currentCity: e.target.value })}
-                                    className='filterByCity'
-                                />
-                            </div>
-                            <div className='viewButtons'>
-                                <div
-                                    className={this.state.viewToggle ? 'groupsToggle' : 'groupsToggle activeView'}
-                                    onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
-                                >
-                                    Groups
-                                    </div>
-                                <div
-                                    className={this.state.viewToggle ? 'calendarToggle activeView' : 'calendarToggle'}
-                                    onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
-                                >
-                                    Calendar
-                                    </div>
                             </div>
                         </div>
-                        {this.state.meetupsToggle ?
-                            <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
-                                <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
-                                    <div></div>
-                                </div>
-                            </div>
-                            : null
-                        }
+                        :
+                        <div className='findContent'>
+                            <h1>Find a Meetup</h1>
+                            <h4>500 Meetups nearby</h4>
+                        </div>
+                    }
+                </div>
+                <div className='filterContainer'>
+                    <div className='filter'>
+                        <input
+                            placeholder='All Meetups'
+                            onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })}
+                            className='allMeetups'
+                        />
+                        <div className='filterDistance'>
+                            <span>within</span>
+                            <select defaultValue='10'>
+                                <option value='2'>2 miles</option>
+                                <option value='5'>5 miles</option>
+                                <option value='10'>10 miles</option>
+                                <option value='25'>25 miles</option>
+                                <option value='50'>50 miles</option>
+                                <option value='100'>100 miles</option>
+                            </select>
+                            <span>of</span>
+                            <input
+                                value={this.state.currentCity}
+                                onChange={(e) => this.setState({ currentCity: e.target.value })}
+                                className='filterByCity'
+                            />
+                        </div>
+                        <div className='viewButtons'>
+                            <div
+                                className={this.state.viewToggle ? 'groupsToggle' : 'groupsToggle activeView'}
+                                onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
+                            >
+                                Groups
+                                    </div>
+                            <div
+                                className={this.state.viewToggle ? 'calendarToggle activeView' : 'calendarToggle'}
+                                onClick={() => this.setState({ viewToggle: !this.state.viewToggle })}
+                            >
+                                Calendar
+                                    </div>
+                        </div>
                     </div>
+                    {this.state.meetupsToggle ?
+                        <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
+                            <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
+                                <div></div>
+                            </div>
+                        </div>
+                        : null
+                    }
                 </div>
                 {this.state.viewToggle ?
                     <CalendarView allEvents={this.state.allEvents} />

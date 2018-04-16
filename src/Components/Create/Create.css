@@ -51,10 +51,17 @@
     line-height: 1.6;
 }
 
-.create .stepsText span {
+.create .stepCity {
     font-size: 28px;
     font-weight: 400;
     line-height: 1.45;
+    margin-top: 10px;
+}
+
+.create .changeCity {
+    color: blue;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
 .create .stepText input {
