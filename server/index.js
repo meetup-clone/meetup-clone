@@ -77,6 +77,7 @@ app.post('/api/groups', groupCtrl.createGroup)
 
 // EVENT ENDPOINTS
 app.get('/api/myEvents', eventCtrl.getUserEvents)
+app.get('/api/myGroupEvents', eventCtrl.getUserGroupEvents)
 app.get('/api/allEvents', eventCtrl.getAllEvents)
 app.get('/api/event/:id', eventCtrl.getEvent)
 app.get('/api/attendees/:id', eventCtrl.getAttendees)
