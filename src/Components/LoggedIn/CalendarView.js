@@ -62,7 +62,7 @@ export default class CalendarView extends Component {
                         <Link to={`/${e.url_name}/events/${e.event_id}`}>
                             <span className='eventName'>{e.event_name}</span>
                         </Link>
-                        <span className='attendees'>{`${this.props.attendees[this.props.attendees.indexOf(e.event_id)].count} Members going`}</span>
+                        {/* <span className='attendees'>{`${this.props.attendees[this.props.attendees.indexOf(e.event_id)].count} Members going`}</span> */}
                     </div>
                 </div>
             )
