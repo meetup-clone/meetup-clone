@@ -106,11 +106,13 @@
 .organizerWrapper {
     display: flex;
     justify-content: space-between;
-    width: 150px;
+    width: auto;
+    margin-top: 20px;
 }
 .innerOrganizerDiv {
     display: flex;
     flex-direction: column;
+    margin-left: 15px;
 }
 .aligner {
     width: 1021px;

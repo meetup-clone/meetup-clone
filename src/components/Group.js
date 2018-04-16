@@ -16,10 +16,11 @@ export default class Group extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            events: {},
+            events: [{}],
             group: {},
             groupComments: {},
-            members: []
+            members: [{}],
+            attendees:[{}]
         }
     }
 
@@ -30,7 +31,8 @@ export default class Group extends Component {
                 events: res.data.events,
                 group: res.data.group,
                 groupComments: res.data.groupComments,
-                members: res.data.members
+                members: res.data.members,
+                attendees: res.data.attendees
             })
         })
     }
@@ -56,10 +58,10 @@ export default class Group extends Component {
                                 <p id="blackBold">{this.state.group.members}</p>
                             </div>
                             <div className="organizerWrapper">
-                                <img className="groupOrganizerAvatar" src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="avatar" />
+                                <img className="groupOrganizerAvatar" src={this.state.members[0].image} alt="avatar" />
                                 <div className="innerOrganizerDiv">
                                     <p className="tinyText">Organizers</p>
-                                    <p id="blackBold">Erin Valenti</p>
+                                    <p id="blackBold">{this.state.members[0].username}</p>
                                 </div>
                             </div>
                         </div>
@@ -91,15 +93,15 @@ export default class Group extends Component {
                                 <span>See All</span>
                             </div>
                         </div>
-                        <GroupEventCard eventName={this.state.events.event_name}
-                            eventDescription={this.state.events.event_description}
-                            venueName={this.state.events.venue_name}
-                            venueCity={this.state.events.venue_city}
-                            venueAddress={this.state.events.venue_address}
+                        <GroupEventCard eventName={this.state.events[0].event_name}
+                            eventDescription={this.state.events[0].event_description}
+                            venueName={this.state.events[0].venue_name}
+                            venueCity={this.state.events[0].venue_city}
+                            venueAddress={this.state.events[0].venue_address}
                             groupUrl={this.state.group.url_name}
-                            eventId={this.state.events.event_id}
-                            startDate={this.state.events.start_date}
-                            endDate={this.state.events.end_date}
+                            eventId={this.state.events[0].event_id}
+                            startDate={this.state.events[0].start_date}
+                            endDate={this.state.events[0].end_date}
                         />
                         <div className="descriptionSpacer"></div>
                         <div className="groupDescription">
