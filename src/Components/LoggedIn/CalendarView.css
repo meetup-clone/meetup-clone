@@ -7,6 +7,8 @@
 .calendarView .leftCol {
     margin-left: auto;
     margin-bottom: 50px;
+    width: 70%;
+    max-width: 700px;
 }
 
 .calendarView .todaysDate {
@@ -30,7 +32,8 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    width: 700px;
+    max-width: 700px;
+    min-width: 94%;
     margin-right: 20px;
 }
 
@@ -50,7 +53,7 @@
 }
 
 .calendarView .eventTime {
-    width: 100px;
+    min-width: 70px;
     color: var(--gray);
 }
 
@@ -84,7 +87,8 @@
 }
 
 .calendarView .showMore {
-    width: 700px;
+    max-width: 700px;
+    min-width: 94%;
     margin-top: 20px;
     margin-right: 20px;
     border: 1px;
@@ -107,6 +111,8 @@
     flex-direction: column;
     margin-right: auto;
     margin-top: 32px;
+    width: 28%;
+    max-width: 280px;
 }
 
 .calendarView .meetupCategories {
@@ -118,8 +124,9 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 270px;
-    height: 154px;
+    width: 100%;
+    min-width: 230px;
+    height: auto;
 }
 
 .calendarView .meetupCategories hr {
@@ -146,6 +153,7 @@
 }
 
 .calendarView .today {
+    align-self: flex-end;
     height: 20px;
     width: 70px;
     border: 1px;
@@ -154,14 +162,14 @@
     border-color: #d1d1d1;
     background: white;
     margin-top: 30px;
-    margin-left: 198px;
     cursor: pointer;
     text-align: center;
 }
 
 .calendarView .calendarComponent {
-    height: 300px;
-    max-width: 270px;
+    height: auto;
+    min-width: 230px;
+    width: 100%;
     margin-top: 10px;
     border: 1px;
     border-radius: 3px;

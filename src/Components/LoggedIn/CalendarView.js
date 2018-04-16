@@ -93,7 +93,7 @@ export default class CalendarView extends Component {
                     </div>
                     <div className='today'>Today</div>
                     <Calendar
-                        value={this.state.date}
+                        value={new Date(Date.now())}
                         className='calendarComponent'
                     />
                 </div>
