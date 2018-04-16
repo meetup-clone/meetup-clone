@@ -5,6 +5,7 @@ import axios from "axios"
 import GroupEventCard from './Group/GroupEventCard';
 import PastEventCard from './Group/PastEventCard';
 import DiscussionCard from './Group/DiscussionCard';
+import DiscussionInput from './Group/DiscussionInput';
 import AttendeeCard from './Events/AttendeeCard'
 import Footer from './Footer'
 import dots from '../Assets/dots.svg'
@@ -54,8 +55,8 @@ export default class Group extends Component {
             <div className='group'>
                 <Header />
                 <div className="groupCard">
-                    <div>
-                        <img className="groupImage" src={this.state.group.img} alt="logo" />
+                    <div className="groupImage" >
+                        <img className="groupCardLogo" src={this.state.group.img} alt="logo" />
                     </div>
                     <div className="groupInfo">
                         <h1 style={{ marginTop: -10 }}>{this.state.group.group_name}</h1>
@@ -118,7 +119,11 @@ export default class Group extends Component {
                     </div>
                     <div className="aligner">
                         <div className="innerLeftAligner">
-                            <div className="descriptionSpacer"></div>
+                            <div className="descriptionSpacer">
+                                <div className="eventsAttendeesTop">
+                                    <h2 style={{ fontSize: 20 }}>What We're About</h2>
+                                </div>
+                                </div>
                             <div className="groupDescription">
                                 <div className="groupDescriptionDiv">
                                     <p>{this.state.group.description}</p>
@@ -141,7 +146,7 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="memberCardHolder">
-                                {mappedMembers.slice(0, 8)}
+                                {mappedMembers.slice(1, 9)}
                             </div>
                             <div className="descriptionSpacer">
                                 <div className="eventsAttendeesTop" style={{ width: 600 }}>
@@ -150,6 +155,7 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="discussionCardHolder">
+                            <DiscussionInput />
                                 {mappedGroupComments.slice(0, 4)}
                             </div>
                             <div className="descriptionSpacer"></div>
@@ -159,7 +165,23 @@ export default class Group extends Component {
                                     <p>Twitter</p>
                                 </button>
                             </div>
-                            <div className="groupTagWrapper">
+                        </div>
+                        {/* --------------------------------------------------------------------------------------- */}
+                        <div className="innerRightAligner">
+                        <div className="descriptionSpacer">
+                                <div className="eventsAttendeesTop">
+                                    <h2 style={{ fontSize: 20 }}>Upcoming Meetups</h2>
+                                    <span>See All</span>
+                                </div>
+                            <div className="pastEventsHolder">
+                                {pastEvents.slice(0, 3)}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* -------------------------------------------------------------------------------------------- */}
+                    <div className="groupEventCardHolder">
+                    <div className="groupTagWrapper">
                                 <div className="groupTagItem"><span>Internet Professionals</span></div>
                                 <div className="groupTagItem"><p>Internet </p></div>
                                 <div className="groupTagItem"><p>Internet bleh</p></div>
@@ -182,6 +204,12 @@ export default class Group extends Component {
                             <div className="descriptionSpacer">
                                 <hr />
                             </div>
+                            <div className="descriptionSpacer">
+                                <div className="eventsAttendeesTop">
+                                    <h2 style={{ fontSize: 20 }}>More Meetups</h2>
+                                    <span>See All</span>
+                                </div>
+                                </div>
                             <div className="bottomDiscussionHolder">
                                 <PastEventCard
                                     startDate={this.state.events.start_date}
@@ -204,12 +232,7 @@ export default class Group extends Component {
                             </div>
                             <div className="descriptionSpacer"></div>
                         </div>
-                        <div className="innerRightAligner">
-                            <div className="pastEventsHolder">
-                                {pastEvents}
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <Footer />
             </div>
