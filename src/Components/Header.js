@@ -9,16 +9,25 @@ export default class Header extends Component {
         super()
         this.state = {
             user: {},
-            groups: [],
+            myGroups: [],
             menu: false,
         }
     }
     componentDidMount() {
         axios.get('/auth/me').then(res => this.setState({ user: res.data }))
-        axios.get('api/myGroups').then(res => this.setState({ groups: res.data }))
+        axios.get('api/myGroups').then(res => this.setState({ myGroups: res.data }))
     }
     render() {
-        let { user, groups, menu } = this.state
+        let { user, myGroups, menu } = this.state
+        let groupList = myGroups.slice(0, 3).map((e, i) => {
+            return (
+                <Link to={`/${e.url_name}`}>
+                    <div className='hoverPink'>
+                        <h4>{e.group_name}</h4>
+                    </div>
+                </Link>
+            )
+        })
         return (
             <div className='header'>
                 <div className='nav'>
@@ -38,12 +47,8 @@ export default class Header extends Component {
                     <div className='shadow' onClick={() => this.setState({ menu: false })}>
                         <div className='dropdown' onClick={(e) => e.stopPropagation()} >
                             <div className='headerGroups'>
-                                {groups.length > 0 ?
-                                    <Link to={`/${groups[0].url_name}`}>
-                                        <div className='hoverPink'>
-                                            <h4>{groups[0].group_name}</h4>
-                                        </div>
-                                    </Link>
+                                {myGroups.length > 0 ?
+                                    groupList
                                     :
                                     <div className='noGroupsYet'>
                                         <h3>You're not a member of any Meetup Groups yet.</h3>

@@ -4,7 +4,6 @@
 }
 
 .loggedIn .nextMeetup {
-    position: relative;
     background: var(--pink);
     min-height: 250px;
     text-align: left;

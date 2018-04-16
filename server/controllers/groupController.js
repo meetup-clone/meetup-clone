@@ -10,16 +10,26 @@ module.exports = {
         })
     },
     getGroupByGroup: (req, res) => {
-        const db = req.app.get('db');
-        const {params} = req;
+        const db = req.app.get('db')
+        const { params } = req
         db.getGroupByGroup([params.id]).then(group => {
             db.getEventsByGroup([group[0].group_id]).then(events => {
                 db.getGroupCommentsByGroup([group[0].group_id]).then(groupComments => {
                     db.getMembersByGroup([group[0].group_id]).then(members => {
-                        let data = {group: group[0], events: events[0], groupComments: groupComments[0], members}
+                        let data = { group: group[0], events: events[0], groupComments: groupComments[0], members }
                         res.status(200).send(data)
                     })
                 })
+            })
+        })
+    },
+    createGroup: (req, res) => {
+        const db = req.app.get('db')
+        req.body.organizer = req.user.user_id
+        const { group_name, url_name, description, state, city, members, organizer } = req.body
+        db.createGroup([group_name, url_name, description, state, city, members, organizer]).then(group => {
+            db.addMember([group[0].organizer, group[0].group_id]).then(member => {
+                res.status(200).send(group[0])
             })
         })
     }

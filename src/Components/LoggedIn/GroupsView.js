@@ -11,13 +11,18 @@ export default class GroupsView extends Component {
     groupsList(groups) {
         return groups.map((e, i) => {
             return (
-                <div className='groupCard' key={e.group_id + e.group_name + i}>
-                    <img src={e.img} alt={e.group_name} size='' />
-                    <div className='groupCardText'>
-                        <Link to={`/${e.url_name}`}><h3>{e.group_name}</h3></Link>
-                        <p>{`We're ${e.members} Members`}</p>
+                <Link to={`/${e.url_name}`} key={e.group_id + e.group_name + i}>
+                    <div className='groupCard'>
+                        {e.img ?
+                            <img src={e.img} alt={e.group_name} size='' />
+                            : null
+                        }
+                        <div className='groupCardText'>
+                            <h3>{e.group_name}</h3>
+                            <p>{`We're ${e.members} Members`}</p>
+                        </div>
                     </div>
-                </div>
+                </Link>
             )
         })
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import './Create/Create.css'
 import Header from './Header.js'
 import Footer from './Footer.js'
@@ -18,6 +19,7 @@ export default class Create extends Component {
             step2: false,
             step3: false,
             step4: false,
+            changeCity: false,
             outdoors: false,
             tech: false,
             family: false,
@@ -34,10 +36,28 @@ export default class Create extends Component {
             film: false,
             scifi: false,
             beliefs: false,
+            city: 'Provo UT',
             topic: '',
             name: '',
             description: ''
         }
+        this.createGroup = this.createGroup.bind(this)
+    }
+
+    createGroup() {
+        let groupUrl = this.state.name.replace(/ /g, '-')
+        let location = this.state.city.split(' ')
+        let city = location[0]
+        let state = location[1]
+        let newGroup = {
+            group_name: this.state.name,
+            url_name: groupUrl,
+            description: this.state.description,
+            city: city,
+            state: state,
+            members: 1
+        }
+        axios.post('/api/groups', newGroup).then(res => this.props.history.push(`/${res.data.url_name}`))
     }
 
     render() {
@@ -52,7 +72,20 @@ export default class Create extends Component {
                             <div className='stepText'>
                                 <div>STEP 1 OF 4</div>
                                 <h2>What's your new Meetup Group's hometown?</h2>
-                                <span>Provo, UT  (change location)</span>
+                                <span className='stepCity'>{this.state.city}</span>
+                                {!this.state.changeCity ?
+                                    <span className='changeCity' onClick={() => this.setState({ changeCity: true })}>
+                                        (change location)
+                                    </span>
+                                    : null
+                                }
+                                {this.state.changeCity ?
+                                    <input
+                                        placeholder='Enter a city and state'
+                                        onChange={(e) => this.setState({ city: e.target.value })}
+                                    />
+                                    : null
+                                }
                                 {!this.state.step2 ?
                                     <div className='next' onClick={() => this.setState({ step2: true })} >
                                         <h5>Next</h5>
@@ -210,7 +243,7 @@ export default class Create extends Component {
                                     <h2>Describe who should join, and what your Meetup will do.</h2>
                                     <textarea
                                         rows="8"
-                                        maxlength="50000"
+                                        maxLength="50000"
                                         aria-required="true"
                                         aria-invalid="false"
                                         required="true"
@@ -240,7 +273,9 @@ export default class Create extends Component {
                                         <li>Put your members first</li>
                                     </ul>
                                     <p>We review all Meetups based on our Community Guidlines.</p>
-                                    <div className='next'><h5>Agree & Continue</h5></div>
+                                    <div className='next' onClick={() => this.createGroup()}>
+                                        <h5>Agree & Continue</h5>
+                                    </div>
                                 </div>
                             </div>
                             : null
