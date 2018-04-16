@@ -18,13 +18,14 @@ export default class Group extends Component {
         this.state = {
             events: [{}],
             group: {},
-            groupComments: {},
+            groupComments:[{}],
             members: [{}],
             attendees:[{}]
         }
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         console.log(this.props.match.params.group)
         axios.get(`/api/groups/${this.props.match.params.group}`).then(res => {
             this.setState({
@@ -38,6 +39,13 @@ export default class Group extends Component {
     }
 
     render() {
+        const {groupComments, events, members} = this.state;
+        const mappedGroupComments = groupComments.map((obj) => {
+            return <DiscussionCard comment={obj.comment} userName={obj.username} avatar={obj.image}/>
+        })
+        const mappedMembers = members.map((obj) => {
+            return <AttendeeCard image={obj.image} username={obj.username} index={obj.member_id}/> 
+        })
         console.log(this.state)
         return (
             <div className='group'>
@@ -102,6 +110,7 @@ export default class Group extends Component {
                             eventId={this.state.events[0].event_id}
                             startDate={this.state.events[0].start_date}
                             endDate={this.state.events[0].end_date}
+                            hosted={this.state.events[0]}
                         />
                         <div className="descriptionSpacer"></div>
                         <div className="groupDescription">
@@ -122,33 +131,26 @@ export default class Group extends Component {
                             </div>
                         </div>
                         <div className="groupOrganizerCard">
-                            <img src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="organizer" />
+                            <img src={this.state.members[0].image} alt="organizer" />
                             <div className="innerOrganizerDiv">
                                 <p className="tinyText">Organizers</p>
-                                <p id="blackBold">Erin Valenti</p>
+                                <p id="blackBold">{this.state.members[0].username}</p>
                             </div>
                             <div>
                                 <p>Messages</p>
                             </div>
                         </div>
                         <div className="memberCardHolder">
-                            <AttendeeCard />
-                            <AttendeeCard />
-                            <AttendeeCard />
-                            <AttendeeCard />
-                            <AttendeeCard />
-                            <AttendeeCard />
+                            {mappedMembers.slice(0, 8)}
                         </div>
                         <div className="descriptionSpacer">
                         <div className="eventsAttendeesTop" style={{width: 600}}>
-                                <h2 style={{ fontSize: 20 }}>Discussions (4)</h2>
+                                <h2 style={{ fontSize: 20 }}>Discussions ({this.state.groupComments.length})</h2>
                                 <span>See All</span>
                             </div>
                         </div>
                         <div className="discussionCardHolder">
-                            <DiscussionCard />
-                            <DiscussionCard />
-                            <DiscussionCard />
+                            {mappedGroupComments.slice(0,4)}
                         </div>
                         <div className="descriptionSpacer"></div>
                         <div className="descriptionSpacer">

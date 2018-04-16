@@ -17,7 +17,7 @@ module.exports = {
                 db.getAttendees([events[0].event_id]).then(attendees => {
                     db.getGroupCommentsByGroup([group[0].group_id]).then(groupComments => {
                         db.getMembersByGroup([group[0].group_id]).then(members => {
-                            let data = { group: group[0], events: events, groupComments: groupComments[0], members, attendees: attendees }
+                            let data = { group: group[0], events: events, groupComments: groupComments, members, attendees: attendees }
                             res.status(200).send(data)
                         })
                     })
