@@ -11,6 +11,10 @@
     text-align: left;
 }
 
+.events a {
+    text-decoration: none;
+}
+
 .eventsTopContent h4 {
     color: var(--gray);
     font-weight: 300;
@@ -49,6 +53,7 @@
 
 #eventDateIcon p:nth-child(1) {
     font-size: 20px;
+    line-height: 1.1
 }
 
 #organizerAvatar {
@@ -222,20 +227,79 @@
     font-size: 12px;
 }
 
+.eventsSeeMeetups {
+    width: 100%;
+    height: 63px;
+    background: var(--blue);
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+}
+
+.eventsSeeMeetups div {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.eventsSeeMeetups img {
+    width: 30px;
+    height: 30px;
+}
+
+.eventsSeeMeetups section {
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+.eventsSeeMeetups h4 {
+    font-weight: 300;
+    opacity: .7;
+}
+
 /* ---------------------------------- */
 
 .eventsMap {
     min-width: 340px;
-    height: 445px;
+    height: 400px;
+    background: white;
     border-radius: 10px;
     box-sizing: border-box;
+    font-size: 18px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding-top: 20px;
+    color: #666;
+    position: sticky;
 }
 
 .eventsTimeHolder {
     display: flex;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+}
+
+.eventsTimeHolder h4 {
+    color: var(--blue);
+    font-weight: 300;
+    font-size: 14px;   
+    cursor: pointer; 
+}
+
+.eventsTimeHolder h6 {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.eventsTimeHolder span {
+    padding: 0px 8px;
 }
 
 .eventsMap img {
     width: 24px;
     height: 24px;
+    margin: 0px 14px 0px 20px; 
 }
