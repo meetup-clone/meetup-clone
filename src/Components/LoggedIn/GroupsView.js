@@ -13,6 +13,10 @@ export default class GroupsView extends Component {
         this.showMore = this.showMore.bind(this)
     }
 
+    componentDidMount() {
+        if (window.scrollY > 283) window.scrollTo(0, 283)
+    }
+
     groupsList(groups) {
         return groups.map((e, i) => {
             return (

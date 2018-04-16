@@ -6,8 +6,8 @@
 }
 
 .groupsView .groupsViewContainer {
-    width: auto;
-    max-width: 80%;
+    max-width: 880px;
+    width: 80%;
     padding-top: 60px;
     margin-right: auto;
     margin-left: auto;
