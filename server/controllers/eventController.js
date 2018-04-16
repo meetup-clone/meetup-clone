@@ -18,5 +18,10 @@ module.exports = {
         req.app.get('db').getAttendees([req.params.id]).then(attendees => {
             res.status(200).send(attendees)
         })
+    },
+    getEventComments: (req, res) => {
+        req.app.get('db').getEventComments([req.params.id]).then(comments => {
+            res.status(200).send(comments)
+        })
     }
 }

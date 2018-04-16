@@ -4,9 +4,11 @@ import Header from './Header'
 import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
+import bigRightArrow from '../Assets/bigRightArrow.svg'
 import AttendeeCard from './Events/AttendeeCard'
 import mapPin from '../Assets/mapPin.svg'
 import Footer from './Footer'
+import EventComment from './Events/EventComment'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 export default class Events extends Component {
@@ -15,7 +17,8 @@ export default class Events extends Component {
 
         this.state = {
             event: {},
-            attendees: [{}]
+            attendees: [{}],
+            comments: []
         }
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -43,6 +46,10 @@ export default class Events extends Component {
         axios.get(`/api/attendees/${this.props.match.params.event}`).then(res => {
             this.setState({ attendees: res.data })
         })
+        axios.get(`api/event/comments/${this.props.match.params.event}`).then(res => {
+            console.log(res.data)
+            this.setState({ comments: res.data})
+        })
 
 
     }
@@ -52,10 +59,14 @@ export default class Events extends Component {
         const { start_date, end_date, event_description,
             event_name, venue_address, venue, city,
             venue_directions, venue_name, group_name } = this.state.event
-        const { attendees } = this.state
+        const { attendees, comments } = this.state
 
         const mappedAttendees = attendees.map((x, i) => {
             return <AttendeeCard key={x.attendees_id} index={i} image={x.image} username={x.username} />
+        })
+
+        const mappedComments = comments.map((x, i) => {
+            return <EventComment />
         })
 
         const MapWithAMarker = withScriptjs(withGoogleMap(props =>
@@ -68,7 +79,6 @@ export default class Events extends Component {
                 />
             </GoogleMap>
         ))
-        console.log(process.env.REACT_APP_GOOGLE_MAPS_KEY)
         return (
             <div>
                 <Header />
@@ -102,7 +112,7 @@ export default class Events extends Component {
                                 <h4>Share</h4>
                                 <img src={twitter} alt="img" />
                                 <h4>Tweet</h4>
-                                <img src={twitter} alt="img" />
+                                <img src={bigRightArrow} alt="img" />
                                 <h4>Invite</h4>
                             </div>
                         </div>

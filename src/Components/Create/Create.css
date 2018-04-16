@@ -1,6 +1,6 @@
 .create {
-    height: 5000px;
     width: 100%;
+    min-height: 750px;
 }
 
 .create .hotAirBalloons {
@@ -9,6 +9,7 @@
 
 .create .stepContainer {
     width: 100%;
+    margin-bottom: 200px;
 }
 
 .create .step {
@@ -16,7 +17,7 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 840px;
-    padding: 30px 20px;
+    padding: 40px 20px;
     width: 100%;
     display: flex;
     text-align: left;
@@ -31,15 +32,11 @@
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    margin: 40px 30px;
+    margin: 0 30px 50px 30px;
 }
 
 .create .step img {
     width: 50px;
-}
-
-.create .stepText {
-    margin-top: 40px;
 }
 
 .create .stepText h1 {
@@ -71,6 +68,8 @@
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
 }
 
 .create .stepText textarea {
@@ -79,11 +78,12 @@
     border: 1px solid rgba(0,0,0,.12);
     box-shadow: none;
     box-sizing: border-box;
-    margin: 0 0 4px;
     max-width: 100%;
     padding: 8px;
     width: 100%;
     margin-top: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
 }
 
 .create .stepText li {
@@ -110,4 +110,32 @@
 
 .create .next:hover {
     background: #CF1734;
+}
+
+.create .topics {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.create .topic {
+    border: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d1d1d1;
+    background-color: white;
+    width: auto;
+    padding: 4px 10px;
+    margin: 4px 6px;
+    cursor: pointer;
+}
+
+.create .topic span {
+    color: black;
+    font-size: 16px;
+}
+
+.create .topic img {
+    height: 13px;
+    width: 13px;
+    margin: 0 5px 0 10px;
 }

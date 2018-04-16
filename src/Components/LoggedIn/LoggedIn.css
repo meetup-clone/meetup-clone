@@ -1,7 +1,3 @@
-.loggedIn {
-    background: #FAFAFA;
-}
-
 .loggedIn .nextMeetup a {
     color: white;
     text-decoration: none;
@@ -71,14 +67,19 @@
     margin: 0 10px;
 }
 
-.loggedIn img {
+.loggedIn .myEventTime img {
     height: 30px;
+}
+
+.loggedIn #pinkPin {
+    margin-left: 5px;
 }
 
 .loggedIn .findContent {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 20px;
 }
 
 .loggedIn .findContent h4 {
@@ -109,6 +110,8 @@
     margin: 13px;
     padding: 13px;
     width: 250px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
 }
 
 .loggedIn .shadow {
@@ -139,11 +142,12 @@
     align-items: center;
 }
 
-.loggedIn select {
+.loggedIn .filterDistance select {
     -webkit-appearance: none;
     -moz-appearance: none;
     padding: 13px 2px;
-    margin: 13px 2px;
+    margin: 13px 0;
+    font-family: 'Nunito', sans-serif;
     font-size: 17px;
     font-weight: 300;
     text-align: center;
@@ -167,15 +171,12 @@
 }
 
 .loggedIn .filterByCity {
-    margin-left: 10px;
-}
-
-.loggedIn .filterByCity input {
     background: var(--black);
     color: white;
     border: none;
     padding: 13px 0;
-    margin: 13px 0;
+    margin: 13px 0 13px 6px;
+    font-family: 'Nunito', sans-serif;
     font-size: 17px;
     font-weight: 300;
     cursor: pointer;
@@ -197,12 +198,12 @@
     cursor: pointer;
 }
 
-.loggedIn .calendar {
+.loggedIn .calendarToggle {
     width: 100px;
     padding: 13px;
 }
 
-.loggedIn .groups {
+.loggedIn .groupsToggle {
     border-right: 1px solid #454A51;
     width: 100px;
     padding: 13px;
@@ -212,172 +213,4 @@
     background: #454A51;
     color: white;
     font-weight: bold;
-}
-
-.loggedIn .eventsContainer {
-    display: flex;
-    margin-top: 50px;
-}
-
-.loggedIn .leftCol {
-    margin-left: auto;
-    margin-bottom: 50px;
-}
-
-.loggedIn .todaysDate {
-    margin-bottom: 10px;
-    color: black;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.6;
-    letter-spacing: -.02em;
-    word-spacing: .1em;
-    text-align: left;
-}
-
-.loggedIn .events {
-    position: relative;
-    justify-content: center;
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-    margin-right: 20px;
-}
-
-.loggedIn .loggedInEventCard {
-    border-bottom: 1px solid #d1d1d1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: space-around;
-    width: 94%;
-    padding: 3%;
-    text-align: left;
-}
-
-.loggedIn .loggedInEventCard:last-child {
-    border: 0;
-}
-
-.loggedIn .eventTime {
-    width: 100px;
-    color: var(--gray);
-}
-
-.loggedIn .eventDetails {
-    display: flex;
-    flex-direction: column;
-    color: var(--gray);
-    width: 85%;
-}
-
-.loggedIn .eventDetails a {
-    color: var(--gray);
-    text-decoration: none;
-}
-
-.loggedIn .groupName {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: -.02em;
-    word-spacing: .1em;
-}
-
-.loggedIn .eventName {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: -.02em;
-    word-spacing: .1em;
-    color: black;
-}
-
-.loggedIn .showMore {
-    width: 700px;
-    margin-top: 20px;
-    margin-right: 20px;
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
-    background-color: white;
-    padding: 15px 0;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.loggedIn .showMore:hover {
-    background: #E8E8E8;
-}
-
-.loggedIn .rightCol {
-    display: flex;
-    flex-direction: column;
-    margin-right: auto;
-    margin-top: 32px;
-}
-
-.loggedIn .meetupCategories {
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 270px;
-    height: 154px;
-}
-
-.loggedIn .meetupCategories hr {
-    width: 100%;
-    border-style: solid;
-    border-width: 0.3px;
-    border-color: #d1d1d1;
-}
-
-.loggedIn .meetupCategories span {
-    padding: 3% 3% 3% 8%;
-    border-bottom: 1px solid #d1d1d1;
-    cursor: pointer;
-}
-
-.loggedIn .meetupCategories span:last-child{
-    border-bottom: 0;
-}
-
-.loggedIn .activeCategory {
-    background: #EDEDFA;
-    color: #2429CB;
-    border-left: 5px solid #2429CB;
-}
-
-.loggedIn .today {
-    height: 20px;
-    width: 70px;
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
-    background: white;
-    margin-top: 30px;
-    margin-left: 198px;
-    cursor: pointer;
-}
-
-.loggedIn .calendarComponent {
-    height: 300px;
-    max-width: 270px;
-    margin-top: 10px;
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
 }
