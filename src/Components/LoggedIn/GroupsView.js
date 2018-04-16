@@ -6,10 +6,11 @@ export default class GroupsView extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showMore: false,
-            numToShow: 3
+            showMore: true,
+            numToShow: 6
         }
         this.groupsList = this.groupsList.bind(this)
+        this.showMore = this.showMore.bind(this)
     }
 
     groupsList(groups) {
@@ -31,6 +32,16 @@ export default class GroupsView extends Component {
         })
     }
 
+    showMore() {
+        let num = this.state.numToShow + 6
+        if (num > this.props.allGroups.length) {
+            this.setState({ showMore: false, numToShow: num })
+        }
+        else {
+            this.setState({ numToShow: num })
+        }
+    }
+
     render() {
 
 
@@ -48,16 +59,17 @@ export default class GroupsView extends Component {
                     }
                     <h4>SUGGESTED MEETUPS</h4>
                     <div className='groupCardContainer'>
-                        {this.state.showMore ? this.groupsList(this.props.allGroups)
-                            : this.groupsList(this.props.allGroups.slice(0, this.state.numToShow))
-                        }
+                        {this.groupsList(this.props.allGroups.slice(0, this.state.numToShow))}
                     </div>
-                    <div 
-                        className='showMore' 
-                        onClick={() => this.setState({ showMore: true, numToShow: this.state.numToShow + 3 })}
-                    >
-                        Show more
-                    </div>
+                    {this.state.showMore ?
+                        <div 
+                            className='showMore' 
+                            onClick={() => this.showMore()}
+                        >
+                            Show more
+                        </div>
+                        : null
+                    }
                 </div>
             </div>
         )

@@ -11,6 +11,7 @@ export default class CalendarView extends Component {
             cat2: false,
             cat3: false,
             cat4: false,
+            date: new Date(Date.now())
         }
         this.filterEvents = this.filterEvents.bind(this)
         this.listEvents = this.listEvents.bind(this)
@@ -56,7 +57,7 @@ export default class CalendarView extends Component {
         return (
             <div className='calendarView'>
                 <div className='leftCol'>
-                    <div className='todaysDate'>{new Date(Date.now()).toDateString()}</div>
+                    <div className='todaysDate'>{new Date(Date.now()).toDateString().toUpperCase()}</div>
                     <div className='events'>
                         {this.listEvents()}
                     </div>
@@ -91,9 +92,11 @@ export default class CalendarView extends Component {
                             I'm Going
                                 </span>
                     </div>
-                    <div className='today'>Today</div>
+                    <div className='today' onClick={() => this.setState({ date: new Date(Date.now()) })}>
+                        Today
+                    </div>
                     <Calendar
-                        value={new Date(Date.now())}
+                        value={this.state.date}
                         className='calendarComponent'
                     />
                 </div>
