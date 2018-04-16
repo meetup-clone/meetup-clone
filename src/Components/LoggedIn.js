@@ -14,10 +14,11 @@ export default class LoggedIn extends Component {
         super()
         this.state = {
             myEvents: [],
-            myGroupsEvents: [],
+            myGroupEvents: [],
             allEvents: [{}],
             myGroups: [],
             allGroups: [{}],
+            attendeeCount: [],
             meetupsToggle: false,
             cityToggle: false,
             currentCity: 'Provo, UT',
@@ -28,9 +29,11 @@ export default class LoggedIn extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         axios.get('/api/myEvents').then(res => this.setState({ myEvents: res.data }))
+        axios.get('/api/myGroupEvents').then(res => this.setState({ myGroupEvents: res.data }))
         axios.get('/api/allEvents').then(res => this.setState({ allEvents: res.data }))
         axios.get('/api/myGroups').then(res => this.setState({ myGroups: res.data }))
         axios.get('/api/allGroups').then(res => this.setState({ allGroups: res.data }))
+        axios.get('/api/attendeeCount').then(res => this.setState({ attendeeCount: res.data }))
     }
 
     render() {
@@ -125,9 +128,17 @@ export default class LoggedIn extends Component {
                     }
                 </div>
                 {this.state.viewToggle ?
-                    <CalendarView myEvents={this.state.myEvents} allEvents={this.state.allEvents} />
+                    <CalendarView 
+                        myEvents={this.state.myEvents}
+                        myGroupEvents={this.state.myGroupEvents}
+                        allEvents={this.state.allEvents}
+                        attendeeCount={this.state.attendeeCount}
+                    />
                     :
-                    <GroupsView myGroups={this.state.myGroups} allGroups={this.state.allGroups} />
+                    <GroupsView 
+                        myGroups={this.state.myGroups}
+                        allGroups={this.state.allGroups}
+                    />
                 }
                 <Footer />
             </div >

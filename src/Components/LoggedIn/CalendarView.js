@@ -25,21 +25,25 @@ export default class CalendarView extends Component {
     filterEvents() {
         if (this.state.cat1) {
             let filteredEvents = this.props.allEvents.filter(e => {
-                return e.start_date >= Date.now()
+                return e.start_date >= this.state.date
             })
             return filteredEvents
         }
         else if (this.state.cat2) {
             let filteredEvents = this.props.allEvents.filter(e => {
-                return e.start_date >= Date.now()
+                return e.start_date >= this.state.date
             })
             return filteredEvents
         }
         else if (this.state.cat3) {
-            return this.props.myEvents
+            let filteredEvents = this.props.myEvents.filter(e => {
+                return e.start_date >= this.state.date
+            })
         }
         else if (this.state.cat4) {
-            return this.props.myEvents
+            let filteredEvents = this.props.myEvents.filter(e => {
+                return e.start_date >= this.state.date
+            })
         }
     }
 
@@ -58,7 +62,7 @@ export default class CalendarView extends Component {
                         <Link to={`/${e.url_name}/events/${e.event_id}`}>
                             <span className='eventName'>{e.event_name}</span>
                         </Link>
-                        <span className='attendees'>{`${e.attendees} Members going`}</span>
+                        <span className='attendees'>{`${this.props.attendees[this.props.attendees.indexOf(e.event_id)].count} Members going`}</span>
                     </div>
                 </div>
             )
@@ -115,6 +119,7 @@ export default class CalendarView extends Component {
                     </div>
                     <Calendar
                         value={this.state.date}
+                        onChange={(date) => this.setState({ date: date.getTime() })}
                         className='calendarComponent'
                     />
                 </div>
