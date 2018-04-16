@@ -58,11 +58,16 @@ export default class Events extends Component {
     }
 
     attendEvent() {
-        axios.post('', { eventId: this.props.match.params.event })
+        axios.post('/api/attendevent', { eventId: this.props.match.params.event }).then(res => {
+            this.setState({ attendees: res.data })            
+        })
     }
 
     cancelAttend() {
-
+        axios.delete(`/api/cancelattend/${this.props.match.params.event}`).then(res => {
+            console.log('cancellingAttend ', res.data)
+            this.setState({ attendees: res.data})
+        })
     }
 
     render() {

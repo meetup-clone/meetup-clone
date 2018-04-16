@@ -23,5 +23,15 @@ module.exports = {
         req.app.get('db').getEventComments([req.params.id]).then(comments => {
             res.status(200).send(comments)
         })
-    }
+    },
+    attendEvent: (req, res) => {
+        req.app.get('db').attendEvent([req.user.user_id, req.body.eventId]).then(attendees => {
+            res.status(200).send(attendees)
+        })
+    },
+    cancelAttend: (req, res) => {
+        req.app.get('db').cancelAttend([req.user.user_id, req.params.id]).then(attendees => {
+            res.status(200).send(attendees)
+        })
+    },
 }
