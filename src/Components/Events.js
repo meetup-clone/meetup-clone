@@ -80,15 +80,14 @@ export default class Events extends Component {
     }
 
     render() {
-        const { start_date, end_date, event_description,
-            event_name, venue_address, venue_city,
-            venue_directions, venue_name, group_name } = this.state.event
+        const { event_description, event_name, venue_address,
+                venue_city, venue_directions, venue_name,
+                group_name } = this.state.event
         const { attendees, comments } = this.state
-        console.log(attendees)
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
-            return <AttendeeCard key={x.attendees_id} index={i} image={x.image} username={x.username} />
+            return <AttendeeCard key={x.user_id} index={i} image={x.image} username={x.username} />
         })
 
         const mappedComments = comments.map((x, i) => {
