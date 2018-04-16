@@ -21,7 +21,8 @@ export default class Events extends Component {
         this.state = {
             event: {},
             attendees: [{}],
-            comments: []
+            comments: [],
+            currentUser: -1
         }
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -55,29 +56,38 @@ export default class Events extends Component {
         axios.get(`/api/event/comments/${this.props.match.params.event}`).then(res => {
             this.setState({ comments: res.data })
         })
+        axios.get('/auth/me').then(res => {
+            this.setState({currentUser: res.data.user_id})
+        })
     }
 
     attendEvent() {
+        const {attendees, currentUser} = this.state
+        for (let i = 0; i < attendees.length; i++) {
+            if(attendees[i].user_id === currentUser) {
+                return
+            }
+        }
         axios.post('/api/attendevent', { eventId: this.props.match.params.event }).then(res => {
             this.setState({ attendees: res.data })            
-        })
+        })        
     }
 
     cancelAttend() {
         axios.delete(`/api/cancelattend/${this.props.match.params.event}`).then(res => {
-            console.log('cancellingAttend ', res.data)
             this.setState({ attendees: res.data})
         })
     }
 
     render() {
-        // console.log(this.state, 'thisstate')
         const { start_date, end_date, event_description,
             event_name, venue_address, venue_city,
             venue_directions, venue_name, group_name } = this.state.event
         const { attendees, comments } = this.state
+        console.log(attendees)
 
-        const mappedAttendees = attendees.map((x, i) => {
+        let eightAttendees = attendees.slice(0, 8)
+        const mappedAttendees = eightAttendees.map((x, i) => {
             return <AttendeeCard key={x.attendees_id} index={i} image={x.image} username={x.username} />
         })
 
