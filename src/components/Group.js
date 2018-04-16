@@ -147,6 +147,27 @@ export default class Group extends Component {
                             <DiscussionCard />
                             <DiscussionCard />
                         </div>
+                        <div className="descriptionSpacer"></div>
+                        <div className="groupTagWrapper">
+                        <div className="groupTagItem"><span>Internet Professionals</span></div>
+                        <div className="groupTagItem"><p>Internet </p></div>
+                        <div className="groupTagItem"><p>Internet bleh</p></div>
+                        <div className="groupTagItem"><p>Internet blooo</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet eh</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet ahaa</p></div>
+                        <div className="groupTagItem"><p>Internet asdffg</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet aa</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet </p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet asdf</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        <div className="groupTagItem"><p>Internet Professionals</p></div>
+                        </div>
                     </div>
                 </div>
                 <Footer />
