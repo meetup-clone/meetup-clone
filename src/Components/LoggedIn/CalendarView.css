@@ -1,6 +1,8 @@
 .calendarView {
     display: flex;
-    padding-top: 30px;
+    margin-top: -35px;
+    padding-top: 55px;
+    padding-bottom: 100px;
     background: #FAFAFA;
 }
 
@@ -15,7 +17,7 @@
     margin-bottom: 10px;
     color: black;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 1.6;
     letter-spacing: -.02em;
     word-spacing: .1em;

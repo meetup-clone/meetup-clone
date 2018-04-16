@@ -1,16 +1,28 @@
 .groupsView {
     background: #FAFAFA;
+    margin-top: -35px;
+    padding-bottom: 100px;
+    height: 100%;
 }
 
 .groupsView .groupsViewContainer {
     width: auto;
     max-width: 80%;
+    padding-top: 60px;
     margin-right: auto;
     margin-left: auto;
 }
 
 .groupsView .groupsViewContainer h4 {
     margin-left: 10px;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: bold !important;
+    line-height: 1.6;
+    letter-spacing: -.02em;
+    word-spacing: .1em;
+    text-align: left;
 }
 
 .groupsView .groupCardContainer {
@@ -52,9 +64,8 @@
 }
 
 .groupsView .showMore {
-    width: 80%;
+    width: 100%;
     margin-top: 30px;
-    margin-bottom: 100px;
     margin-right: auto;
     margin-left: auto;
     border: 1px;
