@@ -1,12 +1,17 @@
 module.exports = {
     getUserEvents: (req, res) => {
-        req.app.get('db').getUserEvents([req.user.user_id]).then(events => {
-            res.status(200).send(events)
+        req.app.get('db').getUserEvents([req.user.user_id]).then(userEvents => {
+            res.status(200).send(userEvents)
+        })
+    },
+    getUserGroupEvents: (req, res) => {
+        req.app.get('db').getUserGroupEvents([req.user.user_id]).then(userGroupEvents => {
+            res.status(200).send(userGroupEvents)
         })
     },
     getAllEvents: (req, res) => {
-        req.app.get('db').getAllEvents().then(events => {
-            res.status(200).send(events)
+        req.app.get('db').getAllEvents().then(allEvents => {
+            res.status(200).send(allEvents)
         })
     },
     getEvent: (req, res) => {
