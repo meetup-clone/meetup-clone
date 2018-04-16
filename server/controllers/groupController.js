@@ -14,10 +14,12 @@ module.exports = {
         const { params } = req
         db.getGroupByGroup([params.id]).then(group => {
             db.getEventsByGroup([group[0].group_id]).then(events => {
-                db.getGroupCommentsByGroup([group[0].group_id]).then(groupComments => {
-                    db.getMembersByGroup([group[0].group_id]).then(members => {
-                        let data = { group: group[0], events: events[0], groupComments: groupComments[0], members }
-                        res.status(200).send(data)
+                db.getAttendees([events[0].event_id]).then(attendees => {
+                    db.getGroupCommentsByGroup([group[0].group_id]).then(groupComments => {
+                        db.getMembersByGroup([group[0].group_id]).then(members => {
+                            let data = { group: group[0], events: events, groupComments: groupComments[0], members, attendees: attendees }
+                            res.status(200).send(data)
+                        })
                     })
                 })
             })
