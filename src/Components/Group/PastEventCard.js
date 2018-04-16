@@ -24,17 +24,19 @@ export default function PastEventCard(props) {
                     <h2>{props.eventName}</h2>
                 </div>
             </div>
-            <div style={{ width: 180, alignItems: "center" }} className="organizerWrapper">
+            <div style={{ width: 180, alignItems: "center", paddingLeft: 20 }} className="organizerWrapper">
                 <img className="hostedAvatar" src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="avatar" />
                 <p>hosted by Erin Valenti</p>
             </div>
-            <div className="groupAvatarHolder">
+            <div className="miniBottomDiv">
+            <div className="miniGroupAvatarHolder">
                 <ul>
                     <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
                     <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
                     <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
                     <li id="peopleGoing">3 going</li>
                 </ul>
+            </div>
             </div>
         </div>
 

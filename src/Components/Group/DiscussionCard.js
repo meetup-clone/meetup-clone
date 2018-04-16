@@ -1,7 +1,8 @@
 import React from 'react'
 import dots from '../../Assets/dots.svg'
+import blueHeart from '../../Assets/blue-heart.svg'
 
-export default function PastEventCard(props) {
+export default function DiscussionCard(props) {
     return (
         <div className="discussionCardMain">
         <div className="discussionCardTopWrapper">
@@ -15,10 +16,12 @@ export default function PastEventCard(props) {
         <h2>this is a comment that is vey long and should take up a lot of space and whatnot.</h2>
         <div className="discussionCardBottom">
             <div className="replyWrapper">
-            <p># of replies</p>
             <h5>reply</h5>
             </div>
-            <p># of likes</p>
+            <div className="likeHolder">
+            <img style={{height: 15, width: 15}} src={blueHeart} alt="blue heart"/>
+            <p>Like</p>
+            </div>
         </div>
         </div>
     )

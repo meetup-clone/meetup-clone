@@ -9,6 +9,7 @@ import AttendeeCard from './Events/AttendeeCard'
 import Footer from './Footer'
 import dots from '../Assets/dots.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
+import twitter from '../Assets/twitter.svg'
 
 
 export default class Group extends Component {
@@ -84,7 +85,7 @@ export default class Group extends Component {
                 </div>
                 <div className="grayBackground">
                     <div className="aligner">
-                        <div className="groupEventCardSpacer">
+                        <div className="descriptionSpacer">
                             <div className="eventsAttendeesTop">
                                 <h2 style={{ fontSize: 20 }}>Next Meetup</h2>
                                 <span>See All</span>
@@ -148,6 +149,12 @@ export default class Group extends Component {
                             <DiscussionCard />
                         </div>
                         <div className="descriptionSpacer"></div>
+                        <div className="descriptionSpacer">
+                        <button className="socialHolder">
+                        <img style={{height: 20, width: 20}} src={twitter} alt=""/>
+                            <p>Twitter</p>
+                        </button>
+                        </div>
                         <div className="groupTagWrapper">
                         <div className="groupTagItem"><span>Internet Professionals</span></div>
                         <div className="groupTagItem"><p>Internet </p></div>
@@ -168,6 +175,30 @@ export default class Group extends Component {
                         <div className="groupTagItem"><p>Internet Professionals</p></div>
                         <div className="groupTagItem"><p>Internet Professionals</p></div>
                         </div>
+                        <div className="descriptionSpacer">
+                        <hr />
+                        </div>
+                        <div className="bottomDiscussionHolder">
+                        <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                                                        <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                                                        <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                        </div>
+                        <div className="descriptionSpacer"></div>
                     </div>
                 </div>
                 <Footer />
