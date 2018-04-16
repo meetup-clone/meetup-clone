@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Header from './Header'
 import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
@@ -30,9 +30,12 @@ export default class Events extends Component {
         this.month = ''
         this.startTime = ''
         this.endTime = ''
+        this.attendEvent = this.attendEvent.bind(this)
+        this.cancelAttend = this.cancelAttend.bind(this)
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         axios.get(`/api/event/${this.props.match.params.event}`).then(res => {
             this.setState({ event: res.data[0] })
             let date = new Date(this.state.event.start_date)
@@ -49,11 +52,16 @@ export default class Events extends Component {
         axios.get(`/api/attendees/${this.props.match.params.event}`).then(res => {
             this.setState({ attendees: res.data })
         })
-        axios.get(`api/event/comments/${this.props.match.params.event}`).then(res => {
-            console.log(res.data)
+        axios.get(`/api/event/comments/${this.props.match.params.event}`).then(res => {
             this.setState({ comments: res.data })
         })
+    }
 
+    attendEvent() {
+        axios.post('', { eventId: this.props.match.params.event })
+    }
+
+    cancelAttend() {
 
     }
 
@@ -69,7 +77,7 @@ export default class Events extends Component {
         })
 
         const mappedComments = comments.map((x, i) => {
-            return <EventComment key={x.comment_id} comment={x.comment} date={x.date} image={x.image} username={x.username}/>
+            return <EventComment key={x.comment_id} comment={x.comment} date={x.date} image={x.image} username={x.username} />
         })
 
         const MapWithAMarker = withScriptjs(withGoogleMap(props =>
@@ -107,8 +115,8 @@ export default class Events extends Component {
                         <div className='eventsTopGoing'>
                             <h3>Are you going? <span>{`${attendees.length} people going`}</span></h3>
                             <div className='eventsGoingBtns'>
-                                <button>✔</button>
-                                <button>X</button>
+                                <button onClick={() => this.attendEvent()}>✔</button>
+                                <button onClick={() => this.cancelAttend()}>X</button>
                             </div>
                             <div className='eventsSocialHolder'>
                                 <img src={facebook} alt="img" />
@@ -144,7 +152,7 @@ export default class Events extends Component {
                                 </div>
                             </div>
                             <Link to={`/${group_name}`}><div className='eventsSeeMeetups'>
-                                <div><img src={calendar} alt="img"/></div>
+                                <div><img src={calendar} alt="img" /></div>
                                 <section>
                                     <h4>See all meetups from</h4>
                                     <h3>UtahJS</h3>
@@ -152,30 +160,31 @@ export default class Events extends Component {
                             </div></Link>
                         </section>
 
-
-                        <section className='eventsMap'>
-                            <div className='eventsTimeHolder'>
-                                <img src={clock} alt="img" />
-                                <div>
-                                    <h5>{this.dateString}</h5>
-                                    <h5>7:30 PM to 8:45PM</h5>
-                                    <h4>Add to Calendar</h4>
+                        <section className='eventsSticky'>
+                            <section className='eventsMap'>
+                                <div className='eventsTimeHolder'>
+                                    <img src={clock} alt="img" />
+                                    <div>
+                                        <h5>{this.dateString}</h5>
+                                        <h5>7:30 PM to 8:45PM</h5>
+                                        <h4>Add to Calendar</h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className='eventsTimeHolder'>
-                                <img src={mapPin} alt="img" />
-                                <div>
-                                    <h5>{venue_name}</h5>
-                                    <h6>{venue_address}<span>᛫</span>{venue_city}</h6>
-                                    <h6>{venue_directions}</h6>
+                                <div className='eventsTimeHolder'>
+                                    <img src={mapPin} alt="img" />
+                                    <div>
+                                        <h5>{venue_name}</h5>
+                                        <h6>{venue_address}<span>᛫</span>{venue_city}</h6>
+                                        <h6>{venue_directions}</h6>
+                                    </div>
                                 </div>
-                            </div>
-                            <MapWithAMarker
-                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-                                loadingElement={<div style={{ height: `100%` }} />}
-                                containerElement={<div style={{ height: `212px` }} />}
-                                mapElement={<div style={{ height: `212px` }} />}
-                            />
+                                <MapWithAMarker
+                                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                    loadingElement={<div style={{ height: `100%` }} />}
+                                    containerElement={<div style={{ height: `212px` }} />}
+                                    mapElement={<div style={{ height: `212px` }} />}
+                                />
+                            </section>
                         </section>
                     </div>
                 </div>

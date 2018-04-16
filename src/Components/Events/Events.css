@@ -183,6 +183,7 @@
 
 .attendeesCards {
     display: flex;
+    flex-wrap: wrap;
 }
 
 /* ----------------------------- */
@@ -262,8 +263,13 @@
 
 /* ---------------------------------- */
 
+.eventsSticky {
+    box-sizing: border-box;
+    padding-bottom: 50px;
+}
+
 .eventsMap {
-    min-width: 340px;
+    max-width: 340px;
     height: 400px;
     background: white;
     border-radius: 10px;
@@ -274,12 +280,14 @@
     padding-top: 20px;
     color: #666;
     position: sticky;
+    top: 30px;
 }
 
 .eventsTimeHolder {
     display: flex;
     box-sizing: border-box;
     padding-bottom: 30px;
+    padding-right: 20px;
 }
 
 .eventsTimeHolder h4 {
