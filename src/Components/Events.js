@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import Header from './Header'
 import './Events/Events.css'
 import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
 import AttendeeCard from './Events/AttendeeCard'
-import mapPin from '../Assets/mapPin.svg'
-import Footer from './Footer'
 import EventComment from './Events/EventComment'
+import clock from '../Assets/clock.svg'
+import mapPin from '../Assets/mapPin.svg'
+import calendar from '../Assets/white-calendar.svg'
+import Footer from './Footer'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 export default class Events extends Component {
@@ -48,7 +51,7 @@ export default class Events extends Component {
         })
         axios.get(`api/event/comments/${this.props.match.params.event}`).then(res => {
             console.log(res.data)
-            this.setState({ comments: res.data})
+            this.setState({ comments: res.data })
         })
 
 
@@ -57,7 +60,7 @@ export default class Events extends Component {
     render() {
         // console.log(this.state, 'thisstate')
         const { start_date, end_date, event_description,
-            event_name, venue_address, venue, city,
+            event_name, venue_address, venue_city,
             venue_directions, venue_name, group_name } = this.state.event
         const { attendees, comments } = this.state
 
@@ -66,7 +69,7 @@ export default class Events extends Component {
         })
 
         const mappedComments = comments.map((x, i) => {
-            return <EventComment />
+            return <EventComment key={x.comment_id} comment={x.comment} date={x.date} image={x.image} username={x.username}/>
         })
 
         const MapWithAMarker = withScriptjs(withGoogleMap(props =>
@@ -96,7 +99,7 @@ export default class Events extends Component {
                                     <img className='eventCardAvatar' id='organizerAvatar' src={attendees[0].image} alt="img" />
                                     <div>
                                         <h5>Hosted by <span>{attendees[0].username}</span></h5>
-                                        <h5>From <span>{group_name}</span></h5>
+                                        <Link to={`/${group_name}`}><h5>From <span>{group_name}</span></h5></Link>
                                     </div>
                                 </div>
                             </div>
@@ -136,24 +139,41 @@ export default class Events extends Component {
                             </div>
                             <div className='eventsComments'>
                                 <h2>Comments</h2>
-                            </div>
-
-                        </section>
-                        <section className='eventsMap'>
-                            <div className='eventsTimeHolder'>
-                                <img src={mapPin} alt="img"/>
                                 <div>
-                                    <h5>{this.dateString}</h5>
-                                    <h5></h5>
+                                    {mappedComments}
                                 </div>
                             </div>
-                            <div>
-                                map below
+                            <Link to={`/${group_name}`}><div className='eventsSeeMeetups'>
+                                <div><img src={calendar} alt="img"/></div>
+                                <section>
+                                    <h4>See all meetups from</h4>
+                                    <h3>UtahJS</h3>
+                                </section>
+                            </div></Link>
+                        </section>
+
+
+                        <section className='eventsMap'>
+                            <div className='eventsTimeHolder'>
+                                <img src={clock} alt="img" />
+                                <div>
+                                    <h5>{this.dateString}</h5>
+                                    <h5>7:30 PM to 8:45PM</h5>
+                                    <h4>Add to Calendar</h4>
+                                </div>
+                            </div>
+                            <div className='eventsTimeHolder'>
+                                <img src={mapPin} alt="img" />
+                                <div>
+                                    <h5>{venue_name}</h5>
+                                    <h6>{venue_address}<span>᛫</span>{venue_city}</h6>
+                                    <h6>{venue_directions}</h6>
+                                </div>
                             </div>
                             <MapWithAMarker
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
                                 loadingElement={<div style={{ height: `100%` }} />}
-                                containerElement={<div style={{ height: `400px` }} />}
+                                containerElement={<div style={{ height: `212px` }} />}
                                 mapElement={<div style={{ height: `212px` }} />}
                             />
                         </section>
