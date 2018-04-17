@@ -21,7 +21,7 @@ export default class Header extends Component {
         const { user, myGroups, menu } = this.state
         let groupList = myGroups.slice(0, 3).map((e, i) => {
             return (
-                <Link to={`/${e.url_name}`}>
+                <Link to={`/${e.url_name}`} key={e.url_name + e.event_id + i}>
                     <div className='hoverPink'>
                         <h4>{e.group_name}</h4>
                     </div>
@@ -38,7 +38,7 @@ export default class Header extends Component {
                         <Link to='/'>Messages</Link>
                         <Link to='/'>Notifications</Link>
                         <div className='menu' onClick={() => this.setState({ menu: !menu })}>
-                            <img src={user.image ? user.image : avatar} alt='profile' className='profile' />
+                            <img src={user.image ? user.image : avatar} alt='profile' />
                             <span className='caret'>╲╱</span>
                         </div>
                     </section>

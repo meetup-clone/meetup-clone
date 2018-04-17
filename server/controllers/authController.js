@@ -1,7 +1,6 @@
 module.exports = {
     checkUser: (req, res) => {
         if (req.user) {
-            console.log(req.user)
             res.status(200).send(req.user)
         }
         else {

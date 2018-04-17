@@ -35,7 +35,7 @@ export default class Create extends Component {
             film: false,
             scifi: false,
             beliefs: false,
-            city: 'Provo UT',
+            city: 'Provo, UT',
             topic: '',
             name: '',
             description: ''
@@ -45,7 +45,7 @@ export default class Create extends Component {
 
     createGroup() {
         let groupUrl = this.state.name.replace(/ /g, '-')
-        let location = this.state.city.split(' ')
+        let location = this.state.city.split(', ')
         let formattedCity = location[0].replace(/,/g, '')
         let formattedState = location[1].replace(/,/g, '')
         let topics = ''
