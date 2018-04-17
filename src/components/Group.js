@@ -25,7 +25,11 @@ export default class Group extends Component {
             attendees: [{}],
             user: {}
         }
-        this.typingComment = this.typingComment.bind(this)
+        this.typingComment = this.typingComment.bind(this);
+        this.postDiscussion = this.postDiscussion.bind(this);
+        this.attendEvent = this.attendEvent.bind(this)
+        this.cancelAttend = this.cancelAttend.bind(this)
+        this.monthsAbbrv = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     }
 
     componentDidMount() {
@@ -42,8 +46,44 @@ export default class Group extends Component {
         })
     }
 
+    attendEvent(e) {
+        const {attendees, user} = this.state
+        for (let i = 0; i < attendees.length; i++) {
+            if(attendees[i].user_id === user.user_id) {
+                return
+            }
+        }
+        axios.post('/api/attendevent', { eventId: e }).then(res => {
+            this.setState({ attendees: res.data })            
+        })        
+    }
+
+    cancelAttend() {
+        axios.delete(`/api/cancelattend/${this.props.match.params.event}`).then(res => {
+            this.setState({ attendees: res.data})
+        })
+    }
+
     typingComment(e) {
         this.setState({ newComment: e.target.value })
+    }
+
+    postDiscussion() {
+        let date = new Date(Date.now())
+        let month = date.getMonth()
+        let today = date.getDate()
+        let currentMonth = this.monthsAbbrv[month]
+        let monthAbb = currentMonth.toLowerCase()
+        let monthFinal = monthAbb.replace(monthAbb[0], monthAbb[0].toUpperCase())
+        let day = monthFinal + ' ' + today
+        
+        axios.post('/api/postdiscussion', {user_id: this.state.user.user_id, 
+                                        comment: this.state.newComment,
+                                        group_id: this.state.group.group_id,
+                                        date: day}).then(res => {
+                                            this.setState({groupComments: res.data, newComment: ""})
+                                        })
+
     }
 
     render() {
@@ -125,6 +165,8 @@ export default class Group extends Component {
                             endDate={this.state.events[0].end_date}
                             hosted={this.state.events[0]}
                             attendees={firstEventAttendees}
+                            attendEvent={this.attendEvent} 
+                            cancelAttend={this.cancelAttend}
                         />
                     </div>
                     <div className="aligner">
@@ -165,8 +207,8 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="discussionCardHolder">
-                                <DiscussionInput comment={this.state.newComment} user={this.state.user} typingComment={this.typingComment} />
-                                {mappedGroupComments.slice(0, 4)}
+                                <DiscussionInput comment={this.state.newComment} user={this.state.user} postDiscussion={this.postDiscussion} typingComment={this.typingComment} />
+                                {mappedGroupComments.slice((mappedGroupComments.length - 4), mappedGroupComments.length)}
                             </div>
                             <div className="descriptionSpacer"></div>
                             <div className="descriptionSpacer">

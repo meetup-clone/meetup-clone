@@ -49,7 +49,7 @@ export default function GroupEventCard(props) {
                         </div>
                     </div>
                     <div className="groupEventCardRight">
-                        <button>Attend</button>
+                        <button onCLick={() => props.attendEvent()}>Attend</button>
                         <div className="organizerWrapper" style={{ width: '100%', paddingTop: 25 }}>
                             <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
                             <div className="groupAddress">
