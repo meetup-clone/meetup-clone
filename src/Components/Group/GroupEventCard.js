@@ -15,7 +15,7 @@ export default function GroupEventCard(props) {
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
     var splicedTime = `${time.substring(0, time.length - 6)} ${time.substring(time.length - 3, time.length)}`
-    
+
     var groupMappedList = props.attendees.map(obj => {
         let avatarImage = { avatar }
         obj.image ? avatarImage = obj.image : avatarImage = { avatar };
@@ -25,20 +25,20 @@ export default function GroupEventCard(props) {
         <div className="groupEventCard">
             <Link to={`/${props.groupUrl}/events/${props.eventId}`}>
                 <div className="linkDiv">
-                <div style={{padding: 20}}>
-                    <div className="groupEventCardLeft">
-                        <p>{date}</p>
-                        <p>mon</p>
-                    </div>
+                    <div style={{ padding: 20 }}>
+                        <div className="groupEventCardLeft">
+                            <p>{date}</p>
+                            <p>mon</p>
+                        </div>
                     </div>
                     <div className="mainGroupEventCardContent">
-                    <div className="dateAndTitleDiv">
-                        <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
-                        <h1>{props.eventName}</h1>
+                        <div className="dateAndTitleDiv">
+                            <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
+                            <h1>{props.eventName}</h1>
                         </div>
-                        <div style={{alignItems: "center"}} className="organizerWrapper">
-                        <img className="hostedAvatar" src={props.attendees[0].image ? props.attendees[0].image : avatar} alt="avatar"/>
-                        <p>hosted by {props.attendees[0].username}</p>
+                        <div style={{ alignItems: "center" }} className="organizerWrapper">
+                            <img className="hostedAvatar" src={props.attendees[0].image ? props.attendees[0].image : avatar} alt="avatar" />
+                            <p>hosted by {props.attendees[0].username}</p>
                         </div>
                         <p id="blackP">{props.eventDescription}</p>
                         <div className="groupAvatarHolder">
@@ -50,12 +50,12 @@ export default function GroupEventCard(props) {
                     </div>
                     <div className="groupEventCardRight">
                         <button>Attend</button>
-                        <div className="organizerWrapper" style={{width: '100%', paddingTop: 25}}>
-                        <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
-                        <div className="groupAddress">
-                        <p id="blackBold">{props.venueName}</p>
-                        <p>{props.venueAddress} - {props.venueCity}, UT</p>
-                        </div>
+                        <div className="organizerWrapper" style={{ width: '100%', paddingTop: 25 }}>
+                            <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
+                            <div className="groupAddress">
+                                <p id="blackBold">{props.venueName}</p>
+                                <p>{props.venueAddress} - {props.venueCity}, UT</p>
+                            </div>
                         </div>
                     </div>
                 </div>
