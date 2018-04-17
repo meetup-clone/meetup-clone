@@ -40,7 +40,7 @@ export default class LoggedIn extends Component {
 
     render() {
         const { user, myEvents, myGroupEvents, allEvents, myGroups, allGroups,
-            meetupsToggle, currentCity, viewToggle } = this.state
+            meetupsToggle, currentCity, category, viewToggle } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -125,55 +125,61 @@ export default class LoggedIn extends Component {
                         <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
                             <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
                                 <div className='filterColumn'>
-                                    <div className='categories' onClick={() => this.setState({ category: '' })}>
-                                        <img src={infinity} alt='infinity' className='infinity'/>
+                                    <div className='categories' onClick={() => this.setState({ category: '', meetupsToggle: false })}>
+                                        <img src={infinity} alt='infinity' className='infinity' />
                                         All Meetups
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'friends' })}>
-                                        <img src={twoAvatars} alt='twoAvatars' className='twoAvatars'/>
+                                    <div className='categories' onClick={() => this.setState({ category: 'friends', meetupsToggle: false })}>
+                                        <img src={twoAvatars} alt='twoAvatars' className='twoAvatars' />
                                         Meetups with friends
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'outdoors' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'outdoors', meetupsToggle: false })}>
                                         Outdoors
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'tech' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'tech', meetupsToggle: false })}>
                                         Tech
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'family' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'family', meetupsToggle: false })}>
                                         Family
                                     </div>
                                 </div>
                                 <div className='filterColumn'>
-                                    <div className='categories' onClick={() => this.setState({ category: 'wellness' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'wellness', meetupsToggle: false })}>
                                         Wellness
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'sports' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'sports', meetupsToggle: false })}>
                                         Sports
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'learning' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'learning', meetupsToggle: false })}>
                                         Learning
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'photography' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'photography', meetupsToggle: false })}>
                                         Photography
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'food' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'food', meetupsToggle: false })}>
                                         Food
                                     </div>
                                 </div>
                                 <div className='filterColumn'>
-                                    <div className='categories' onClick={() => this.setState({ category: 'writing' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'writing', meetupsToggle: false })}>
                                         Writing
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'language' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'language', meetupsToggle: false })}>
                                         Language
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'music' })}>
+                                    <div className='categories' onClick={() => this.setState({ category: 'music', meetupsToggle: false })}>
                                         Music
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'movements' })}>
+                                    <div
+                                        className='categories'
+                                        onClick={() => this.setState({ category: 'movements', meetupsToggle: false })}
+                                    >
                                         Movements
                                     </div>
-                                    <div className='categories' onClick={() => this.setState({ category: 'lgbtq' })}>
+                                    <div
+                                        className='categories'
+                                        onClick={() => this.setState({ category: 'lgbtq', meetupsToggle: false })}
+                                    >
                                         LGBTQ
                                     </div>
                                 </div>
@@ -199,11 +205,13 @@ export default class LoggedIn extends Component {
                         myEvents={myEvents}
                         myGroupEvents={myGroupEvents}
                         allEvents={allEvents}
+                        category={category}
                     />
                     :
                     <GroupsView
                         myGroups={myGroups}
                         allGroups={allGroups}
+                        category={category}
                     />
                 }
                 <Footer />
