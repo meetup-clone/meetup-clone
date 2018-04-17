@@ -1,7 +1,7 @@
 .calendarView {
     display: flex;
     margin-top: -35px;
-    padding-top: 55px;
+    padding-top: 45px;
     padding-bottom: 100px;
     background: #FAFAFA;
 }
@@ -14,7 +14,7 @@
 }
 
 .calendarView .eventDate {
-    margin-bottom: 10px;
+    margin: 10px 0;
     color: black;
     font-size: 14px;
     font-weight: bold;
@@ -118,7 +118,7 @@
     display: flex;
     flex-direction: column;
     margin-right: auto;
-    margin-top: 32px;
+    margin-top: 42px;
     width: 28%;
     max-width: 280px;
 }

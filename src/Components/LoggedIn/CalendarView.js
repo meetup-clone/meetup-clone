@@ -166,7 +166,7 @@ export default class CalendarView extends Component {
                             className={cat3 ? 'activeCategory' : null}
                             onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false })}
                         >
-                            My Group's Meetups
+                            My Meetups
                                 </span>
                         <span
                             className={cat4 ? 'activeCategory' : null}
