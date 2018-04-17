@@ -154,25 +154,25 @@ export default class CalendarView extends Component {
                     <div className='meetupCategories'>
                         <span
                             className={cat1 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false, moreToggle: true, numToShow: 6 })}
                         >
                             All Meetups
                         </span>
                         <span
                             className={cat2 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false, moreToggle: true, numToShow: 6 })}
                         >
                             My Meetups & suggestions
                         </span>
                         <span
                             className={cat3 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false, moreToggle: true, numToShow: 6 })}
                         >
                             My Meetups
                         </span>
                         <span
                             className={cat4 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true, moreToggle: true, numToShow: 6 })}
                         >
                             I'm Going
                         </span>
@@ -182,7 +182,7 @@ export default class CalendarView extends Component {
                     </div>
                     <Calendar
                         value={new Date(date)}
-                        onChange={(date) => this.setState({ date: date.getTime() })}
+                        onChange={(date) => this.setState({ date: date.getTime(), moreToggle: true, numToShow: 6 })}
                         className='calendarComponent'
                     />
                 </div>
