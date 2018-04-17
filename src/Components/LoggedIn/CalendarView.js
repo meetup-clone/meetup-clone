@@ -30,28 +30,28 @@ export default class CalendarView extends Component {
         const { cat1, cat2, cat3, cat4, numToShow, date } = this.state
         const { user, myEvents, myGroupEvents, allEvents } = this.props
         if (cat1) {
-            let filteredEvents = allEvents.slice(0, numToShow).filter(e => {
+            let filteredEvents = allEvents.filter(e => {
                 return e.start_date >= date
             })
-            return filteredEvents
+            return filteredEvents.slice(0, numToShow)
         }
         else if (cat2) {
-            let filteredEvents = allEvents.slice(0, numToShow).filter(e => {
+            let filteredEvents = allEvents.filter(e => {
                 return e.start_date >= date && e.categories.includes(user.category)
             })
-            return filteredEvents
+            return filteredEvents.slice(0, numToShow)
         }
         else if (cat3) {
-            let filteredEvents = myGroupEvents.slice(0, numToShow).filter(e => {
+            let filteredEvents = myGroupEvents.filter(e => {
                 return e.start_date >= date
             })
-            return filteredEvents
+            return filteredEvents.slice(0, numToShow)
         }
         else if (cat4) {
-            let filteredEvents = myEvents.slice(0, numToShow).filter(e => {
+            let filteredEvents = myEvents.filter(e => {
                 return e.start_date >= date
             })
-            return filteredEvents
+            return filteredEvents.slice(0, numToShow)
         }
     }
 
@@ -65,7 +65,7 @@ export default class CalendarView extends Component {
             && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
                     <EventCard 
-                        key={events[i].event_id + events[i].start_date + i}
+                        key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={true}
                         classStyle={'event start end'}
@@ -77,7 +77,7 @@ export default class CalendarView extends Component {
             else if (i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) {
                 list.push(
                     <EventCard
-                        key={events[i].event_id + events[i].start_date + i}
+                        key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={true}
                         classStyle={'event start'}
@@ -89,7 +89,7 @@ export default class CalendarView extends Component {
             else if (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date)) {
                 list.push(
                     <EventCard
-                        key={events[i].event_id + events[i].start_date + i}
+                        key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={false}
                         classStyle={'event end'}
@@ -101,7 +101,7 @@ export default class CalendarView extends Component {
             else {
                 list.push(
                     <EventCard
-                        key={events[i].event_id + events[i].start_date + i}
+                        key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={false}
                         classStyle={'event'}
