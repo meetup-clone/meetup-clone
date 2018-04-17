@@ -45,16 +45,19 @@ export default class Events extends Component {
         axios.get(`/api/event/${this.props.match.params.event}`).then(res => {
             this.setState({ event: res.data[0] })
             let date = new Date(this.state.event.start_date)
+            let endDate = new Date(this.state.event.end_date)
             let today = date.getDay()
             let dateNumber = date.getDate()
             let month = date.getMonth()
             let fullYear = date.getFullYear()
+            let startTime = date.toLocaleTimeString()
+            let endTime = endDate.toLocaleTimeString()
             this.month = this.months[month]
             this.monthAbbrv = this.monthsAbbrv[month]
             this.dateNumber = dateNumber
             this.dateString = `${this.days[today]}, ${this.months[month]} ${dateNumber}, ${fullYear}`
-            this.startTime = ''
-            this.endTime = ''
+            this.startTime = startTime.substr(0, startTime.length - 6) + startTime.substr(startTime.length - 3, startTime.length - 1)
+            this.endTime = endTime.substr(0, endTime.length - 6) + endTime.substr(endTime.length - 3, endTime.length - 1)
         })
         axios.get(`/api/attendees/${this.props.match.params.event}`).then(res => {
             this.setState({ attendees: res.data })
@@ -209,7 +212,7 @@ export default class Events extends Component {
                                     <img src={clock} alt="img" />
                                     <div>
                                         <h5>{this.dateString}</h5>
-                                        <h5>7:30 PM to 8:45PM</h5>
+                                        <h5>{this.startTime} to {this.endTime}</h5>
                                         <h4>Add to Calendar</h4>
                                     </div>
                                 </div>

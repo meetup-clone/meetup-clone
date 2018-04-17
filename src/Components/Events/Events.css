@@ -245,6 +245,10 @@
     font-size: 14px;
 }
 
+.eventsSeeMeetups:hover {
+    opacity: .8;
+}
+
 .eventsSeeMeetups div {
     box-sizing: border-box;
     padding: 20px;
