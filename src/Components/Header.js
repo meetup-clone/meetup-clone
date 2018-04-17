@@ -19,13 +19,16 @@ export default class Header extends Component {
     }
     render() {
         const { user, myGroups, menu } = this.state
-        let groupList = myGroups.slice(0, 3).map((e, i) => {
+        let groupList = myGroups.slice(0, 5).map((e, i) => {
             return (
-                <Link to={`/${e.url_name}`} key={e.url_name + e.event_id + i}>
-                    <div className='hoverPink'>
-                        <h4>{e.group_name}</h4>
-                    </div>
-                </Link>
+                <div key={e.url_name + e.event_id + i}>
+                    <Link to={`/${e.url_name}`}>
+                        <div className='hoverPink'>
+                            <h4>{e.group_name}</h4>
+                        </div>
+                    </Link>
+                    <hr />
+                </div>
             )
         })
         return (
@@ -34,9 +37,9 @@ export default class Header extends Component {
                     <Link to='/home' className='logo'></Link>
                     <section>
                         <Link to='/create'>Create a Meetup</Link>
-                        <Link to='/'>Explore</Link>
+                        <Link to='/home'>Explore</Link>
                         <Link to='/'>Messages</Link>
-                        <Link to='/'>Notifications</Link>
+                        <span>Notifications</span>
                         <div className='menu' onClick={() => this.setState({ menu: !menu })}>
                             <img src={user.image ? user.image : avatar} alt='profile' />
                             <span className='caret'>╲╱</span>
@@ -48,7 +51,12 @@ export default class Header extends Component {
                         <div className='dropdown' onClick={(e) => e.stopPropagation()} >
                             <div className='headerGroups'>
                                 {myGroups.length > 0 ?
-                                    groupList
+                                    <div className='fiveGroups'>
+                                        {groupList}
+                                        <div className='showAllGroups' >
+                                            <h5>Show All My Groups</h5>
+                                        </div>
+                                    </div>
                                     :
                                     <div className='noGroupsYet'>
                                         <h3>You're not a member of any Meetup Groups yet.</h3>
