@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function EventCard(props) {
-    const { event, index, date, classStyle, convertTime } = props
+    const { event, date, classStyle, convertTime } = props
     return (
-        <div key={event.event_name + index + event.event_id + event.start_date}>
+        <div>
             {date ?
                 <div className='eventDate'>{new Date(event.start_date).toDateString().toUpperCase()}</div>
                 : null

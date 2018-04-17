@@ -28,8 +28,8 @@ module.exports = {
     createGroup: (req, res) => {
         const db = req.app.get('db')
         req.body.organizer = req.user.user_id
-        const { group_name, url_name, description, state, city, members, organizer } = req.body
-        db.createGroup([group_name, url_name, description, state, city, members, organizer]).then(group => {
+        const { group_name, url_name, description, state, city, members, organizer, categories } = req.body
+        db.createGroup([group_name, url_name, description, state, city, members, organizer, categories]).then(group => {
             db.addMember([group[0].organizer, group[0].group_id]).then(member => {
                 res.status(200).send(group[0])
             })
