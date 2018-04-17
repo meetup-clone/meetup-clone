@@ -36,16 +36,16 @@ export default class CalendarView extends Component {
             return filteredEvents.slice(0, numToShow)
         }
         else if (cat2) {
-            let filteredEvents = allEvents.filter(e => {
+            let categoryEvents = allEvents.filter(e => {
                 return e.start_date >= date && e.categories.includes(user.category)
             })
-            return filteredEvents.slice(0, numToShow)
+            return categoryEvents.slice(0, numToShow)
         }
         else if (cat3) {
-            let filteredEvents = myGroupEvents.filter(e => {
+            let groupEvents = myGroupEvents.filter(e => {
                 return e.start_date >= date
             })
-            return filteredEvents.slice(0, numToShow)
+            return groupEvents.slice(0, numToShow)
         }
         else if (cat4) {
             let filteredEvents = myEvents.filter(e => {
@@ -61,10 +61,10 @@ export default class CalendarView extends Component {
         let list = []
         for (let i = 0; i < events.length; i++) {
             // BOTH ROUNDED
-            if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) 
-            && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
+            if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date))
+                && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
-                    <EventCard 
+                    <EventCard
                         key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={true}
@@ -154,28 +154,28 @@ export default class CalendarView extends Component {
                     <div className='meetupCategories'>
                         <span
                             className={cat1 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false })}
+                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false, numToShow: 6 })}
                         >
                             All Meetups
-                                </span>
+                        </span>
                         <span
                             className={cat2 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false })}
+                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false, numToShow: 6 })}
                         >
                             My Meetups & suggestions
-                                </span>
+                        </span>
                         <span
                             className={cat3 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false, numToShow: 6 })}
                         >
                             My Meetups
-                                </span>
+                        </span>
                         <span
                             className={cat4 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true, numToShow: 6 })}
                         >
                             I'm Going
-                                </span>
+                        </span>
                     </div>
                     <div className='today' onClick={() => this.setState({ date: new Date(Date.now()) })}>
                         Today
