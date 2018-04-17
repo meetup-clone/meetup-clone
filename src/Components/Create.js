@@ -15,7 +15,6 @@ export default class Create extends Component {
     constructor() {
         super()
         this.state = {
-            step1: true,
             step2: false,
             step3: false,
             step4: false,
@@ -47,20 +46,34 @@ export default class Create extends Component {
     createGroup() {
         let groupUrl = this.state.name.replace(/ /g, '-')
         let location = this.state.city.split(' ')
-        let city = location[0]
-        let state = location[1]
+        let formattedCity = location[0].replace(/,/g, '')
+        let formattedState = location[1].replace(/,/g, '')
+        let topics = ''
+        for (let key in this.state) {
+            if (key === 'step2' || key === 'step3' || key === 'step4' || key === 'changeCity' ||
+                key === 'city'  || key === 'topic' || key === 'name'  || key === 'description') {
+                    continue
+                }
+            if (this.state[key]) {
+                topics += key + ', '
+            }
+        }
         let newGroup = {
             group_name: this.state.name,
             url_name: groupUrl,
             description: this.state.description,
-            city: city,
-            state: state,
-            members: 1
+            city: formattedCity,
+            state: formattedState,
+            members: 1,
+            categories: topics
         }
         axios.post('/api/groups', newGroup).then(res => this.props.history.push(`/${res.data.url_name}`))
     }
 
     render() {
+        const { step2, step3, step4, city, changeCity, topic, name, description } = this.state
+        const { outdoors, tech, family, wellness, sports, learning, photography, food, writing,
+                language, music, movements, lgbtq, film, scifi, beliefs } = this.state
         return (
             <div>
                 <Header />
@@ -72,21 +85,21 @@ export default class Create extends Component {
                             <div className='stepText'>
                                 <div>STEP 1 OF 4</div>
                                 <h2>What's your new Meetup Group's hometown?</h2>
-                                <span className='stepCity'>{this.state.city}</span>
-                                {!this.state.changeCity ?
+                                <span className='stepCity'>{city}</span>
+                                {!changeCity ?
                                     <span className='changeCity' onClick={() => this.setState({ changeCity: true })}>
                                         (change location)
                                     </span>
                                     : null
                                 }
-                                {this.state.changeCity ?
+                                {changeCity ?
                                     <input
                                         placeholder='Enter a city and state'
                                         onChange={(e) => this.setState({ city: e.target.value })}
                                     />
                                     : null
                                 }
-                                {!this.state.step2 ?
+                                {!step2 ?
                                     <div className='next' onClick={() => this.setState({ step2: true })} >
                                         <h5>Next</h5>
                                     </div>
@@ -94,7 +107,7 @@ export default class Create extends Component {
                                 }
                             </div>
                         </div>
-                        {this.state.step2 ?
+                        {step2 ?
                             <div className='step'>
                                 <div className='stepImage'><img src={textBubbles} alt='' /></div>
                                 <div className='stepText'>
@@ -102,124 +115,124 @@ export default class Create extends Component {
                                     <h2>What will your Meetup be about?</h2>
                                     <input
                                         placeholder='Search for a topic'
-                                        value={this.state.topic}
+                                        value={topic}
                                         onChange={(e) => this.setState({ topic: e.target.value })}
                                     />
                                     <div className='topics'>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ outdoors: !this.state.outdoors })}
+                                            onClick={() => this.setState({ outdoors: !outdoors })}
                                         >
                                             <span>Outdoors</span>
-                                            <img src={this.state.outdoors ? heartPink : heartOutline} alt='topics' />
+                                            <img src={outdoors ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ tech: !this.state.tech })}
+                                            onClick={() => this.setState({ tech: !tech })}
                                         >
                                             <span>Tech</span>
-                                            <img src={this.state.tech ? heartPink : heartOutline} alt='topics' />
+                                            <img src={tech ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ family: !this.state.family })}
+                                            onClick={() => this.setState({ family: !family })}
                                         >
                                             <span>Family</span>
-                                            <img src={this.state.family ? heartPink : heartOutline} alt='topics' />
+                                            <img src={family ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ wellness: !this.state.wellness })}
+                                            onClick={() => this.setState({ wellness: !wellness })}
                                         >
                                             <span>Wellness</span>
-                                            <img src={this.state.wellness ? heartPink : heartOutline} alt='topics' />
+                                            <img src={wellness ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ sports: !this.state.sports })}
+                                            onClick={() => this.setState({ sports: !sports })}
                                         >
                                             <span>Sports</span>
-                                            <img src={this.state.sports ? heartPink : heartOutline} alt='topics' />
+                                            <img src={sports ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ learning: !this.state.learning })}
+                                            onClick={() => this.setState({ learning: !learning })}
                                         >
                                             <span>Learning</span>
-                                            <img src={this.state.learning ? heartPink : heartOutline} alt='topics' />
+                                            <img src={learning ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ photography: !this.state.photography })}
+                                            onClick={() => this.setState({ photography: !photography })}
                                         >
                                             <span>Photography</span>
-                                            <img src={this.state.photography ? heartPink : heartOutline} alt='topics' />
+                                            <img src={photography ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ food: !this.state.food })}
+                                            onClick={() => this.setState({ food: !food })}
                                         >
                                             <span>Food</span>
-                                            <img src={this.state.food ? heartPink : heartOutline} alt='topics' />
+                                            <img src={food ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ writing: !this.state.writing })}
+                                            onClick={() => this.setState({ writing: !writing })}
                                         >
                                             <span>Writing</span>
-                                            <img src={this.state.writing ? heartPink : heartOutline} alt='topics' />
+                                            <img src={writing ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ language: !this.state.language })}
+                                            onClick={() => this.setState({ language: !language })}
                                         >
                                             <span>Language</span>
-                                            <img src={this.state.language ? heartPink : heartOutline} alt='topics' />
+                                            <img src={language ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ music: !this.state.music })}
+                                            onClick={() => this.setState({ music: !music })}
                                         >
                                             <span>Music</span>
-                                            <img src={this.state.music ? heartPink : heartOutline} alt='topics' />
+                                            <img src={music ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ movements: !this.state.movements })}
+                                            onClick={() => this.setState({ movements: !movements })}
                                         >
                                             <span>Movements</span>
-                                            <img src={this.state.movements ? heartPink : heartOutline} alt='topics' />
+                                            <img src={movements ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ lgbtq: !this.state.lgbtq })}
+                                            onClick={() => this.setState({ lgbtq: !lgbtq })}
                                         >
                                             <span>LGBTQ</span>
-                                            <img src={this.state.lgbtq ? heartPink : heartOutline} alt='topics' />
+                                            <img src={lgbtq ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ film: !this.state.film })}
+                                            onClick={() => this.setState({ film: !film })}
                                         >
                                             <span>Film</span>
-                                            <img src={this.state.film ? heartPink : heartOutline} alt='topics' />
+                                            <img src={film ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ scifi: !this.state.scifi })}
+                                            onClick={() => this.setState({ scifi: !scifi })}
                                         >
                                             <span>Sci-Fi</span>
-                                            <img src={this.state.scifi ? heartPink : heartOutline} alt='topics' />
+                                            <img src={scifi ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                         <div
                                             className='topic'
-                                            onClick={() => this.setState({ beliefs: !this.state.beliefs })}
+                                            onClick={() => this.setState({ beliefs: !beliefs })}
                                         >
                                             <span>Beliefs</span>
-                                            <img src={this.state.beliefs ? heartPink : heartOutline} alt='topics' />
+                                            <img src={beliefs ? heartPink : heartOutline} alt='topics' />
                                         </div>
                                     </div>
-                                    {!this.state.step3 ?
+                                    {!step3 ?
                                         <div className='next' onClick={() => this.setState({ step3: true })} >
                                             <h5>Next</h5>
                                         </div>
@@ -229,7 +242,7 @@ export default class Create extends Component {
                             </div>
                             : null
                         }
-                        {this.state.step3 ?
+                        {step3 ?
                             <div className='step'>
                                 <div className='stepImage'><img src={tag} alt='' /></div>
                                 <div className='stepText'>
@@ -237,7 +250,7 @@ export default class Create extends Component {
                                     <h2>What will your Meetup's name be?</h2>
                                     <input
                                         placeholder='example: Salt Lake City Hiking Meetup'
-                                        value={this.state.name}
+                                        value={name}
                                         onChange={(e) => this.setState({ name: e.target.value })}
                                     />
                                     <h2>Describe who should join, and what your Meetup will do.</h2>
@@ -247,10 +260,10 @@ export default class Create extends Component {
                                         aria-required="true"
                                         aria-invalid="false"
                                         required="true"
-                                        value={this.state.description}
+                                        value={description}
                                         onChange={(e) => this.setState({ description: e.target.value })}
                                     ></textarea>
-                                    {!this.state.step4 ?
+                                    {!step4 ?
                                         <div className='next' onClick={() => this.setState({ step4: true })} >
                                             <h5>Next</h5>
                                         </div>
@@ -260,7 +273,7 @@ export default class Create extends Component {
                             </div>
                             : null
                         }
-                        {this.state.step4 ?
+                        {step4 ?
                             <div className='step'>
                                 <div className='stepImage'><img src={people} alt='' /></div>
                                 <div className='stepText'>

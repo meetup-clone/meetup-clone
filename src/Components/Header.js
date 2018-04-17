@@ -18,7 +18,7 @@ export default class Header extends Component {
         axios.get('api/myGroups').then(res => this.setState({ myGroups: res.data }))
     }
     render() {
-        let { user, myGroups, menu } = this.state
+        const { user, myGroups, menu } = this.state
         let groupList = myGroups.slice(0, 3).map((e, i) => {
             return (
                 <Link to={`/${e.url_name}`}>
