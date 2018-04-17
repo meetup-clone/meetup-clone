@@ -7,6 +7,7 @@ import facebook from '../Assets/facebook.svg'
 import twitter from '../Assets/twitter.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
 import AttendeeCard from './Events/AttendeeCard'
+import CommentInput from './Events/CommentInput'
 import EventComment from './Events/EventComment'
 import clock from '../Assets/clock.svg'
 import mapPin from '../Assets/mapPin.svg'
@@ -21,11 +22,13 @@ export default class Events extends Component {
         this.state = {
             event: {},
             attendees: [{}],
+            commentInput: '',
             comments: [],
-            currentUser: -1
+            currentUser: {}
         }
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        this.monthsAbbrv = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
         this.dateNumber = ''
         this.dateString = ''
         this.month = ''
@@ -33,6 +36,8 @@ export default class Events extends Component {
         this.endTime = ''
         this.attendEvent = this.attendEvent.bind(this)
         this.cancelAttend = this.cancelAttend.bind(this)
+        this.postComment = this.postComment.bind(this)
+        this.typingComment = this.typingComment.bind(this)
     }
 
     componentDidMount() {
@@ -45,6 +50,7 @@ export default class Events extends Component {
             let month = date.getMonth()
             let fullYear = date.getFullYear()
             this.month = this.months[month]
+            this.monthAbbrv = this.monthsAbbrv[month]
             this.dateNumber = dateNumber
             this.dateString = `${this.days[today]}, ${this.months[month]} ${dateNumber}, ${fullYear}`
             this.startTime = ''
@@ -57,14 +63,14 @@ export default class Events extends Component {
             this.setState({ comments: res.data })
         })
         axios.get('/auth/me').then(res => {
-            this.setState({currentUser: res.data.user_id})
+            this.setState({currentUser: res.data})
         })
     }
 
     attendEvent() {
         const {attendees, currentUser} = this.state
         for (let i = 0; i < attendees.length; i++) {
-            if(attendees[i].user_id === currentUser) {
+            if(attendees[i].user_id === currentUser.user_id) {
                 return
             }
         }
@@ -79,11 +85,28 @@ export default class Events extends Component {
         })
     }
 
+    postComment() {
+        let date = new Date(Date.now())
+        let month = date.getMonth()
+        let today = date.getDate()
+        let currentMonth = this.monthsAbbrv[month]
+        let day = currentMonth + ' ' + today
+        
+        axios.post('/api/postcomment', {user_id: this.state.currentUser.user_id, 
+                                        comment: this.state.commentInput,
+                                        eventId: this.props.match.params.id,
+                                        date: day})
+    }
+
+    typingComment(e) {
+        this.setState({commentInput: e.target.value})
+    }
+
     render() {
         const { event_description, event_name, venue_address,
                 venue_city, venue_directions, venue_name,
                 group_name } = this.state.event
-        const { attendees, comments } = this.state
+        const { attendees, comments, currentUser, commentInput } = this.state
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
@@ -112,7 +135,7 @@ export default class Events extends Component {
                         <div style={{ display: 'flex' }}>
                             <div className='eventCardDate' id='eventDateIcon'>
                                 <p>{this.dateNumber}</p>
-                                <p>{this.month}</p>
+                                <p>{this.monthAbbrv}</p>
                             </div>
                             <div className='eventsTopContent'>
                                 <h4>{this.dateString}</h4>
@@ -161,6 +184,7 @@ export default class Events extends Component {
                             </div>
                             <div className='eventsComments'>
                                 <h2>Comments</h2>
+                                <CommentInput image={currentUser.image} comment={commentInput} postComment={this.postComment} typingComment={this.typingComment}/>
                                 <div>
                                     {mappedComments}
                                 </div>
