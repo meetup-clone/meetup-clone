@@ -20,10 +20,12 @@ export default class Group extends Component {
             events: [{}],
             group: {},
             groupComments: [{}],
+            newComment: "",
             members: [{}],
             attendees: [{}],
             user: {}
         }
+        this.typingComment = this.typingComment.bind(this)
     }
 
     componentDidMount() {
@@ -40,9 +42,13 @@ export default class Group extends Component {
         })
     }
 
+    typingComment(e) {
+        this.setState({ newComment: e.target.value })
+    }
+
     render() {
         const { groupComments, events, members, attendees } = this.state;
-        let firstEventAttendees = attendees.filter(obj => obj.event_id == this.state.events[0].event_id)
+        let firstEventAttendees = attendees.filter(obj => obj.event_id === this.state.events[0].event_id)
         const mappedGroupComments = groupComments.map((obj) => {
             return <DiscussionCard comment={obj.comment} userName={obj.username} avatar={obj.image} />
         })
@@ -51,7 +57,7 @@ export default class Group extends Component {
         })
         const pastEvents = events.filter(obj => obj.start_date > Date.now()).map((obj) => {
             let mappedAttendees = attendees.filter(x => x.event_id === obj.event_id)
-            return <PastEventCard attendees={mappedAttendees} startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={obj.url_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
+            return <PastEventCard attendees={mappedAttendees} startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
         })
         console.log(this.state)
         return (
@@ -159,7 +165,7 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="discussionCardHolder">
-                                <DiscussionInput user={this.state.user} />
+                                <DiscussionInput comment={this.state.newComment} user={this.state.user} typingComment={this.typingComment} />
                                 {mappedGroupComments.slice(0, 4)}
                             </div>
                             <div className="descriptionSpacer"></div>
