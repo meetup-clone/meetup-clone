@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import mapPin from '../../Assets/mapPin.svg'
+import avatar from '../../Assets/avatar-icon.svg'
 
 
 export default function GroupEventCard(props) {
@@ -14,6 +15,12 @@ export default function GroupEventCard(props) {
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
     var splicedTime = `${time.substring(0, time.length - 6)} ${time.substring(time.length - 3, time.length)}`
+    
+    var groupMappedList = props.attendees.map(obj => {
+        let avatarImage = { avatar }
+        obj.image ? avatarImage = obj.image : avatarImage = { avatar };
+        return <li style={{ backgroundImage: `url(${avatarImage})` }}></li>
+    })
     return (
         <div className="groupEventCard">
             <Link to={`/${props.groupUrl}/events/${props.eventId}`}>
@@ -29,17 +36,15 @@ export default function GroupEventCard(props) {
                         <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
                         <h1>{props.eventName}</h1>
                         </div>
-                        <div style={{width: 180, alignItems: "center"}} className="organizerWrapper">
-                        <img className="hostedAvatar" src="https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg" alt="avatar"/>
-                        <p>hosted by Erin Valenti</p>
+                        <div style={{alignItems: "center"}} className="organizerWrapper">
+                        <img className="hostedAvatar" src={props.attendees[0].image ? props.attendees[0].image : avatar} alt="avatar"/>
+                        <p>hosted by {props.attendees[0].username}</p>
                         </div>
                         <p id="blackP">{props.eventDescription}</p>
                         <div className="groupAvatarHolder">
                             <ul>
-                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
-                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
-                                <li style={{ backgroundImage: `url(https://secure.meetupstatic.com/photos/member/c/9/3/0/thumb_274911504.jpeg)` }}></li>
-                                <li id="peopleGoing">3 going</li>
+                                {groupMappedList.slice(0, 6)}
+                                <li id="peopleGoing">{props.attendees.length} going</li>
                             </ul>
                         </div>
                     </div>

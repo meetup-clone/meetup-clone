@@ -41,7 +41,8 @@ export default class Group extends Component {
     }
 
     render() {
-        const { groupComments, events, members } = this.state;
+        const { groupComments, events, members, attendees } = this.state;
+        let firstEventAttendees = attendees.filter(obj =>  obj.event_id == this.state.events[0].event_id)
         const mappedGroupComments = groupComments.map((obj) => {
             return <DiscussionCard comment={obj.comment} userName={obj.username} avatar={obj.image} />
         })
@@ -49,7 +50,8 @@ export default class Group extends Component {
             return <AttendeeCard image={obj.image} username={obj.username} index={obj.member_id} />
         })
         const pastEvents = events.filter(obj => obj.start_date > Date.now()).map((obj) => {
-            return <PastEventCard startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={obj.url_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
+            let mappedAttendees = attendees.filter(x => x.event_id === obj.event_id)
+            return <PastEventCard attendees={mappedAttendees} startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={obj.url_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
         })
         console.log(this.state)
         return (
@@ -115,7 +117,8 @@ export default class Group extends Component {
                             eventId={this.state.events[0].event_id}
                             startDate={this.state.events[0].start_date}
                             endDate={this.state.events[0].end_date}
-                            hosted={this.state.events[0]}
+                            hosted={this.state.events[0]} 
+                            attendees={firstEventAttendees}
                         />
                     </div>
                     <div className="aligner">
@@ -175,7 +178,7 @@ export default class Group extends Component {
                                     <span>See All</span>
                                 </div>
                                 <div className="pastEventsHolder">
-                                    {pastEvents.slice(0, 3)}
+                                    {pastEvents.slice(1, 4)}
                                 </div>
                             </div>
                         </div>
@@ -211,7 +214,7 @@ export default class Group extends Component {
                                 <span>See All</span>
                             </div>
                         </div>
-                        <div className="bottomDiscussionHolder">
+                        {/* <div className="bottomDiscussionHolder">
                             <PastEventCard
                                 startDate={this.state.events.start_date}
                                 endDate={this.state.events.end_date}
@@ -230,7 +233,7 @@ export default class Group extends Component {
                                 eventName={this.state.events.event_name}
                                 groupUrl={this.state.group.url_name}
                             />
-                        </div>
+                        </div> */}
                         <div className="descriptionSpacer"></div>
                     </div>
 
