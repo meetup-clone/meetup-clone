@@ -1,7 +1,7 @@
 .calendarView {
     display: flex;
     margin-top: -35px;
-    padding-top: 55px;
+    padding-top: 45px;
     padding-bottom: 100px;
     background: #FAFAFA;
 }
@@ -13,8 +13,8 @@
     max-width: 700px;
 }
 
-.calendarView .todaysDate {
-    margin-bottom: 10px;
+.calendarView .eventDate {
+    margin: 10px 0;
     color: black;
     font-size: 14px;
     font-weight: bold;
@@ -24,13 +24,12 @@
     text-align: left;
 }
 
-.calendarView .events {
+.calendarView .event {
     position: relative;
     justify-content: center;
-    border: 1px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #d1d1d1;
+    border-top: 1px solid #d1d1d1;
+    border-right: 1px solid #d1d1d1;
+    border-left: 1px solid #d1d1d1;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -39,8 +38,19 @@
     margin-right: 20px;
 }
 
+.calendarView .start {
+    border-top: 1px solid #d1d1d1;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.calendarView .end {
+    border: 1px solid #d1d1d1;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
 .calendarView .eventListCard {
-    border-bottom: 1px solid #d1d1d1;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -48,10 +58,6 @@
     width: 94%;
     padding: 3%;
     text-align: left;
-}
-
-.calendarView .eventListCard:last-child {
-    border: 0;
 }
 
 .calendarView .eventTime {
@@ -94,7 +100,7 @@
     margin-top: 20px;
     margin-right: 20px;
     border: 1px;
-    border-radius: 3px;
+    border-radius: 4px;
     border-style: solid;
     border-color: #d1d1d1;
     background-color: white;
@@ -112,14 +118,14 @@
     display: flex;
     flex-direction: column;
     margin-right: auto;
-    margin-top: 32px;
+    margin-top: 42px;
     width: 28%;
     max-width: 280px;
 }
 
 .calendarView .meetupCategories {
     border: 1px;
-    border-radius: 3px;
+    border-radius: 4px;
     border-style: solid;
     border-color: #d1d1d1;
     background-color: white;
@@ -159,7 +165,7 @@
     height: 20px;
     width: 70px;
     border: 1px;
-    border-radius: 3px;
+    border-radius: 4px;
     border-style: solid;
     border-color: #d1d1d1;
     background: white;
@@ -174,7 +180,7 @@
     width: 100%;
     margin-top: 10px;
     border: 1px;
-    border-radius: 3px;
+    border-radius: 4px;
     border-style: solid;
     border-color: #d1d1d1;
 }
