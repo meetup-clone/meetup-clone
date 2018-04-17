@@ -42,7 +42,7 @@ export default class Group extends Component {
 
     render() {
         const { groupComments, events, members, attendees } = this.state;
-        let firstEventAttendees = attendees.filter(obj =>  obj.event_id == this.state.events[0].event_id)
+        let firstEventAttendees = attendees.filter(obj => obj.event_id == this.state.events[0].event_id)
         const mappedGroupComments = groupComments.map((obj) => {
             return <DiscussionCard comment={obj.comment} userName={obj.username} avatar={obj.image} />
         })
@@ -117,7 +117,7 @@ export default class Group extends Component {
                             eventId={this.state.events[0].event_id}
                             startDate={this.state.events[0].start_date}
                             endDate={this.state.events[0].end_date}
-                            hosted={this.state.events[0]} 
+                            hosted={this.state.events[0]}
                             attendees={firstEventAttendees}
                         />
                     </div>
@@ -159,7 +159,7 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="discussionCardHolder">
-                                <DiscussionInput user={this.state.user}/>
+                                <DiscussionInput user={this.state.user} />
                                 {mappedGroupComments.slice(0, 4)}
                             </div>
                             <div className="descriptionSpacer"></div>
