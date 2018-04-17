@@ -72,9 +72,6 @@ app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 app.post('/api/groups', groupCtrl.createGroup)
 
 
-// GROUP COMMENT ENDPOINTS
-
-
 // EVENT ENDPOINTS
 app.get('/api/myEvents', eventCtrl.getUserEvents)
 app.get('/api/myGroupEvents', eventCtrl.getUserGroupEvents)
@@ -84,9 +81,6 @@ app.get('/api/attendees/:id', eventCtrl.getAttendees)
 app.post('/api/attendevent', eventCtrl.attendEvent)
 app.delete('/api/cancelattend/:id', eventCtrl.cancelAttend)
 app.post('/api/postcomment', eventCtrl.postComment)
-
-
-// EVENT COMMENT ENDPOINTS
 app.get('/api/event/comments/:id', eventCtrl.getEventComments)
 
 

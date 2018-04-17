@@ -65,8 +65,8 @@ export default class CalendarView extends Component {
             && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
                     <EventCard 
+                        key={events[i].event_id + events[i].start_date + i}
                         event={events[i]}
-                        index={i}
                         date={true}
                         classStyle={'event start end'}
                         convertTime={this.convertTime}
@@ -77,8 +77,8 @@ export default class CalendarView extends Component {
             else if (i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) {
                 list.push(
                     <EventCard
+                        key={events[i].event_id + events[i].start_date + i}
                         event={events[i]}
-                        index={i}
                         date={true}
                         classStyle={'event start'}
                         convertTime={this.convertTime}
@@ -89,8 +89,8 @@ export default class CalendarView extends Component {
             else if (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date)) {
                 list.push(
                     <EventCard
+                        key={events[i].event_id + events[i].start_date + i}
                         event={events[i]}
-                        index={i}
                         date={false}
                         classStyle={'event end'}
                         convertTime={this.convertTime}
@@ -101,8 +101,8 @@ export default class CalendarView extends Component {
             else {
                 list.push(
                     <EventCard
+                        key={events[i].event_id + events[i].start_date + i}
                         event={events[i]}
-                        index={i}
                         date={false}
                         classStyle={'event'}
                         convertTime={this.convertTime}
