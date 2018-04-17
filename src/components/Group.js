@@ -21,13 +21,14 @@ export default class Group extends Component {
             group: {},
             groupComments: [{}],
             members: [{}],
-            attendees: [{}]
+            attendees: [{}],
+            user: {}
         }
     }
 
     componentDidMount() {
         window.scrollTo(0, 0)
-        console.log(this.props.match.params.group)
+        axios.get('/auth/me').then(res => this.setState({ user: res.data }))
         axios.get(`/api/groups/${this.props.match.params.group}`).then(res => {
             this.setState({
                 events: res.data.events,
@@ -48,7 +49,7 @@ export default class Group extends Component {
             return <AttendeeCard image={obj.image} username={obj.username} index={obj.member_id} />
         })
         const pastEvents = events.filter(obj => obj.start_date > Date.now()).map((obj) => {
-            return <PastEventCard startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={obj.url_name} />
+            return <PastEventCard startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={obj.url_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
         })
         console.log(this.state)
         return (
@@ -123,7 +124,7 @@ export default class Group extends Component {
                                 <div className="eventsAttendeesTop">
                                     <h2 style={{ fontSize: 20 }}>What We're About</h2>
                                 </div>
-                                </div>
+                            </div>
                             <div className="groupDescription">
                                 <div className="groupDescriptionDiv">
                                     <p>{this.state.group.description}</p>
@@ -155,7 +156,7 @@ export default class Group extends Component {
                                 </div>
                             </div>
                             <div className="discussionCardHolder">
-                            <DiscussionInput />
+                                <DiscussionInput user={this.state.user}/>
                                 {mappedGroupComments.slice(0, 4)}
                             </div>
                             <div className="descriptionSpacer"></div>
@@ -168,71 +169,71 @@ export default class Group extends Component {
                         </div>
                         {/* --------------------------------------------------------------------------------------- */}
                         <div className="innerRightAligner">
-                        <div className="descriptionSpacer">
+                            <div className="descriptionSpacer">
                                 <div className="eventsAttendeesTop">
                                     <h2 style={{ fontSize: 20 }}>Upcoming Meetups</h2>
                                     <span>See All</span>
                                 </div>
-                            <div className="pastEventsHolder">
-                                {pastEvents.slice(0, 3)}
-                            </div>
+                                <div className="pastEventsHolder">
+                                    {pastEvents.slice(0, 3)}
+                                </div>
                             </div>
                         </div>
                     </div>
                     {/* -------------------------------------------------------------------------------------------- */}
                     <div className="groupEventCardHolder">
-                    <div className="groupTagWrapper">
-                                <div className="groupTagItem"><span>Internet Professionals</span></div>
-                                <div className="groupTagItem"><p>Internet </p></div>
-                                <div className="groupTagItem"><p>Internet bleh</p></div>
-                                <div className="groupTagItem"><p>Internet blooo</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet eh</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet ahaa</p></div>
-                                <div className="groupTagItem"><p>Internet asdffg</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet aa</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet </p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet asdf</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                <div className="groupTagItem"><p>Internet Professionals</p></div>
-                            </div>
-                            <div className="descriptionSpacer">
-                                <hr />
-                            </div>
-                            <div className="descriptionSpacer">
-                                <div className="eventsAttendeesTop">
-                                    <h2 style={{ fontSize: 20 }}>More Meetups</h2>
-                                    <span>See All</span>
-                                </div>
-                                </div>
-                            <div className="bottomDiscussionHolder">
-                                <PastEventCard
-                                    startDate={this.state.events.start_date}
-                                    endDate={this.state.events.end_date}
-                                    eventName={this.state.events.event_name}
-                                    groupUrl={this.state.group.url_name}
-                                />
-                                <PastEventCard
-                                    startDate={this.state.events.start_date}
-                                    endDate={this.state.events.end_date}
-                                    eventName={this.state.events.event_name}
-                                    groupUrl={this.state.group.url_name}
-                                />
-                                <PastEventCard
-                                    startDate={this.state.events.start_date}
-                                    endDate={this.state.events.end_date}
-                                    eventName={this.state.events.event_name}
-                                    groupUrl={this.state.group.url_name}
-                                />
-                            </div>
-                            <div className="descriptionSpacer"></div>
+                        <div className="groupTagWrapper">
+                            <div className="groupTagItem"><span>Internet Professionals</span></div>
+                            <div className="groupTagItem"><p>Internet </p></div>
+                            <div className="groupTagItem"><p>Internet bleh</p></div>
+                            <div className="groupTagItem"><p>Internet blooo</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet eh</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet ahaa</p></div>
+                            <div className="groupTagItem"><p>Internet asdffg</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet aa</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet </p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet asdf</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
+                            <div className="groupTagItem"><p>Internet Professionals</p></div>
                         </div>
-                    
+                        <div className="descriptionSpacer">
+                            <hr />
+                        </div>
+                        <div className="descriptionSpacer">
+                            <div className="eventsAttendeesTop">
+                                <h2 style={{ fontSize: 20 }}>More Meetups</h2>
+                                <span>See All</span>
+                            </div>
+                        </div>
+                        <div className="bottomDiscussionHolder">
+                            <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                            <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                            <PastEventCard
+                                startDate={this.state.events.start_date}
+                                endDate={this.state.events.end_date}
+                                eventName={this.state.events.event_name}
+                                groupUrl={this.state.group.url_name}
+                            />
+                        </div>
+                        <div className="descriptionSpacer"></div>
+                    </div>
+
                 </div>
                 <Footer />
             </div>

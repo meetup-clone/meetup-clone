@@ -338,6 +338,14 @@ vertical-align: middle;
     justify-content: space-between;
     margin-top: 16px;
 }
+.miniEventMainDiv a {
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 .miniEventMainDiv:hover {
     box-shadow: 0px 4px 6px #ccc;
     transform: translate(0px, -2px);
@@ -521,6 +529,7 @@ border-radius: 50%;
     justify-content: space-between;
     align-items: center;
     padding-left: 20px;
+    padding-right: 20px;
     box-sizing: border-box;
 }
 .discussionInputMain input {
@@ -529,14 +538,20 @@ border-radius: 50%;
     width: 75%;
     font-size: 1.1rem;
     font-weight: 500;
+    word-wrap: break-word;
 }
 .discussionInputMain input::placeholder {
     color: #B4B9BC;
+    font-weight: 500;
   }
 .discussionInputMain input:focus {
     outline:0;
 }
-
+.sendButton {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
 /* ---------------------- */
 .groupTagItem {
     height: 30px;
@@ -550,6 +565,8 @@ border-radius: 50%;
     margin-right: 8px;
     transition: .3s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 .groupTagItem:hover {
     background-color: #C8D0D7;

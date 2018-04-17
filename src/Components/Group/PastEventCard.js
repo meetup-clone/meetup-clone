@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function PastEventCard(props) {
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -14,6 +15,7 @@ export default function PastEventCard(props) {
 
     return (
         <div className="miniEventMainDiv">
+        <Link to={`/${props.groupUrl}/events/${props.eventId}`}>
             <div className="miniEventContainer">
                 <div className="groupEventCardLeft">
                     <p>{date}</p>
@@ -38,6 +40,7 @@ export default function PastEventCard(props) {
                 </ul>
             </div>
             </div>
+            </Link>
         </div>
 
     )
