@@ -7,10 +7,12 @@ import avatar from '../../Assets/avatar-icon.svg'
 export default function GroupEventCard(props) {
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var abbMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var newDate = new Date(props.startDate);
 
     var dayOfWeek = days[newDate.getDay()];
     var month = months[newDate.getMonth()];
+    var abbMonth = abbMonths[newDate.getMonth()];
     var date = newDate.getDate();
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
@@ -28,7 +30,7 @@ export default function GroupEventCard(props) {
                     <div style={{ padding: 20 }}>
                         <div className="groupEventCardLeft">
                             <p>{date}</p>
-                            <p>mon</p>
+                            <p>{abbMonth}</p>
                         </div>
                     </div>
                     <div className="mainGroupEventCardContent">

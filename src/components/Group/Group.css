@@ -102,10 +102,22 @@
     border: 1px solid #d7d9db;
     color: #7F868C;
 }
+.memberBtn {
+    height: 40px;
+    width: 243px;
+    background: white;
+    border: 1px solid #d7d9db;
+    color: #7F868C;
+}
 .groupButtonWrapper {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+.toggleGroupButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 243px;
 }
 .groupOrganizerAvatar {
     height: 45px;
@@ -152,6 +164,7 @@
     font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
     margin-right: 84px;
     transition: .3s;
+    margin-top: 20px;
 }
 .groupEventCard:hover {
     box-shadow: 0px 4px 6px #ccc;
@@ -602,4 +615,15 @@ border-radius: 50%;
     justify-content: space-between;
     width: 100%;
     height: auto;
+}
+/* -------------------- Meetups Tab -----------------------*/
+.meetupTabMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.toggleDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
