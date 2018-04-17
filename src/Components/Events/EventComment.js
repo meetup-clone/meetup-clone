@@ -9,7 +9,7 @@ export default function EventComment(props) {
                     <div className="discussionCardTop">
                         <img src={props.image} alt="img" />
                         <h5>{props.username}</h5>
-                        <p> - date</p>
+                        <p>{props.date}</p>
                     </div>
                     <img className="threeDots" src={dots} alt="..." />
                 </div>

@@ -90,12 +90,17 @@ export default class Events extends Component {
         let month = date.getMonth()
         let today = date.getDate()
         let currentMonth = this.monthsAbbrv[month]
-        let day = currentMonth + ' ' + today
+        let monthAbb = currentMonth.toLowerCase()
+        let monthFinal = monthAbb.replace(monthAbb[0], monthAbb[0].toUpperCase())
+        let day = monthFinal + ' ' + today
         
         axios.post('/api/postcomment', {user_id: this.state.currentUser.user_id, 
                                         comment: this.state.commentInput,
-                                        eventId: this.props.match.params.id,
-                                        date: day})
+                                        event_id: this.props.match.params.event,
+                                        date: day}).then(res => {
+                                            this.setState({comments: res.data, commentInput: ''})
+                                        })
+
     }
 
     typingComment(e) {
@@ -110,7 +115,7 @@ export default class Events extends Component {
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
-            return <AttendeeCard key={x.user_id} index={i} image={x.image} username={x.username} />
+            return <AttendeeCard key={x.user_id+i} index={i} image={x.image} username={x.username} />
         })
 
         const mappedComments = comments.map((x, i) => {

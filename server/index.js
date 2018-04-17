@@ -83,6 +83,7 @@ app.get('/api/event/:id', eventCtrl.getEvent)
 app.get('/api/attendees/:id', eventCtrl.getAttendees)
 app.post('/api/attendevent', eventCtrl.attendEvent)
 app.delete('/api/cancelattend/:id', eventCtrl.cancelAttend)
+app.post('/api/postcomment', eventCtrl.postComment)
 
 
 // EVENT COMMENT ENDPOINTS

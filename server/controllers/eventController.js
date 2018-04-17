@@ -39,4 +39,10 @@ module.exports = {
             res.status(200).send(attendees)
         })
     },
+    postComment: (req, res) => {
+        const {user_id, event_id, comment, date} = req.body
+        req.app.get('db').postComment([user_id, event_id, comment, date]).then(comments => {
+            res.status(200).send(comments)
+        })
+    },
 }
