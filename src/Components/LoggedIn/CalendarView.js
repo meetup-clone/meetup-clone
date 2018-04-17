@@ -27,34 +27,28 @@ export default class CalendarView extends Component {
     }
 
     filterEvents() {
-        const { cat1, cat2, cat3, cat4, date } = this.state
+        const { cat1, cat2, cat3, cat4, numToShow, date } = this.state
         const { user, myEvents, myGroupEvents, allEvents } = this.props
-        let num = this.state.numToShow
         if (cat1) {
-            if (num > allEvents.length) num = allEvents.length
-            console.log(allEvents.slice(0, num))
-            let filteredEvents = allEvents.slice(0, num).filter(e => {
+            let filteredEvents = allEvents.slice(0, numToShow).filter(e => {
                 return e.start_date >= date
             })
             return filteredEvents
         }
         else if (cat2) {
-            if (num > allEvents.length) num = allEvents.length
-            let filteredEvents = allEvents.slice(0, num).filter(e => {
+            let filteredEvents = allEvents.slice(0, numToShow).filter(e => {
                 return e.start_date >= date && e.category.includes(user.category)
             })
             return filteredEvents
         }
         else if (cat3) {
-            if (num > myGroupEvents.length) num = myGroupEvents.length
-            let filteredEvents = myGroupEvents.slice(0, num).filter(e => {
+            let filteredEvents = myGroupEvents.slice(0, numToShow).filter(e => {
                 return e.start_date >= date
             })
             return filteredEvents
         }
         else if (cat4) {
-            if (num > myEvents.length) num = myEvents.length
-            let filteredEvents = myEvents.slice(0, num).filter(e => {
+            let filteredEvents = myEvents.slice(0, numToShow).filter(e => {
                 return e.start_date >= date
             })
             return filteredEvents
@@ -65,10 +59,12 @@ export default class CalendarView extends Component {
         let events = this.filterEvents()
         if (events.length === 0) return null
         let list = []
-        for (let i = 1; i < events.length; i++) {
+        console.log(events)
+        for (let i = 0; i < events.length; i++) {
             // BOTH ROUNDED
+            console.log(events[i])
             if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) 
-                    && this.compareDate(events[i + 1].start_date, events[i].start_date)) {
+            && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
                     <EventCard 
                         event={events[i]}
