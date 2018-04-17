@@ -37,7 +37,7 @@ export default class CalendarView extends Component {
         }
         else if (cat2) {
             let filteredEvents = allEvents.slice(0, numToShow).filter(e => {
-                return e.start_date >= date && e.category.includes(user.category)
+                return e.start_date >= date && e.categories.includes(user.category)
             })
             return filteredEvents
         }
