@@ -40,6 +40,11 @@ module.exports = {
         req.app.get('db').postDiscussion([user_id, group_id, comment, date]).then(discussions => {
             res.status(200).send(discussions)
         })
+    },
+    joinGroup: (req, res) => {
+        req.app.get('db').joinGroup([req.user.user_id, req.body.groupId]).then(members => {
+            res.status(200).send(members)
+        })
     }
     
 }
