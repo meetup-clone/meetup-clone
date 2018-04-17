@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import './CalendarView.css'
+import EventCard from './EventCard.js'
 import Calendar from 'react-calendar'
 
 export default class CalendarView extends Component {
@@ -11,11 +11,15 @@ export default class CalendarView extends Component {
             cat2: false,
             cat3: false,
             cat4: false,
-            date: new Date(Date.now())
+            date: Date.now(),
+            moreToggle: true,
+            numToShow: 6
         }
         this.filterEvents = this.filterEvents.bind(this)
         this.listEvents = this.listEvents.bind(this)
+        this.compareDate = this.compareDate.bind(this)
         this.convertTime = this.convertTime.bind(this)
+        this.showMore = this.showMore.bind(this)
     }
 
     componentDidMount() {
@@ -23,95 +27,153 @@ export default class CalendarView extends Component {
     }
 
     filterEvents() {
-        if (this.state.cat1) {
-            let filteredEvents = this.props.allEvents.filter(e => {
-                return e.start_date >= this.state.date
+        const { cat1, cat2, cat3, cat4, date } = this.state
+        const { user, myEvents, myGroupEvents, allEvents } = this.props
+        let num = this.state.numToShow
+        if (cat1) {
+            if (num > allEvents.length) num = allEvents.length
+            console.log(allEvents.slice(0, num))
+            let filteredEvents = allEvents.slice(0, num).filter(e => {
+                return e.start_date >= date
             })
             return filteredEvents
         }
-        else if (this.state.cat2) {
-            let filteredEvents = this.props.allEvents.filter(e => {
-                return e.start_date >= this.state.date && e.category.includes(this.props.user.category)
-            })
-            
-            return filteredEvents
-        }
-        else if (this.state.cat3) {
-            let filteredEvents = this.props.myGroupEvents.filter(e => {
-                return e.start_date >= this.state.date
+        else if (cat2) {
+            if (num > allEvents.length) num = allEvents.length
+            let filteredEvents = allEvents.slice(0, num).filter(e => {
+                return e.start_date >= date && e.category.includes(user.category)
             })
             return filteredEvents
         }
-        else if (this.state.cat4) {
-            let filteredEvents = this.props.myEvents.filter(e => {
-                return e.start_date >= this.state.date
+        else if (cat3) {
+            if (num > myGroupEvents.length) num = myGroupEvents.length
+            let filteredEvents = myGroupEvents.slice(0, num).filter(e => {
+                return e.start_date >= date
+            })
+            return filteredEvents
+        }
+        else if (cat4) {
+            if (num > myEvents.length) num = myEvents.length
+            let filteredEvents = myEvents.slice(0, num).filter(e => {
+                return e.start_date >= date
             })
             return filteredEvents
         }
     }
 
     listEvents() {
-        let filteredEvents = this.filterEvents()
-        return filteredEvents.map((e, i) => {
-            return (
-                <div className='eventListCard' key={e.event_name + e.event_id + i}>
-                    <div className='eventTime'>
-                        {this.convertTime(e.start_date)}
-                    </div>
-                    <div className='eventDetails'>
-                        <Link to={`/${e.url_name}`}>
-                            <span className='groupName'>{(e.group_name).toUpperCase()}</span>
-                        </Link>
-                        <Link to={`/${e.url_name}/events/${e.event_id}`}>
-                            <span className='eventName'>{e.event_name}</span>
-                        </Link>
-                        <span className='attendees'>{`${e.attendees} Members going`}</span>
-                    </div>
-                </div>
-            )
-        })
+        let events = this.filterEvents()
+        if (events.length === 0) return null
+        let list = []
+        for (let i = 1; i < events.length; i++) {
+            // BOTH ROUNDED
+            if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) 
+                    && this.compareDate(events[i + 1].start_date, events[i].start_date)) {
+                list.push(
+                    <EventCard 
+                        event={events[i]}
+                        date={true}
+                        classStyle={'event start end'}
+                        convertTime={this.convertTime}
+                    />
+                )
+            }
+            // STARTS ROUNDED
+            else if (i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) {
+                list.push(
+                    <EventCard
+                        event={events[i]}
+                        date={true}
+                        classStyle={'event start'}
+                        convertTime={this.convertTime}
+                    />
+                )
+            }
+            // ENDS ROUNDED
+            else if (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date)) {
+                list.push(
+                    <EventCard
+                        event={events[i]}
+                        date={false}
+                        classStyle={'event end'}
+                        convertTime={this.convertTime}
+                    />
+                )
+            }
+            // MIDDLE (NEITHER ROUNDED)
+            else {
+                list.push(
+                    <EventCard
+                        event={events[i]}
+                        date={false}
+                        classStyle={'event'}
+                        convertTime={this.convertTime}
+                    />
+                )
+            }
+        }
+        return list
     }
 
-    convertTime(mil) {
-        let time = new Date(mil)
+    compareDate(time1, time2) {
+        let date1 = new Date(time1)
+        let date2 = new Date(time2)
+        date1 = date1.getFullYear() + '/' + (date1.getMonth() + 1) + '/' + date1.getDate()
+        date2 = date2.getFullYear() + '/' + (date2.getMonth() + 1) + '/' + date2.getDate()
+        return date1 > date2
+    }
+
+    convertTime(milliseconds) {
+        let time = new Date(milliseconds)
         let newTime = time.toLocaleTimeString()
         return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
     }
 
+    showMore() {
+        let num = this.state.numToShow + 6
+        if (num > this.filterEvents().length) {
+            this.setState({ moreToggle: false, numToShow: num })
+        }
+        else {
+            this.setState({ numToShow: num })
+        }
+    }
+
     render() {
+        const { moreToggle, cat1, cat2, cat3, cat4, date } = this.state
         return (
             <div className='calendarView'>
                 <div className='leftCol'>
-                    <div className='todaysDate'>{new Date(Date.now()).toDateString().toUpperCase()}</div>
-                    <div className='events'>
-                        {this.listEvents()}
-                    </div>
-                    <div className='showMore'>
-                        Show more
-                    </div>
+                    {this.listEvents()}
+                    {moreToggle ?
+                        <div className='showMore' onClick={() => this.showMore()}>
+                            Show more
+                        </div>
+                        : null
+                    }
                 </div>
                 <div className='rightCol'>
                     <div className='meetupCategories'>
                         <span
-                            className={this.state.cat1 ? 'activeCategory' : null}
+                            className={cat1 ? 'activeCategory' : null}
                             onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false })}
                         >
                             All Meetups
                                 </span>
                         <span
-                            className={this.state.cat2 ? 'activeCategory' : null}
+                            className={cat2 ? 'activeCategory' : null}
                             onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false })}
                         >
                             My Meetups & suggestions
                                 </span>
                         <span
-                            className={this.state.cat3 ? 'activeCategory' : null}
+                            className={cat3 ? 'activeCategory' : null}
                             onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false })}
                         >
-                            My Meetups
+                            My Group's Meetups
                                 </span>
                         <span
-                            className={this.state.cat4 ? 'activeCategory' : null}
+                            className={cat4 ? 'activeCategory' : null}
                             onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true })}
                         >
                             I'm Going
@@ -121,7 +183,7 @@ export default class CalendarView extends Component {
                         Today
                     </div>
                     <Calendar
-                        value={this.state.date}
+                        value={new Date(date)}
                         onChange={(date) => this.setState({ date: date.getTime() })}
                         className='calendarComponent'
                     />
