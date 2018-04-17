@@ -70,6 +70,7 @@ app.get('/api/myGroups', groupCtrl.getUserGroups)
 app.get('/api/allGroups', groupCtrl.getAllGroups)
 app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 app.post('/api/groups', groupCtrl.createGroup)
+app.post('/api/postdiscussion', groupCtrl.postDiscussion)
 
 
 // EVENT ENDPOINTS

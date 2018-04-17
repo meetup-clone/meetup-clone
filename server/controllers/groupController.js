@@ -34,5 +34,12 @@ module.exports = {
                 res.status(200).send(group[0])
             })
         })
+    },
+    postDiscussion: (req, res) => {
+        const {user_id, group_id, comment, date} = req.body
+        req.app.get('db').postDiscussion([user_id, group_id, comment, date]).then(discussions => {
+            res.status(200).send(discussions)
+        })
     }
+    
 }
