@@ -124,15 +124,45 @@
 }
 
 .loggedIn .meetupsFilter {
+    display: flex;
     position: absolute;
-    height: 150px;
-    width: 500px;
+    height: 250px;
+    width: 80%;
     background: white;
     box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
     border-radius: 3px;
     z-index: 4;
     top: 350px;
-    left: 50px;
+    left: 100px;
+    color: #757575;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.3em;
+    padding: 8px;
+}
+
+.loggedIn .filterColumn {
+    width: 25%;
+}
+
+.loggedIn .categories {
+    padding: 10px 10px 10px 15px;
+    cursor: pointer;
+}
+
+.loggedIn .categories:hover {
+    background: var(--pink);
+    color: white;
+}
+
+.loggedIn .infinity {
+    height: 8px;
+    padding-right: 5px;
+}
+
+.loggedIn .twoAvatars {
+    height: 15px;
+    padding-right: 5px;
 }
 
 .loggedIn .filterDistance {
@@ -146,7 +176,6 @@
         display: none;
     }
 }
-
 
 .loggedIn .filterDistance select {
     -webkit-appearance: none;

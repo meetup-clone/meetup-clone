@@ -8,6 +8,8 @@ import GroupsView from './LoggedIn/GroupsView.js'
 import Footer from './Footer.js'
 import pinkCal from '../Assets/pinkCalendar.svg'
 import pinkPin from '../Assets/pinkPin.svg'
+import twoAvatars from '../Assets/two-avatars.svg'
+import infinity from '../Assets/infinity.svg'
 
 export default class LoggedIn extends Component {
     constructor() {
@@ -19,8 +21,9 @@ export default class LoggedIn extends Component {
             allEvents: [{}],
             myGroups: [],
             allGroups: [{}],
-            meetupsToggle: false,
             currentCity: 'Provo, UT',
+            meetupsToggle: false,
+            category: '',
             viewToggle: true,
         }
     }
@@ -37,7 +40,7 @@ export default class LoggedIn extends Component {
 
     render() {
         const { user, myEvents, myGroupEvents, allEvents, myGroups, allGroups,
-                meetupsToggle, currentCity, viewToggle } = this.state
+            meetupsToggle, currentCity, viewToggle } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -121,21 +124,84 @@ export default class LoggedIn extends Component {
                     {meetupsToggle ?
                         <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
                             <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
-                                <div></div>
+                                <div className='filterColumn'>
+                                    <div className='categories' onClick={() => this.setState({ category: '' })}>
+                                        <img src={infinity} alt='infinity' className='infinity'/>
+                                        All Meetups
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'friends' })}>
+                                        <img src={twoAvatars} alt='twoAvatars' className='twoAvatars'/>
+                                        Meetups with friends
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'outdoors' })}>
+                                        Outdoors
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'tech' })}>
+                                        Tech
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'family' })}>
+                                        Family
+                                    </div>
+                                </div>
+                                <div className='filterColumn'>
+                                    <div className='categories' onClick={() => this.setState({ category: 'wellness' })}>
+                                        Wellness
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'sports' })}>
+                                        Sports
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'learning' })}>
+                                        Learning
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'photography' })}>
+                                        Photography
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'food' })}>
+                                        Food
+                                    </div>
+                                </div>
+                                <div className='filterColumn'>
+                                    <div className='categories' onClick={() => this.setState({ category: 'writing' })}>
+                                        Writing
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'language' })}>
+                                        Language
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'music' })}>
+                                        Music
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'movements' })}>
+                                        Movements
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'lgbtq' })}>
+                                        LGBTQ
+                                    </div>
+                                </div>
+                                <div className='filterColumn'>
+                                    <div className='categories' onClick={() => this.setState({ category: 'film' })}>
+                                        Film
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'scifi' })}>
+                                        Sci-Fi
+                                    </div>
+                                    <div className='categories' onClick={() => this.setState({ category: 'beliefs' })}>
+                                        Beliefs
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         : null
                     }
                 </div>
                 {viewToggle ?
-                    <CalendarView 
+                    <CalendarView
                         user={user}
                         myEvents={myEvents}
                         myGroupEvents={myGroupEvents}
                         allEvents={allEvents}
                     />
                     :
-                    <GroupsView 
+                    <GroupsView
                         myGroups={myGroups}
                         allGroups={allGroups}
                     />

@@ -9,12 +9,20 @@ export default class GroupsView extends Component {
             moreToggle: true,
             numToShow: 6
         }
+        this.filterGroups = this.filterGroups.bind(this)
         this.groupsList = this.groupsList.bind(this)
         this.showMore = this.showMore.bind(this)
     }
 
     componentDidMount() {
         if (window.scrollY > 283) window.scrollTo(0, 283)
+    }
+
+    filterGroups() {
+        const { myGroups, allGroups } = this.props
+        let idArray = myGroups.map(e => e.group_id)
+        let newArr = allGroups.filter(e => !idArray.includes(e.group_id))
+        return newArr.slice(0, this.state.numToShow)
     }
 
     groupsList(groups) {
@@ -35,7 +43,7 @@ export default class GroupsView extends Component {
             )
         })
     }
-
+    
     showMore() {
         let num = this.state.numToShow + 6
         if (num > this.props.allGroups.length) {
@@ -47,8 +55,8 @@ export default class GroupsView extends Component {
     }
 
     render() {
-        const { myGroups, allGroups } = this.props
-        const { moreToggle, numToShow } = this.state
+        const { myGroups } = this.props
+        const { moreToggle } = this.state
         return (
             <div className='groupsView'>
                 <div className='groupsViewContainer'>
@@ -63,7 +71,7 @@ export default class GroupsView extends Component {
                     }
                     <h4>SUGGESTED MEETUPS</h4>
                     <div className='groupCardContainer'>
-                        {this.groupsList(allGroups.slice(0, numToShow))}
+                        {this.groupsList(this.filterGroups())}
                     </div>
                     {moreToggle ?
                         <div 
