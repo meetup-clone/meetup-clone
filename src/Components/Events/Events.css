@@ -160,7 +160,7 @@
 .eventsDetails h3 {
     font-weight: 300;
     font-size: 16px;
-    padding-top: 20px;
+    padding-top: 12px;
     box-sizing: border-box;
 }
 
@@ -226,6 +226,10 @@
     color: var(--gray);
     font-weight: 300;
     font-size: 12px;
+}
+
+.eventsComments h2 {
+    padding-bottom: 20px;
 }
 
 .eventsSeeMeetups {
