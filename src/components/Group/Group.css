@@ -114,9 +114,11 @@
 }
 .organizerWrapper {
     display: flex;
-    justify-content: space-between;
     width: auto;
     margin-top: 20px;
+}
+.organizerWrapper p {
+    margin-left: 10px;
 }
 .innerOrganizerDiv {
     display: flex;
@@ -382,11 +384,12 @@ vertical-align: middle;
 .miniGroupAvatarHolder {
     background-color: #f6f7f8;
     border-radius: 36px;
-    width: 145px;
+    width: 137px;
     height: 38px;
     padding-left: 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between
 }
 .miniGroupAvatarHolder li {
     height: 28px;
@@ -399,6 +402,7 @@ vertical-align: middle;
     background-position: 50%;
     background-size: cover;
     vertical-align: middle;
+    align-self: center;
     }
 .miniGroupAvatarHolder ul {
     list-style-type: none;
