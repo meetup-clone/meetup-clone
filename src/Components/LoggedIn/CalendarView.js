@@ -59,15 +59,14 @@ export default class CalendarView extends Component {
         let events = this.filterEvents()
         if (events.length === 0) return null
         let list = []
-        console.log(events)
         for (let i = 0; i < events.length; i++) {
             // BOTH ROUNDED
-            console.log(events[i])
             if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) 
             && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
                     <EventCard 
                         event={events[i]}
+                        index={i}
                         date={true}
                         classStyle={'event start end'}
                         convertTime={this.convertTime}
@@ -79,6 +78,7 @@ export default class CalendarView extends Component {
                 list.push(
                     <EventCard
                         event={events[i]}
+                        index={i}
                         date={true}
                         classStyle={'event start'}
                         convertTime={this.convertTime}
@@ -90,6 +90,7 @@ export default class CalendarView extends Component {
                 list.push(
                     <EventCard
                         event={events[i]}
+                        index={i}
                         date={false}
                         classStyle={'event end'}
                         convertTime={this.convertTime}
@@ -101,6 +102,7 @@ export default class CalendarView extends Component {
                 list.push(
                     <EventCard
                         event={events[i]}
+                        index={i}
                         date={false}
                         classStyle={'event'}
                         convertTime={this.convertTime}

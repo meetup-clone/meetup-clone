@@ -20,7 +20,6 @@ export default class LoggedIn extends Component {
             myGroups: [],
             allGroups: [{}],
             meetupsToggle: false,
-            cityToggle: false,
             currentCity: 'Provo, UT',
             viewToggle: true,
         }
@@ -37,7 +36,8 @@ export default class LoggedIn extends Component {
     }
 
     render() {
-        let { myEvents } = this.state
+        const { user, myEvents, myGroupEvents, allEvents, myGroups, allGroups,
+                meetupsToggle, currentCity, viewToggle } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -83,7 +83,7 @@ export default class LoggedIn extends Component {
                     <div className='filter'>
                         <input
                             placeholder='All Meetups'
-                            onClick={() => this.setState({ meetupsToggle: !this.state.meetupsToggle })}
+                            onClick={() => this.setState({ meetupsToggle: !meetupsToggle })}
                             className='allMeetups'
                         />
                         <div className='filterDistance'>
@@ -98,27 +98,27 @@ export default class LoggedIn extends Component {
                             </select>
                             <span>of</span>
                             <input
-                                value={this.state.currentCity}
+                                value={currentCity}
                                 onChange={(e) => this.setState({ currentCity: e.target.value })}
                                 className='filterByCity'
                             />
                         </div>
                         <div className='viewButtons'>
                             <div
-                                className={this.state.viewToggle ? 'groupsToggle' : 'groupsToggle activeView'}
+                                className={viewToggle ? 'groupsToggle' : 'groupsToggle activeView'}
                                 onClick={() => this.setState({ viewToggle: false })}
                             >
                                 Groups
                                     </div>
                             <div
-                                className={this.state.viewToggle ? 'calendarToggle activeView' : 'calendarToggle'}
+                                className={viewToggle ? 'calendarToggle activeView' : 'calendarToggle'}
                                 onClick={() => this.setState({ viewToggle: true })}
                             >
                                 Calendar
                                     </div>
                         </div>
                     </div>
-                    {this.state.meetupsToggle ?
+                    {meetupsToggle ?
                         <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
                             <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
                                 <div></div>
@@ -127,17 +127,17 @@ export default class LoggedIn extends Component {
                         : null
                     }
                 </div>
-                {this.state.viewToggle ?
+                {viewToggle ?
                     <CalendarView 
-                        user={this.state.user}
-                        myEvents={this.state.myEvents}
-                        myGroupEvents={this.state.myGroupEvents}
-                        allEvents={this.state.allEvents}
+                        user={user}
+                        myEvents={myEvents}
+                        myGroupEvents={myGroupEvents}
+                        allEvents={allEvents}
                     />
                     :
                     <GroupsView 
-                        myGroups={this.state.myGroups}
-                        allGroups={this.state.allGroups}
+                        myGroups={myGroups}
+                        allGroups={allGroups}
                     />
                 }
                 <Footer />
