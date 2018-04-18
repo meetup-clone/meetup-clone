@@ -127,7 +127,8 @@
 .loggedIn .meetupsFilter {
     position: absolute;
     top: 70px;
-    margin-left: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     height: 250px;
     width: 80%;
