@@ -34,7 +34,7 @@ export default class Group extends Component {
         this.typingComment = this.typingComment.bind(this);
         this.postDiscussion = this.postDiscussion.bind(this);
         this.attendEvent = this.attendEvent.bind(this);
-        this.cancelAttend = this.cancelAttend.bind(this);
+        this.cancelGroup = this.cancelGroup.bind(this);
         this.joinGroup = this.joinGroup.bind(this);
         this.toggleFuture = this.toggleFuture.bind(this);
         this.togglePast = this.togglePast.bind(this);
@@ -79,9 +79,9 @@ export default class Group extends Component {
         })
     }
 
-    cancelAttend() {
-        axios.delete(`/api/cancelattend/${this.props.match.params.event}`).then(res => {
-            this.setState({ attendees: res.data })
+    cancelGroup() {
+        axios.delete(`/api/cancelGroup/${this.state.group.group_id}`).then(res => {
+            this.setState({ members: res.data })
         })
     }
 
@@ -179,7 +179,7 @@ export default class Group extends Component {
                                         <button className="whiteBtn"><img style={{ height: 10, width: 10 }} src={dots} alt="..." /></button>
                                     </div>
                                     :
-                                    <button className="memberBtn">You're a member   <img src={downArrow} alt="arrow" /></button>
+                                    <button onClick={() => this.cancelGroup()} className="memberBtn">You're a member   <img src={downArrow} alt="arrow" /></button>
                                 :
                                 <div className="toggleGroupButtonWrapper">
                                     <button onClick={() => this.joinGroup()} className="joinBtn">Join us</button>
