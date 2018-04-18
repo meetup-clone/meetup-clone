@@ -13,7 +13,7 @@ export default class CalendarView extends Component {
             cat4: false,
             date: Date.now(),
             moreToggle: true,
-            numToShow: 6
+            numToShow: 9
         }
         this.filterEvents = this.filterEvents.bind(this)
         this.listEvents = this.listEvents.bind(this)
@@ -28,28 +28,31 @@ export default class CalendarView extends Component {
 
     filterEvents() {
         const { cat1, cat2, cat3, cat4, numToShow, date } = this.state
-        const { user, myEvents, myGroupEvents, allEvents } = this.props
+        const { user, myEvents, myGroupEvents, allEvents, category } = this.props
+        let offsetDate = date - 7200000
         if (cat1) {
             let filteredEvents = allEvents.filter(e => {
-                return e.start_date >= date
+                return e.start_date >= offsetDate && e.categories.includes(category)
             })
             return filteredEvents.slice(0, numToShow)
         }
         else if (cat2) {
-            let categoryEvents = allEvents.filter(e => {
-                return e.start_date >= date && e.categories.includes(user.category)
+            let idArray = myGroupEvents.map(e => e.event_id)
+            let filteredEvents = allEvents.filter(e => {
+                return (idArray.includes(e.event_id) && e.start_date >= offsetDate)
+                        || (e.categories.includes(user.category) && e.start_date >= offsetDate)
             })
-            return categoryEvents.slice(0, numToShow)
+            return filteredEvents.slice(0, numToShow)
         }
         else if (cat3) {
             let groupEvents = myGroupEvents.filter(e => {
-                return e.start_date >= date
+                return e.start_date >= offsetDate
             })
             return groupEvents.slice(0, numToShow)
         }
         else if (cat4) {
             let filteredEvents = myEvents.filter(e => {
-                return e.start_date >= date
+                return e.start_date >= offsetDate
             })
             return filteredEvents.slice(0, numToShow)
         }
@@ -128,7 +131,7 @@ export default class CalendarView extends Component {
     }
 
     showMore() {
-        let num = this.state.numToShow + 6
+        let num = this.state.numToShow + 9
         if (num > this.filterEvents().length) {
             this.setState({ moreToggle: false, numToShow: num })
         }
@@ -154,25 +157,25 @@ export default class CalendarView extends Component {
                     <div className='meetupCategories'>
                         <span
                             className={cat1 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false, moreToggle: true, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: true, cat2: false, cat3: false, cat4: false, moreToggle: true, numToShow: 9 })}
                         >
                             All Meetups
                         </span>
                         <span
                             className={cat2 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false, moreToggle: true, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: true, cat3: false, cat4: false, moreToggle: true, numToShow: 9 })}
                         >
                             My Meetups & suggestions
                         </span>
                         <span
                             className={cat3 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false, moreToggle: true, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: true, cat4: false, moreToggle: true, numToShow: 9 })}
                         >
                             My Meetups
                         </span>
                         <span
                             className={cat4 ? 'activeCategory' : null}
-                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true, moreToggle: true, numToShow: 6 })}
+                            onClick={() => this.setState({ cat1: false, cat2: false, cat3: false, cat4: true, moreToggle: true, numToShow: 9 })}
                         >
                             I'm Going
                         </span>
