@@ -14,6 +14,9 @@
 .loggedIn .myEventContent {
     margin: 0 5%;
     padding: 1% 5%;
+    max-width: 970px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .loggedIn .myEventContent h5 {
@@ -50,7 +53,7 @@
 
 .loggedIn .myEventCal {
     display: flex;
-    margin: 10px;
+    margin: 10px 0 10px 35px;
 }
 
 .loggedIn .myEventCalText {
@@ -59,7 +62,7 @@
 
 .loggedIn .myEventVenue {
     display: flex;
-    margin: 10px;
+    margin: 10px 0 10px 35px;
 }
 
 .loggedIn .myEventVenueText {
@@ -97,8 +100,8 @@
 .loggedIn .filter {
     background: var(--black);
     height: 70px;
-    width: 86%;
-    max-width: 963px;
+    width: 100%;
+    max-width: 970px;
     margin: auto;
     color: white;
     display: flex;
