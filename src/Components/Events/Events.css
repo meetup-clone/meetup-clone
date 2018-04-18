@@ -57,6 +57,8 @@
 }
 
 #organizerAvatar {
+    width: 45px;
+    height: 45px;
     position: relative;
     bottom: 0;
     left: 0;
