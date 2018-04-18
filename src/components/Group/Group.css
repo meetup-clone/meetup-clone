@@ -107,7 +107,15 @@
     width: 243px;
     background: white;
     border: 1px solid #d7d9db;
-    color: #7F868C;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--black)
+}
+.memberBtn img {
+    margin-left: 5px;
+    height: 15px;
+    width: 15px;
+    vertical-align: middle;
 }
 .groupButtonWrapper {
     display: flex;
@@ -337,6 +345,17 @@ vertical-align: middle;
     padding-top: 50px;
     padding-bottom: 15px;
 }
+.descriptionSpacer p {
+    color: var(--gray);
+    font-size: .875rem;
+    line-height: 1.6;
+
+}
+.descriptionSpacerTopBorder {
+    width: 100%;
+    padding-bottom: 15px;
+    border-top: solid 1px #DBE0E5;
+}
 /* ----------------- Mini Event Card ----------------------------- */
 .miniEventMainDiv {
     background-color: white;
@@ -360,6 +379,9 @@ vertical-align: middle;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+.blackp {
+    color: var(--black);
 }
 .miniEventMainDiv:hover {
     box-shadow: 0px 4px 6px #ccc;
@@ -622,8 +644,64 @@ border-radius: 50%;
     flex-direction: column;
     justify-content: space-between;
 }
+.meetupTabMain a {
+    text-decoration: none;
+}
 .toggleDiv {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.groupEventCardPlaceholder {
+    width: 100%;
+    height: 200px;
+    border: dashed 3px #DCDFE1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.miniGroupEventCardPlaceholder {
+    width: 310px;
+    height: 215px;
+    border: dashed 3px #DCDFE1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+.noMeetupDiv {
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.meetupTabNav {
+    width: 160px;
+    height: 55px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between
+}
+.selectedTab {
+    font-weight: 500;
+    color: var(--blue);
+    border-bottom: solid 2px var(--blue);
+    height: 60%;
+    cursor: pointer;
+}
+.notSelectedTab {
+    cursor: pointer;
+    height: 60%;
+}
+.meetupCalendarHolder {
+    width: 90px;
+    height: 55px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
 }

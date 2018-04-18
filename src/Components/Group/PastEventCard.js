@@ -37,7 +37,7 @@ export default function PastEventCard(props) {
                 </div>
                 <div style={{ alignItems: "center", paddingLeft: 20 }} className="organizerWrapper">
                     <img className="hostedAvatar" src={props.attendees[0].image} alt="avatar" />
-                    <p>hosted by {props.attendees[0].username}</p>
+                    <p className="blackp" >hosted by {props.attendees[0].username}</p>
                 </div>
                 <div className="miniBottomDiv">
                     <div className="miniGroupAvatarHolder">
