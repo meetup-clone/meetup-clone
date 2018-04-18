@@ -8,6 +8,8 @@ import GroupsView from './LoggedIn/GroupsView.js'
 import Footer from './Footer.js'
 import pinkCal from '../Assets/pinkCalendar.svg'
 import pinkPin from '../Assets/pinkPin.svg'
+import twoAvatars from '../Assets/two-avatars.svg'
+import infinity from '../Assets/infinity.svg'
 
 export default class LoggedIn extends Component {
     constructor() {
@@ -19,10 +21,12 @@ export default class LoggedIn extends Component {
             allEvents: [{}],
             myGroups: [],
             allGroups: [{}],
-            meetupsToggle: false,
             currentCity: 'Provo, UT',
+            meetupsToggle: false,
+            category: '',
             viewToggle: true,
         }
+        this.filterTopicsButtons = this.filterTopicsButtons.bind(this)
     }
 
     componentDidMount() {
@@ -35,9 +39,26 @@ export default class LoggedIn extends Component {
         axios.get('/api/allGroups').then(res => this.setState({ allGroups: res.data }))
     }
 
+    filterTopicsButtons() {
+        let topics = ['Outdoors', 'Tech', 'Family', 'Wellness', 'Sports', 'Learning', 'Photography',
+            'Food', 'Writing', 'Language', 'Music', 'Movements', 'LGBTQ', 'Film', 'Sci-Fi', 'Beliefs']
+        let buttons = topics.map((e, i) => {
+            return (
+                <div
+                    key={i + e}
+                    className='categories'
+                    onClick={() => this.setState({ category: e, meetupsToggle: false })}
+                >
+                    {e}
+                </div>
+            )
+        })
+        return buttons
+    }
+
     render() {
         const { user, myEvents, myGroupEvents, allEvents, myGroups, allGroups,
-                meetupsToggle, currentCity, viewToggle } = this.state
+            meetupsToggle, currentCity, category, viewToggle } = this.state
         return (
             <div className='loggedIn'>
                 <Header />
@@ -83,6 +104,8 @@ export default class LoggedIn extends Component {
                     <div className='filter'>
                         <input
                             placeholder='All Meetups'
+                            value={category}
+                            onChange={(e) => this.setState({ category: e.target.value })}
                             onClick={() => this.setState({ meetupsToggle: !meetupsToggle })}
                             className='allMeetups'
                         />
@@ -119,25 +142,45 @@ export default class LoggedIn extends Component {
                         </div>
                     </div>
                     {meetupsToggle ?
-                        <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}>
-                            <div className='meetupsFilter' onClick={(e) => e.stopPropagation()} >
-                                <div></div>
+                        <div className='meetupsFilter'>
+                            <div className='filterColumn'>
+                                <div
+                                    className='categories'
+                                    onClick={() => this.setState({ category: '', meetupsToggle: false })}
+                                >
+                                    <img src={infinity} alt='infinity' className='infinity' />
+                                    All Meetups
+                                </div>
+                                <div
+                                    className='categories'
+                                    onClick={() => this.setState({ category: 'friends', meetupsToggle: false })}
+                                >
+                                    <img src={twoAvatars} alt='twoAvatars' className='twoAvatars' />
+                                    Meetups with friends
+                                </div>
+                                {this.filterTopicsButtons()}
                             </div>
                         </div>
                         : null
                     }
+                    {meetupsToggle ?
+                        <div className='shadow' onClick={() => this.setState({ meetupsToggle: false })}></div>
+                        : null
+                    }
                 </div>
                 {viewToggle ?
-                    <CalendarView 
+                    <CalendarView
                         user={user}
                         myEvents={myEvents}
                         myGroupEvents={myGroupEvents}
                         allEvents={allEvents}
+                        category={category.replace(/-/g, '').toLowerCase()}
                     />
                     :
-                    <GroupsView 
+                    <GroupsView
                         myGroups={myGroups}
                         allGroups={allGroups}
+                        category={category.replace(/-/g, '').toLowerCase()}
                     />
                 }
                 <Footer />

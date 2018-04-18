@@ -6,11 +6,13 @@ export default function PastEventCard(props) {
 
 
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var abbMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var newDate = new Date(props.startDate);
 
     var dayOfWeek = days[newDate.getDay()];
     var month = months[newDate.getMonth()];
+    var abbMonth = abbMonths[newDate.getMonth()];
     var date = newDate.getDate();
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
@@ -26,7 +28,7 @@ export default function PastEventCard(props) {
                 <div className="miniEventContainer">
                     <div className="groupEventCardLeft">
                         <p>{date}</p>
-                        <p>mon</p>
+                        <p>{abbMonth}</p>
                     </div>
                     <div className="miniDateAndTitleDiv">
                         <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>

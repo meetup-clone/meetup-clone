@@ -38,7 +38,7 @@
     font-size: 15px;
 }
 
-.header .nav a, span {
+.header .nav a, .header .nav span {
     color: var(--gray);
     cursor: pointer;
     margin: 0 7px;
@@ -53,11 +53,7 @@
     width: 120px;
 }
 
-.header section a:hover {
-    color: var(--blue)
-}
-
-.header section span:hover {
+.header section a:hover, .header section span:hover {
     color: var(--blue)
 }
 
@@ -158,10 +154,10 @@
 }
 
 .header .showAllGroups {
-    background: #EC2242;
+    background: var(--pink);
     border-radius: 3px;
     height: 40px;
-    width: 170px;
+    width: 70%;
     margin: 20px;
     text-align: center;
     cursor: pointer;
@@ -171,9 +167,9 @@
     color: white;
     font-size: 16.5px;
     font-weight: bold;
-    padding: 7px 0;
+    padding: 9px 0;
 }
 
 .header .showAllGroups:hover {
-    background: #CF1734;
+    background: #EC2242;
 }

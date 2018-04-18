@@ -54,7 +54,7 @@ export default class Header extends Component {
                                     <div className='fiveGroups'>
                                         {groupList}
                                         <div className='showAllGroups' >
-                                            <h5>Show All My Groups</h5>
+                                            <Link to='/home'><h5>Show All My Groups</h5></Link>
                                         </div>
                                     </div>
                                     :

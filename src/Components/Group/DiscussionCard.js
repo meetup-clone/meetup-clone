@@ -9,7 +9,7 @@ export default function DiscussionCard(props) {
                 <div className="discussionCardTop">
                     <img src={props.avatar} alt="" />
                     <h5>{props.userName}</h5>
-                    <p> - date</p>
+                    <p>{props.date}</p>
                 </div>
                 <img className="threeDots" src={dots} alt="..." />
             </div>
