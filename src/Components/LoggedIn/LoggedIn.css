@@ -97,7 +97,8 @@
 .loggedIn .filter {
     background: var(--black);
     height: 70px;
-    width: 85%;
+    width: 86%;
+    max-width: 963px;
     margin: auto;
     color: white;
     display: flex;
@@ -119,21 +120,22 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0);
     z-index: 20;
 }
 
 .loggedIn .meetupsFilter {
-    display: flex;
     position: absolute;
+    top: 70px;
+    margin-left: 15%;
+    display: flex;
     height: 250px;
     width: 80%;
+    max-width: 900px;
     background: white;
     box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0;
     border-radius: 3px;
-    z-index: 4;
-    top: 350px;
-    left: 100px;
+    z-index: 25;
     color: #757575;
     font-weight: 400;
     font-size: 17px;
@@ -142,15 +144,18 @@
 }
 
 .loggedIn .filterColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     width: 25%;
 }
 
 .loggedIn .categories {
-    padding: 10px 10px 10px 15px;
+    padding: 15px 40px 15px 40px;
     cursor: pointer;
 }
 
-.loggedIn .categories:hover {
+.loggedIn .filterColumn .categories:hover {
     background: var(--pink);
     color: white;
 }
@@ -225,7 +230,7 @@
     border-style: solid;
     border-color: #454A51;
     text-align: center;
-    margin: 12px;
+    margin: 11px;
     position: absolute;
     right: 0;
     color: #BABCBE;

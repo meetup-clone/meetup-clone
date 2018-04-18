@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './GroupsView.css'
-import outdoors from '../../Assets/outdoors.jpeg'
+import defaultImg from '../../Assets/default-image.png'
 
 export default class GroupsView extends Component {
     constructor(props) {
         super(props)
         this.state = {
             moreToggle: true,
-            numToShow: 6
+            numToShow: 9
         }
         this.filterGroups = this.filterGroups.bind(this)
         this.groupsList = this.groupsList.bind(this)
@@ -19,22 +19,28 @@ export default class GroupsView extends Component {
         if (window.scrollY > 283) window.scrollTo(0, 283)
     }
 
-    filterGroups() {
+    filterGroups(type) {
         const { myGroups, allGroups, category } = this.props
-        let idArray = myGroups.map(e => e.group_id)
-        let filteredGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
-        return filteredGroups.slice(0, this.state.numToShow)
+        if (type === 'myGroupsCards') {
+            let filteredGroups = myGroups.filter(e => e.categories.includes(category))
+            return filteredGroups.slice(0, this.state.numToShow)
+        } 
+        else {
+            let idArray = myGroups.map(e => e.group_id)
+            let filteredGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
+            return filteredGroups.slice(0, this.state.numToShow)
+        }
     }
 
-    groupsList(groups) {
-        return groups.map((e, i) => {
+    groupsList(type) {
+        return this.filterGroups(type).map((e, i) => {
             return (
                 <Link to={`/${e.url_name}`} key={e.group_id + e.group_name + i}>
-                    <div className='groupCard'>
+                    <div className={`groupsCards ${type}`}>
                         {e.img ?
                             <img src={e.img} alt={e.group_name} />
                             :
-                            <img src={outdoors} alt='outdoors' />
+                            <img src={defaultImg} alt='default-img' />
                         }
                         <div className='groupCardText'>
                             <h3>{e.group_name}</h3>
@@ -47,7 +53,7 @@ export default class GroupsView extends Component {
     }
 
     showMore() {
-        let num = this.state.numToShow + 6
+        let num = this.state.numToShow + 9
         if (num > this.filterGroups().length) {
             this.setState({ moreToggle: false, numToShow: num })
         }
@@ -66,14 +72,14 @@ export default class GroupsView extends Component {
                         <div>
                             <h4>YOUR MEETUPS</h4>
                             <div className='groupCardContainer'>
-                                {this.groupsList(myGroups)}
+                                {this.groupsList('myGroupsCards')}
                             </div>
                         </div>
                         : null
                     }
                     <h4>SUGGESTED MEETUPS</h4>
                     <div className='groupCardContainer'>
-                        {this.groupsList(this.filterGroups())}
+                        {this.groupsList('allGroupsCards')}
                     </div>
                     {moreToggle ?
                         <div 
