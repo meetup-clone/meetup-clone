@@ -13,6 +13,8 @@ import dots from '../Assets/dots.svg'
 import bigRightArrow from '../Assets/bigRightArrow.svg'
 import twitter from '../Assets/twitter.svg'
 import defaultImage from '../Assets/default-image.png'
+import cirlceCalendar from '../Assets/circle-calendar.svg'
+import downArrow from '../Assets/darkgray-down-arrow.svg'
 
 
 export default class Group extends Component {
@@ -147,8 +149,8 @@ export default class Group extends Component {
                 <Header />
                 <div className="groupCard">
                     <div className="groupImage" >
-                    {this.state.group.img ?
-                        <img className="groupCardLogo" src={this.state.group.img} alt="logo" /> : <img className="groupCardLogo" src={defaultImage} alt="logo"/>}
+                        {this.state.group.img ?
+                            <img className="groupCardLogo" src={this.state.group.img} alt="logo" /> : <img className="groupCardLogo" src={defaultImage} alt="logo" />}
                     </div>
                     <div className="groupInfo">
                         <h1 style={{ marginTop: -10 }}>{this.state.group.group_name}</h1>
@@ -171,12 +173,18 @@ export default class Group extends Component {
                         </div>
                         <div className="groupButtonWrapper">
                             {this.state.members.filter(obj => obj.user_id === this.state.user.user_id).length > 0 ?
-                                <button className="memberBtn">you is a member bish</button>
+                                this.state.members[0].user_id === this.state.user.user_id ?
+                                    <div className="toggleGroupButtonWrapper">
+                                        <button onClick={() => this.joinGroup()} className="joinBtn">Schedule</button>
+                                        <button className="whiteBtn"><img style={{ height: 10, width: 10 }} src={dots} alt="..." /></button>
+                                    </div>
+                                    :
+                                    <button className="memberBtn">You're a member   <img src={downArrow} alt="arrow" /></button>
                                 :
                                 <div className="toggleGroupButtonWrapper">
-                                <button onClick={() => this.joinGroup()} className="joinBtn">Join us</button>
-                            <button className="whiteBtn"><img style={{ height: 10, width: 10 }} src={dots} alt="..." /></button>
-                            </div>}
+                                    <button onClick={() => this.joinGroup()} className="joinBtn">Join us</button>
+                                    <button className="whiteBtn"><img style={{ height: 10, width: 10 }} src={dots} alt="..." /></button>
+                                </div>}
                             <button className="whiteBtn"><img style={{ height: 15, width: 15 }} src={bigRightArrow} alt="big right arrow" /></button>
                         </div>
                     </div>
@@ -184,8 +192,15 @@ export default class Group extends Component {
                 <div className="groupNavBarWrapper">
                     <div>
                         <ul className="groupNavBar">
-                            <li onClick={() => this.toggleToGroup()} >Our Group</li>
-                            <li onClick={() => this.toggleToMeetups()} >Meetups</li>
+                            {this.state.meetupToggle ?
+                                <div style={{ width: 175 }} className="flexBetween">
+                                    <li style={{ color: "#00a2c7" }} onClick={() => this.toggleToGroup()}>Our Group</li>
+                                    <li onClick={() => this.toggleToMeetups()} >Meetups</li></div>
+                                :
+                                <div style={{ width: 175 }} className="flexBetween">
+                                    <li onClick={() => this.toggleToGroup()}>Our Group</li>
+                                    <li style={{ color: "#00a2c7" }} onClick={() => this.toggleToMeetups()} >Meetups</li>
+                                </div>}
                             <li>Members</li>
                             <li>Photos</li>
                             <li>Discussions</li>
@@ -205,22 +220,27 @@ export default class Group extends Component {
                                     </div>
                                 </div>
                                 {this.state.events.length > 0 ?
-                                <GroupEventCard eventName={this.state.events[0].event_name}
-                                    eventDescription={this.state.events[0].event_description}
-                                    venueName={this.state.events[0].venue_name}
-                                    venueCity={this.state.events[0].venue_city}
-                                    venueAddress={this.state.events[0].venue_address}
-                                    groupUrl={this.state.group.url_name}
-                                    eventId={this.state.events[0].event_id}
-                                    startDate={this.state.events[0].start_date}
-                                    endDate={this.state.events[0].end_date}
-                                    hosted={this.state.events[0]}
-                                    attendees={firstEventAttendees}
-                                    attendEvent={this.attendEvent}
-                                    cancelAttend={this.cancelAttend}
-                                />
-                                :
-                                null}
+                                    <GroupEventCard eventName={this.state.events[0].event_name}
+                                        eventDescription={this.state.events[0].event_description}
+                                        venueName={this.state.events[0].venue_name}
+                                        venueCity={this.state.events[0].venue_city}
+                                        venueAddress={this.state.events[0].venue_address}
+                                        groupUrl={this.state.group.url_name}
+                                        eventId={this.state.events[0].event_id}
+                                        startDate={this.state.events[0].start_date}
+                                        endDate={this.state.events[0].end_date}
+                                        hosted={this.state.events[0]}
+                                        attendees={firstEventAttendees}
+                                        attendEvent={this.attendEvent}
+                                        cancelAttend={this.cancelAttend}
+                                    />
+                                    :
+                                    <div className="groupEventCardPlaceholder">
+                                        <div className="noMeetupDiv">
+                                            <img style={{ height: 75, width: 75 }} src={cirlceCalendar} alt="calendar" />
+                                            <h3>No Upcoming Meetups</h3>
+                                        </div>
+                                    </div>}
                             </div>
                             <div className="aligner">
                                 <div className="innerLeftAligner">
@@ -263,8 +283,12 @@ export default class Group extends Component {
                                         <DiscussionInput comment={this.state.newComment} user={this.state.user} postDiscussion={this.postDiscussion} typingComment={this.typingComment} />
                                         {mappedGroupComments.slice((mappedGroupComments.length - 4), mappedGroupComments.length)}
                                     </div>
-                                    <div className="descriptionSpacer"></div>
                                     <div className="descriptionSpacer">
+                                    <div className="eventsAttendeesTop">
+                                        <p>Find us also at</p>
+                                    </div>
+                                </div>
+                                    <div style={{paddingTop: 0}} className="descriptionSpacer">
                                         <button className="socialHolder">
                                             <img style={{ height: 20, width: 20 }} src={twitter} alt="" />
                                             <p>Twitter</p>
@@ -278,13 +302,26 @@ export default class Group extends Component {
                                             <h2 style={{ fontSize: 20 }}>Upcoming Meetups</h2>
                                             <span>See All</span>
                                         </div>
-                                        <div className="pastEventsHolder">
-                                            {pastEvents.slice(1, 4)}
-                                        </div>
+                                        {pastEvents.length < 1 ?
+                                            <div className="miniGroupEventCardPlaceholder">
+                                                <div className="noMeetupDiv">
+                                                    <img style={{ height: 75, width: 75 }} src={cirlceCalendar} alt="calendar" />
+                                                    <h3>No Upcoming Meetups</h3>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className="pastEventsHolder">
+                                                {pastEvents.slice(1, 4)}
+                                            </div>}
                                     </div>
                                 </div>
                             </div>
                             {/* -------------------------------------------------------------------------------------------- */}
+                            <div className="descriptionSpacer">
+                                    <div className="eventsAttendeesTop">
+                                        <p>Related topics</p>
+                                    </div>
+                                </div>
                             <div className="groupEventCardHolder">
                                 <div className="groupTagWrapper">
                                     <div className="groupTagItem"><span>Internet Professionals</span></div>
@@ -306,8 +343,7 @@ export default class Group extends Component {
                                     <div className="groupTagItem"><p>Internet Professionals</p></div>
                                     <div className="groupTagItem"><p>Internet Professionals</p></div>
                                 </div>
-                                <div className="descriptionSpacer">
-                                    <hr />
+                                <div className="descriptionSpacerTopBorder">
                                 </div>
                                 <div className="descriptionSpacer">
                                     <div className="eventsAttendeesTop">
@@ -315,32 +351,57 @@ export default class Group extends Component {
                                         <span>See All</span>
                                     </div>
                                 </div>
-                                {/* <div className="bottomDiscussionHolder">
-                            <PastEventCard
-                                startDate={1527685200000}
-                                endDate={1527692400000}
-                                eventName={"FreeCodeCamp - Study Group"}
-                                groupUrl={"UtahJS"}
-                            />
-                            <PastEventCard
-                                startDate={this.state.events.start_date}
-                                endDate={this.state.events.end_date}
-                                eventName={this.state.events.event_name}
-                                groupUrl={this.state.group.url_name}
-                            />
-                            <PastEventCard
-                                startDate={this.state.events.start_date}
-                                endDate={this.state.events.end_date}
-                                eventName={this.state.events.event_name}
-                                groupUrl={this.state.group.url_name}
-                            />
-                        </div> */}
+                                <div className="bottomDiscussionHolder">
+                                    <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />
+                                    <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />                        <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />
+                                </div>
                                 <div className="descriptionSpacer"></div>
                             </div>
                         </div>
                         :
                         <div className="groupEventCardHolder">
                             <MeetupsTab togglePast={this.togglePast} toggleFuture={this.toggleFuture} meetupTimeToggle={this.state.meetupTimeToggle} events={this.state.events} groupUrl={this.state.group.url_name} attendees={this.state.attendees} />
+                            <div className="bottomDiscussionHolder">
+                                    <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />
+                                    <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />                        <PastEventCard
+                                        startDate={1527685200000}
+                                        endDate={1527692400000}
+                                        eventName={"FreeCodeCamp - Study Group"}
+                                        groupUrl={"UtahJS"}
+                                        attendees={this.state.attendees}
+                                    />
+                                </div>
+                                <div className="descriptionSpacer"></div>
                         </div>
                     }
                 </div>
