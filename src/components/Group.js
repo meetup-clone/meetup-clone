@@ -133,17 +133,16 @@ export default class Group extends Component {
     render() {
         const { groupComments, events, members, attendees } = this.state;
         let firstEventAttendees = attendees.filter(obj => obj.event_id === this.state.events[0].event_id)
-        const mappedGroupComments = groupComments.map((obj) => {
-            return <DiscussionCard date={obj.date} comment={obj.comment} userName={obj.username} avatar={obj.image} />
+        const mappedGroupComments = groupComments.map((obj, i) => {
+            return <DiscussionCard key={i} date={obj.date} comment={obj.comment} userName={obj.username} avatar={obj.image} />
         })
-        const mappedMembers = members.map((obj) => {
-            return <AttendeeCard image={obj.image} username={obj.username} index={obj.member_id} />
+        const mappedMembers = members.map((obj, i) => {
+            return <AttendeeCard key={i} image={obj.image} username={obj.username} index={obj.member_id} />
         })
-        const pastEvents = events.filter(obj => obj.start_date > Date.now()).map((obj) => {
+        const pastEvents = events.filter(obj => obj.start_date > Date.now()).map((obj, i) => {
             let mappedAttendees = attendees.filter(x => x.event_id === obj.event_id)
-            return <PastEventCard attendees={mappedAttendees} startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
+            return <PastEventCard key={i} attendees={mappedAttendees} startDate={obj.start_date} endDate={obj.end_date} eventName={obj.event_name} groupUrl={this.state.group.url_name} eventId={obj.event_id} />
         })
-        console.log(this.state)
         return (
             <div className='group'>
                 <Header />
