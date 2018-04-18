@@ -45,6 +45,11 @@ module.exports = {
         req.app.get('db').joinGroup([req.user.user_id, req.body.groupId]).then(members => {
             res.status(200).send(members)
         })
+    },
+    cancelGroup: (req, res) => {
+        req.app.get('db').cancelGroup([req.user.user_id, req.params.id]).then(members => {
+            res.status(200).send(members)
+        })
     }
     
 }

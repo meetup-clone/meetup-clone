@@ -34,7 +34,6 @@
     display: flex;
     flex-direction: column;
     max-width: 700px;
-    min-width: 94%;
     margin-right: 20px;
 }
 
@@ -133,7 +132,6 @@
     flex-direction: column;
     text-align: left;
     width: 100%;
-    min-width: 230px;
     height: auto;
 }
 
@@ -176,7 +174,6 @@
 
 .calendarView .calendarComponent {
     height: auto;
-    min-width: 230px;
     width: 100%;
     margin-top: 10px;
     border: 1px;

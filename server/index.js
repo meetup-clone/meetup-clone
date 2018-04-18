@@ -72,6 +72,7 @@ app.get('/api/groups/:id', groupCtrl.getGroupByGroup)
 app.post('/api/groups', groupCtrl.createGroup)
 app.post('/api/postdiscussion', groupCtrl.postDiscussion)
 app.post('/api/joingroup', groupCtrl.joinGroup)
+app.delete('/api/cancelgroup/:id', groupCtrl.cancelGroup)
 
 
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import GroupEventCard from './GroupEventCard';
+import cirlceCalendar from '../../Assets/circle-calendar.svg'
+import blueCalendar from '../../Assets/blue-calendar.svg'
 
 
 export default function MeetupsTab(props) {
@@ -35,27 +37,64 @@ export default function MeetupsTab(props) {
     })
     return (
         <div className="meetupTabMain">
-            <div>
-                <span onClick={() => props.toggleFuture()}>Coming Events</span>
-                <span onClick={() => props.togglePast()}>Past Events</span>
-            </div>
+            {props.meetupTimeToggle ?
+                <div className="eventsAttendeesTop">
+                    <div className="meetupTabNav">
+                        <div className="notSelectedTab"><h3 onClick={() => props.toggleFuture()}>Upcoming</h3></div>
+                        <div className="selectedTab" ><h3 onClick={() => props.togglePast()}>Past</h3></div>
+                    </div>
+                    <Link to='/home'><div className="meetupCalendarHolder">
+                        <img style={{ height: 18, width: 18 }} src={blueCalendar} alt="calendar" />
+                        <span>Calendar</span>
+                    </div></Link>
+                </div>
+                :
+                <div className="eventsAttendeesTop">
+                    <div className="meetupTabNav">
+                        <div className="selectedTab"><h3 onClick={() => props.toggleFuture()}>Upcoming</h3></div>
+                        <div className="notSelectedTab" ><h3 onClick={() => props.togglePast()}>Past</h3></div>
+                    </div>
+                    <Link to='/home'><div className="meetupCalendarHolder">
+                        <img style={{ height: 18, width: 18 }} src={blueCalendar} alt="calendar" />
+                        <span>Calendar</span>
+                    </div></Link>
+                </div>}
             {props.meetupTimeToggle ?
                 <div className="toggleDiv">
-                    <div className="eventsAttendeesTop">
-                        <h2 style={{ fontSize: 20 }}>Past Meetups</h2>
-                        <span>See All</span>
-                    </div>
-                    {mappedPastGroupEventCards}
+                    {mappedPastGroupEventCards.length < 1 ?
+                        <div className="groupEventCardPlaceholder">
+                            <div className="noMeetupDiv">
+                                <img style={{ height: 75, width: 75 }} src={cirlceCalendar} alt="calendar" />
+                                <h3>No Past Meetups</h3>
+                            </div>
+                        </div>
+                        :
+                        <div>
+                            {mappedPastGroupEventCards}
+                        </div>}
                 </div>
                 :
                 <div className="toggleDiv">
-                    <div className="eventsAttendeesTop">
-                        <h2 style={{ fontSize: 20 }}>Coming Meetups</h2>
-                        <span>See All</span>
-                    </div>
-                    {mappedComingGroupEventCards}
+                    {mappedComingGroupEventCards.length < 1 ?
+                        <div className="groupEventCardPlaceholder">
+                            <div className="noMeetupDiv">
+                                <img style={{ height: 75, width: 75 }} src={cirlceCalendar} alt="calendar" />
+                                <h3>No Upcoming Meetups</h3>
+                            </div>
+                        </div>
+                        :
+                        <div>
+                            {mappedComingGroupEventCards}
+                        </div>}
                 </div>}
             <div className="descriptionSpacer"></div>
+            <div className="descriptionSpacerTopBorder"></div>
+            <div className="descriptionSpacer">
+                <div className="eventsAttendeesTop">
+                    <h2 style={{ fontSize: 20 }}>More Meetups</h2>
+                    <span>See All</span>
+                </div>
+            </div>
         </div>
     )
 }

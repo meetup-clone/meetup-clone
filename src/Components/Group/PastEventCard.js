@@ -35,20 +35,25 @@ export default function PastEventCard(props) {
                         <h2>{props.eventName}</h2>
                     </div>
                 </div>
-                <div style={{ alignItems: "center", paddingLeft: 20 }} className="organizerWrapper">
-                    <img className="hostedAvatar" src={props.attendees[0].image} alt="avatar" />
-                    <p>hosted by {props.attendees[0].username}</p>
-                </div>
-                <div className="miniBottomDiv">
-                    <div className="miniGroupAvatarHolder">
-                        <ul>
-                            {mappedList.slice(0, 3)}
-                            <li id="peopleGoing">{props.attendees.length} going</li>
-                        </ul>
+                {props.attendees.length > 1 ?
+                    <div style={{ alignItems: "center", paddingLeft: 20 }} className="organizerWrapper">
+                        <img className="hostedAvatar" src={props.attendees[0].image} alt="avatar" />
+                        <p className="blackp" >hosted by {props.attendees[0].username}</p>
                     </div>
-                </div>
+                    : <div style={{ alignItems: "center", paddingLeft: 20 }} className="organizerWrapper">
+                        <img className="hostedAvatar" src={avatar} alt="avatar" />
+                        <p className="blackp" >hosted by </p>
+                    </div>}
+                    <div className="miniBottomDiv">
+                        <div className="miniGroupAvatarHolder">
+                            <ul>
+                                {mappedList.slice(0, 3)}
+                                <li id="peopleGoing">{props.attendees.length} going</li>
+                            </ul>
+                        </div>
+                    </div>
             </Link>
         </div>
 
-    )
+            )
 }
