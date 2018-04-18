@@ -17,10 +17,10 @@ export default function PastEventCard(props) {
     var fullYear = newDate.getFullYear()
     var time = newDate.toLocaleTimeString()
     var splicedTime = `${time.substring(0, time.length - 6)} ${time.substring(time.length - 3, time.length)}`
-    const mappedList = props.attendees.map(obj => {
+    const mappedList = props.attendees.map((obj, i) => {
         let avatarImage = { avatar }
         obj.image ? avatarImage = obj.image : avatarImage = { avatar };
-        return <li style={{ backgroundImage: `url(${avatarImage})` }}></li>
+        return <li key={i} style={{ backgroundImage: `url(${avatarImage})` }}></li>
     })
     return (
         <div className="miniEventMainDiv">

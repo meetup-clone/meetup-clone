@@ -18,10 +18,10 @@ export default function GroupEventCard(props) {
     var time = newDate.toLocaleTimeString()
     var splicedTime = `${time.substring(0, time.length - 6)} ${time.substring(time.length - 3, time.length)}`
 
-    var groupMappedList = props.attendees.map(obj => {
+    var groupMappedList = props.attendees.map((obj, i) => {
         let avatarImage = { avatar }
         obj.image ? avatarImage = obj.image : avatarImage = { avatar };
-        return <li style={{ backgroundImage: `url(${avatarImage})` }}></li>
+        return <li key={i} style={{ backgroundImage: `url(${avatarImage})` }}></li>
     })
     return (
         <div className="groupEventCard">
@@ -51,7 +51,7 @@ export default function GroupEventCard(props) {
                         </div>
                     </div>
                     <div className="groupEventCardRight">
-                        <button onCLick={() => props.attendEvent()}>Attend</button>
+                        <button onClick={() => props.attendEvent()}>Attend</button>
                         <div className="organizerWrapper" style={{ width: '100%', paddingTop: 25 }}>
                             <img style={{ height: 25, width: 25 }} src={mapPin} alt="" />
                             <div className="groupAddress">

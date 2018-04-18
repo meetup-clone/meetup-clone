@@ -348,8 +348,6 @@ vertical-align: middle;
 .descriptionSpacer p {
     color: var(--gray);
     font-size: .875rem;
-    line-height: 1.6;
-
 }
 .descriptionSpacerTopBorder {
     width: 100%;
