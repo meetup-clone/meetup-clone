@@ -111,9 +111,10 @@ export default class Events extends Component {
     }
 
     render() {
+        console.log(this.state.event)
         const { event_description, event_name, venue_address,
                 venue_city, venue_directions, venue_name,
-                group_name } = this.state.event
+                group_name, latitude, longitude } = this.state.event
         const { attendees, comments, currentUser, commentInput } = this.state
 
         let eightAttendees = attendees.slice(0, 8)
@@ -127,11 +128,11 @@ export default class Events extends Component {
 
         const MapWithAMarker = withScriptjs(withGoogleMap(props =>
             <GoogleMap
-                defaultZoom={12}
-                defaultCenter={{ lat: 40.760654, lng: -111.891096 }}
+                defaultZoom={14}
+                defaultCenter={{ lat: latitude, lng: longitude }}
             >
                 <Marker
-                    position={{ lat: 40.760654, lng: -111.891096 }}
+                    position={{ lat: latitude, lng: longitude }}
                 />
             </GoogleMap>
         ))
@@ -239,15 +240,3 @@ export default class Events extends Component {
         )
     }
 }
-// group_name: UtahJS
-// end_date:1523502000000
-// event_description:"6:30 – 7:30 JS Learners Meetup"
-// event_id:3
-// event_name:"UtahJS SLC Meetup"
-// group_id:1
-// start_date:1523494800000
-// venue_address:"1930 S. State St"
-// venue_city:"Salt Lake City"
-// venue_directions:"Southwest end of O.C. Tanner Campus"
-// venue_name:"O.C. Tanner Event Center"
-// venue_state:"UT"
