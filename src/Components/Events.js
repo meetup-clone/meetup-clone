@@ -119,7 +119,7 @@ export default class Events extends Component {
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
-            return <AttendeeCard key={x.user_id+i} index={i} image={x.image} username={x.username} />
+            return <AttendeeCard key={x.user_id+i*2} index={i} image={x.image} username={x.username} />
         })
 
         const mappedComments = comments.map((x, i) => {
@@ -150,9 +150,9 @@ export default class Events extends Component {
                                 <h4>{this.dateString}</h4>
                                 <h2>{event_name}</h2>
                                 <div className='eventsTopImageContent'>
-                                    <img className='eventCardAvatar' id='organizerAvatar' src={attendees[0].image} alt="img" />
+                                    <img className='eventCardAvatar' id='organizerAvatar' src={attendees.length ? attendees[0].image : null} alt="img" />
                                     <div>
-                                        <h5>Hosted by <span>{attendees[0].username}</span></h5>
+                                        <h5>Hosted by <span>{attendees.length ? attendees[0].username : null}</span></h5>
                                         <Link to={`/${group_name}`}><h5>From <span>{group_name}</span></h5></Link>
                                     </div>
                                 </div>
