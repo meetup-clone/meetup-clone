@@ -28,7 +28,7 @@
 .groupInfoHolder {
     display: flex;
     flex-direction: column;
-    margin-top: -95px;
+    margin-top: -60px;
     height: 175px;
     justify-content: space-between;
 }
@@ -135,7 +135,6 @@
 .organizerWrapper {
     display: flex;
     width: auto;
-    margin-top: 20px;
 }
 .organizerWrapper p {
     margin-left: 10px;
@@ -301,11 +300,12 @@ vertical-align: middle;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    line-height: 1.5px;
 
 }
 .dateAndTitleDiv h1 {
     font-size: 1.75rem;
+    margin: 0;
+    padding-top: 3px;
 }
 .hostedAvatar {
     height: 30px;
