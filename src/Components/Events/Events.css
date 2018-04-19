@@ -275,12 +275,12 @@
 
 .eventsSticky {
     box-sizing: border-box;
-    padding-bottom: 42px;
+    padding-bottom: 20px;
 }
 
 .eventsMap {
     max-width: 340px;
-    height: 400px;
+    /* height: 400px; */
     background: white;
     border-radius: 10px;
     box-sizing: border-box;
@@ -310,6 +310,7 @@
 .eventsTimeHolder h6 {
     font-size: 14px;
     font-weight: 300;
+    word-wrap: break-word;
 }
 
 .eventsTimeHolder span {
