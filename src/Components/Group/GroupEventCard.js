@@ -38,7 +38,7 @@ export default function GroupEventCard(props) {
                             <p>{dayOfWeek}, {month} {date}, {fullYear}, {splicedTime}</p>
                             <h1>{props.eventName}</h1>
                         </div>
-                        <div style={{ alignItems: "center" }} className="organizerWrapper">
+                        <div style={{ alignItems: "center", paddingTop: 35 }} className="organizerWrapper">
                             <img className="hostedAvatar" src={props.attendees.length > 0 ? props.attendees[0].image : avatar} alt="avatar" />
                             <p>hosted by {props.attendees.length > 0 ? props.attendees[0].username : null}</p>
                         </div>

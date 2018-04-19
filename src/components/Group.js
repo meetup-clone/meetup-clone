@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header';
 import './Group/Group.css'
 import axios from "axios"
+import { Link } from 'react-router-dom'
 import GroupEventCard from './Group/GroupEventCard';
 import PastEventCard from './Group/PastEventCard';
 import DiscussionCard from './Group/DiscussionCard';
@@ -174,7 +175,7 @@ export default class Group extends Component {
                             {this.state.members.filter(obj => obj.user_id === this.state.user.user_id).length > 0 ?
                                 this.state.members[0].user_id === this.state.user.user_id ?
                                     <div className="toggleGroupButtonWrapper">
-                                        <button onClick={() => this.joinGroup()} className="joinBtn">Schedule</button>
+                                        <Link to={`/schedule/${this.state.group.group_id}`}><button className="joinBtn">Schedule</button></Link>
                                         <button className="whiteBtn"><img style={{ height: 10, width: 10 }} src={dots} alt="..." /></button>
                                     </div>
                                     :
@@ -215,7 +216,7 @@ export default class Group extends Component {
                                 <div className="descriptionSpacer">
                                     <div className="eventsAttendeesTop">
                                         <h2 style={{ fontSize: 20 }}>Next Meetup</h2>
-                                        <span>See All</span>
+                                        <span onClick={() => this.toggleToMeetups()}>See All</span>
                                     </div>
                                 </div>
                                 {this.state.events.length > 0 ?
