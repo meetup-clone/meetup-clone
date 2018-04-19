@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { HashRouter } from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 ReactDOM.render(
-    <HashRouter>
-        <App />
-    </HashRouter>, document.getElementById('root'));
+    <MuiThemeProvider>
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </MuiThemeProvider>, document.getElementById('root'));

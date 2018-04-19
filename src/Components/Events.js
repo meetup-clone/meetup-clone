@@ -12,8 +12,8 @@ import EventComment from './Events/EventComment'
 import clock from '../Assets/clock.svg'
 import mapPin from '../Assets/mapPin.svg'
 import calendar from '../Assets/white-calendar.svg'
+import EventMap from './Events/EventMap'
 import Footer from './Footer'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 export default class Events extends Component {
     constructor() {
@@ -21,6 +21,7 @@ export default class Events extends Component {
 
         this.state = {
             event: {},
+            mapUpdate: true,
             attendees: [{}],
             commentInput: '',
             comments: [],
@@ -43,7 +44,7 @@ export default class Events extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         axios.get(`/api/event/${this.props.match.params.event}`).then(res => {
-            this.setState({ event: res.data[0] })
+            this.setState({ event: res.data[0], mapUpdate: false })
             let date = new Date(this.state.event.start_date)
             let endDate = new Date(this.state.event.end_date)
             let today = date.getDay()
@@ -115,7 +116,7 @@ export default class Events extends Component {
         const { event_description, event_name, venue_address,
                 venue_city, venue_directions, venue_name,
                 group_name, latitude, longitude } = this.state.event
-        const { attendees, comments, currentUser, commentInput } = this.state
+        const { attendees, comments, currentUser, commentInput, mapUpdate } = this.state
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
@@ -125,17 +126,6 @@ export default class Events extends Component {
         const mappedComments = comments.map((x, i) => {
             return <EventComment key={x.comment_id} comment={x.comment} date={x.date} image={x.image} username={x.username} />
         })
-
-        const MapWithAMarker = withScriptjs(withGoogleMap(props =>
-            <GoogleMap
-                defaultZoom={14}
-                defaultCenter={{ lat: latitude, lng: longitude }}
-            >
-                <Marker
-                    position={{ lat: latitude, lng: longitude }}
-                />
-            </GoogleMap>
-        ))
         return (
             <div>
                 <Header />
@@ -225,12 +215,7 @@ export default class Events extends Component {
                                         <h6>{venue_directions}</h6>
                                     </div>
                                 </div>
-                                <MapWithAMarker
-                                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-                                    loadingElement={<div style={{ height: `100%` }} />}
-                                    containerElement={<div style={{ height: `212px` }} />}
-                                    mapElement={<div style={{ height: `212px` }} />}
-                                />
+                                <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={mapUpdate}/>
                             </section>
                         </section>
                     </div>

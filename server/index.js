@@ -87,6 +87,7 @@ app.post('/api/attendevent', eventCtrl.attendEvent)
 app.delete('/api/cancelattend/:id', eventCtrl.cancelAttend)
 app.post('/api/postcomment', eventCtrl.postComment)
 app.get('/api/event/comments/:id', eventCtrl.getEventComments)
+app.post('/api/createEvent', eventCtrl.createEvent)
 
 
 
