@@ -25,6 +25,11 @@ module.exports = {
             })
         })
     },
+    getGroupName: (req, res) => {
+        req.app.get('db').getGroupName([req.params.id]).then(groupName => {
+            res.status(200).send(groupName[0])
+        })
+    },
     createGroup: (req, res) => {
         const db = req.app.get('db')
         req.body.organizer = req.user.user_id
