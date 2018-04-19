@@ -10,7 +10,8 @@ export default class GroupsView extends Component {
             moreToggle: true,
             numToShow: 9
         }
-        this.filterGroups = this.filterGroups.bind(this)
+        this.filterMyGroups = this.filterMyGroups.bind(this)
+        this.filterAllGroups = this.filterAllGroups.bind(this)
         this.groupsList = this.groupsList.bind(this)
         this.showMore = this.showMore.bind(this)
     }
@@ -19,21 +20,31 @@ export default class GroupsView extends Component {
         if (window.scrollY > 283) window.scrollTo(0, 283)
     }
 
-    filterGroups(type) {
+    filterMyGroups() {
+        const { myGroups, category } = this.props
+        if (myGroups.length === 0) return []
+        let filteredMyGroups = myGroups.filter(e => e.categories.includes(category))
+        return filteredMyGroups.slice(0, this.state.numToShow)
+    }
+
+    filterAllGroups() {
         const { myGroups, allGroups, category } = this.props
-        if (type === 'myGroupsCards') {
-            let filteredGroups = myGroups.filter(e => e.categories.includes(category))
-            return filteredGroups.slice(0, this.state.numToShow)
-        } 
-        else {
-            let idArray = myGroups.map(e => e.group_id)
-            let filteredGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
-            return filteredGroups.slice(0, this.state.numToShow)
-        }
+        if (myGroups.length === 0 || allGroups.length === 0) return []
+        let idArray = myGroups.map(e => e.group_id)
+        let filteredAllGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
+        return filteredAllGroups.slice(0, this.state.numToShow)
     }
 
     groupsList(type) {
-        return this.filterGroups(type).map((e, i) => {
+        let groups = []
+        if (type === 'myGroupsCards') {
+            groups = this.filterMyGroups()
+        }
+        else {
+            groups = this.filterAllGroups()
+        }
+        if (groups.length === 0) return null
+        return groups.map((e, i) => {
             return (
                 <Link to={`/${e.url_name}`} key={e.group_id + e.group_name + i}>
                     <div className={`groupsCards ${type}`}>
@@ -54,7 +65,10 @@ export default class GroupsView extends Component {
 
     showMore() {
         let num = this.state.numToShow + 9
-        if (num > this.filterGroups().length) {
+        if (this.filterAllGroups().length === 0) {
+            this.setState({ moreToggle: false, numToShow: 9 })
+        }
+        if (num > this.filterAllGroups().length) {
             this.setState({ moreToggle: false, numToShow: num })
         }
         else {
@@ -82,8 +96,8 @@ export default class GroupsView extends Component {
                         {this.groupsList('allGroupsCards')}
                     </div>
                     {moreToggle ?
-                        <div 
-                            className='showMore' 
+                        <div
+                            className='showMore'
                             onClick={() => this.showMore()}
                         >
                             Show more

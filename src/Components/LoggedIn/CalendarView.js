@@ -30,13 +30,13 @@ export default class CalendarView extends Component {
         const { cat1, cat2, cat3, cat4, numToShow, date } = this.state
         const { user, myEvents, myGroupEvents, allEvents, category } = this.props
         let offsetDate = date - 7200000
-        if (cat1) {
+        if (cat1 && allEvents.length > 0) {
             let filteredEvents = allEvents.filter(e => {
                 return e.start_date >= offsetDate && e.categories.includes(category)
             })
             return filteredEvents.slice(0, numToShow)
         }
-        else if (cat2) {
+        else if (cat2 && myGroupEvents.length > 0 && allEvents.length > 0) {
             let idArray = myGroupEvents.map(e => e.event_id)
             let filteredEvents = allEvents.filter(e => {
                 return (idArray.includes(e.event_id) && e.start_date >= offsetDate)
@@ -44,18 +44,19 @@ export default class CalendarView extends Component {
             })
             return filteredEvents.slice(0, numToShow)
         }
-        else if (cat3) {
+        else if (cat3 && myGroupEvents.length > 0) {
             let groupEvents = myGroupEvents.filter(e => {
                 return e.start_date >= offsetDate
             })
             return groupEvents.slice(0, numToShow)
         }
-        else if (cat4) {
+        else if (cat4 && myEvents.length > 0) {
             let filteredEvents = myEvents.filter(e => {
                 return e.start_date >= offsetDate
             })
             return filteredEvents.slice(0, numToShow)
         }
+        return []
     }
 
     listEvents() {
@@ -131,8 +132,12 @@ export default class CalendarView extends Component {
     }
 
     showMore() {
+        let events = this.filterEvents()
         let num = this.state.numToShow + 9
-        if (num > this.filterEvents().length) {
+        if (events.length === 0) {
+            this.setState({ moreToggle: false, numToShow: 9 })
+        }
+        if (num > events.length) {
             this.setState({ moreToggle: false, numToShow: num })
         }
         else {
