@@ -20,7 +20,7 @@
 }
 
 .loggedIn .myEventContent h5 {
-    margin: 15px 0 0 0;
+    margin: 15px 0 0 10px;
 }
 
 .loggedIn .myEventContent hr {
@@ -42,6 +42,10 @@
 
 .loggedIn .myEventName h1 {
     margin-top: 0;
+}
+
+.loggedIn .myEventName h4 {
+    margin-bottom: 40px;
 }
 
 .loggedIn .myEventTime {

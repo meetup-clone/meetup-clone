@@ -2,7 +2,7 @@
     display: flex;
     margin-top: -35px;
     padding-top: 45px;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
     background: #FAFAFA;
 }
 
@@ -60,6 +60,7 @@
 }
 
 .calendarView .eventTime {
+    margin-right: 20px;
     min-width: 70px;
     color: var(--gray);
 }
