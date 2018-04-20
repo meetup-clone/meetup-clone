@@ -16,6 +16,7 @@ import twitter from '../Assets/twitter.svg'
 import defaultImage from '../Assets/default-image.png'
 import cirlceCalendar from '../Assets/circle-calendar.svg'
 import downArrow from '../Assets/darkgray-down-arrow.svg'
+import chatBox from '../Assets/chatbox.svg'
 
 
 export default class Group extends Component {
@@ -133,6 +134,10 @@ export default class Group extends Component {
 
     render() {
         const { groupComments, events, members, attendees } = this.state;
+        const testAttendees1 = attendees.filter(x => x.event_id === 1);
+        const testAttendees2 = attendees.filter(x => x.event_id === 6);
+        const testAttendees3 = attendees.filter(x => x.event_id === 3);
+
         let firstEventAttendees = attendees.filter(obj => obj.event_id === this.state.events[0].event_id)
         const mappedGroupComments = groupComments.map((obj, i) => {
             return <DiscussionCard key={i} date={obj.date} comment={obj.comment} userName={obj.username} avatar={obj.image} />
@@ -164,10 +169,10 @@ export default class Group extends Component {
                                 <p id="blackBold">{this.state.group.members}</p>
                             </div>
                             <div className="organizerWrapper">
-                                <img className="groupOrganizerAvatar" src={this.state.members[0].image} alt="avatar" />
+                                <img className="groupOrganizerAvatar" src={this.state.members.length > 0 ? this.state.members[0].image : null} alt="avatar" />
                                 <div className="innerOrganizerDiv">
-                                    <p className="tinyText">Organizers</p>
-                                    <p id="blackBold">{this.state.members[0].username}</p>
+                                    <p className="tinyText">Organizer</p>
+                                    <p id="blackBold">{this.state.members.length > 0 ? this.state.members[0].username : null}</p>
                                 </div>
                             </div>
                         </div>
@@ -261,13 +266,16 @@ export default class Group extends Component {
                                         </div>
                                     </div>
                                     <div className="groupOrganizerCard">
-                                        <img src={this.state.members[0].image} alt="organizer" />
-                                        <div className="innerOrganizerDiv">
-                                            <p className="tinyText">Organizers</p>
-                                            <p id="blackBold">{this.state.members[0].username}</p>
+                                        <div style={{ alignItems: "center" }} className="flexBetween">
+                                            <img src={this.state.members[0].image} alt="organizer" />
+                                            <div className="innerOrganizerDiv">
+                                                <p className="tinyText">Organizer</p>
+                                                <p id="blackBold">{this.state.members[0].username}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p>Messages</p>
+                                        <div className="memberMessageDiv">
+                                            <img style={{ height: 20, width: 20, borderRadius: 0 }} src={chatBox} alt="" />
+                                            <p>Message</p>
                                         </div>
                                     </div>
                                     <div className="memberCardHolder">
@@ -284,11 +292,11 @@ export default class Group extends Component {
                                         {mappedGroupComments.slice((mappedGroupComments.length - 4), mappedGroupComments.length)}
                                     </div>
                                     <div className="descriptionSpacer">
-                                    <div className="eventsAttendeesTop">
-                                        <p>Find us also at</p>
+                                        <div className="eventsAttendeesTop">
+                                            <p>Find us also at</p>
+                                        </div>
                                     </div>
-                                </div>
-                                    <div style={{paddingTop: 0}} className="descriptionSpacer">
+                                    <div style={{ paddingTop: 0 }} className="descriptionSpacer">
                                         <button className="socialHolder">
                                             <img style={{ height: 20, width: 20 }} src={twitter} alt="" />
                                             <p>Twitter</p>
@@ -318,30 +326,30 @@ export default class Group extends Component {
                             </div>
                             {/* -------------------------------------------------------------------------------------------- */}
                             <div className="descriptionSpacer">
-                                    <div className="eventsAttendeesTop">
-                                        <p>Related topics</p>
-                                    </div>
+                                <div className="eventsAttendeesTop">
+                                    <p>Related topics</p>
                                 </div>
+                            </div>
                             <div className="groupEventCardHolder">
                                 <div className="groupTagWrapper">
-                                    <div className="groupTagItem"><span>Internet Professionals</span></div>
-                                    <div className="groupTagItem"><p>Internet </p></div>
-                                    <div className="groupTagItem"><p>Internet bleh</p></div>
-                                    <div className="groupTagItem"><p>Internet blooo</p></div>
+                                    <div className="groupTagItem"><span>CSS</span></div>
+                                    <div className="groupTagItem"><p>JavaScript</p></div>
+                                    <div className="groupTagItem"><p>JQuery</p></div>
+                                    <div className="groupTagItem"><p>Web Development</p></div>
                                     <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet eh</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet ahaa</p></div>
-                                    <div className="groupTagItem"><p>Internet asdffg</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet aa</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet </p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet asdf</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
-                                    <div className="groupTagItem"><p>Internet Professionals</p></div>
+                                    <div className="groupTagItem"><p>Computer programming</p></div>
+                                    <div className="groupTagItem"><p>Front-end Development</p></div>
+                                    <div className="groupTagItem"><p>HTML</p></div>
+                                    <div className="groupTagItem"><p>HTML5</p></div>
+                                    <div className="groupTagItem"><p>CSS3</p></div>
+                                    <div className="groupTagItem"><p>Javascript Frameworks</p></div>
+                                    <div className="groupTagItem"><p>NodeJS</p></div>
+                                    <div className="groupTagItem"><p>Javascript Applications</p></div>
+                                    <div className="groupTagItem"><p>ReactJS</p></div>
+                                    <div className="groupTagItem"><p>React Native</p></div>
+                                    <div className="groupTagItem"><p>New Technology</p></div>
+                                    <div className="groupTagItem"><p>Software Engineering</p></div>
+                                    <div className="groupTagItem"><p>Mobile Development</p></div>
                                 </div>
                                 <div className="descriptionSpacerTopBorder">
                                 </div>
@@ -357,20 +365,20 @@ export default class Group extends Component {
                                         endDate={1527692400000}
                                         eventName={"FreeCodeCamp - Study Group"}
                                         groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
+                                        attendees={testAttendees1}
                                     />
                                     <PastEventCard
                                         startDate={1527685200000}
                                         endDate={1527692400000}
-                                        eventName={"FreeCodeCamp - Study Group"}
+                                        eventName={"Daily UI Challenge"}
                                         groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
+                                        attendees={testAttendees2}
                                     />                        <PastEventCard
                                         startDate={1527685200000}
                                         endDate={1527692400000}
-                                        eventName={"FreeCodeCamp - Study Group"}
-                                        groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
+                                        eventName={"UtahJS SLC Meetup"}
+                                        groupUrl={"saltlakedesigners"}
+                                        attendees={testAttendees3}
                                     />
                                 </div>
                                 <div className="descriptionSpacer"></div>
@@ -380,28 +388,29 @@ export default class Group extends Component {
                         <div className="groupEventCardHolder">
                             <MeetupsTab togglePast={this.togglePast} toggleFuture={this.toggleFuture} meetupTimeToggle={this.state.meetupTimeToggle} events={this.state.events} groupUrl={this.state.group.url_name} attendees={this.state.attendees} />
                             <div className="bottomDiscussionHolder">
-                                    <PastEventCard
-                                        startDate={1527685200000}
-                                        endDate={1527692400000}
-                                        eventName={"FreeCodeCamp - Study Group"}
-                                        groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
-                                    />
-                                    <PastEventCard
-                                        startDate={1527685200000}
-                                        endDate={1527692400000}
-                                        eventName={"FreeCodeCamp - Study Group"}
-                                        groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
-                                    />                        <PastEventCard
-                                        startDate={1527685200000}
-                                        endDate={1527692400000}
-                                        eventName={"FreeCodeCamp - Study Group"}
-                                        groupUrl={"UtahJS"}
-                                        attendees={this.state.attendees}
-                                    />
-                                </div>
-                                <div className="descriptionSpacer"></div>
+                                <PastEventCard
+                                    startDate={1527685200000}
+                                    endDate={1527692400000}
+                                    eventName={"FreeCodeCamp - Study Group"}
+                                    groupUrl={"UtahJS"}
+                                    attendees={testAttendees1}
+                                />
+                                <PastEventCard
+                                    startDate={1527685200000}
+                                    endDate={1527692400000}
+                                    eventName={"Daily UI Challenge"}
+                                    groupUrl={"UtahJS"}
+                                    attendees={testAttendees2}
+                                />
+                                <PastEventCard
+                                    startDate={1527685200000}
+                                    endDate={1527692400000}
+                                    eventName={"UtahJS SLC Meetup"}
+                                    groupUrl={"saltlakedesigners"}
+                                    attendees={testAttendees3}
+                                />
+                            </div>
+                            <div className="descriptionSpacer"></div>
                         </div>
                     }
                 </div>
