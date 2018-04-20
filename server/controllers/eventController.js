@@ -52,10 +52,8 @@ module.exports = {
         req.app.get('db').createEvent([group_id, event_name, event_description, venue_name,
             venue_city, venue_state, venue_address, venue_directions,
             start_date, end_date, latitude, longitude]).then(event => {
-                console.log(event[0].event_id)
             req.app.get('db').attendEvent([req.user.user_id, event[0].event_id]).then(smallEvent => {
-                console.log(smallEvent[0].event_id)
-                res.send(200).send(smallEvent[0].event_id)
+                res.status(200).send(smallEvent)
             })
         })
     }

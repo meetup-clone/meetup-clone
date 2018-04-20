@@ -11,9 +11,9 @@ export default class Schedule extends Component {
             groupName: '',
             groupURLName: '',
             event_name: '',
-            startTimeInput: '',
+            startTimeInput: '19:00',
             startDate: new Date(Date.now()),
-            endTimeInput: '',
+            endTimeInput: '21:00',
             endDate: new Date(Date.now()),
             venue_name: '',
             venueAddress: '',
@@ -21,7 +21,8 @@ export default class Schedule extends Component {
             latitude: 0,
             longitude: 0,
             venue_directions: '',
-            event_description: ''
+            event_description: '',
+            mapUpdate: true
         }
     }
 
@@ -41,13 +42,12 @@ export default class Schedule extends Component {
     geocoder() {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.venueAddress}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
             .then(res => {
-                console.log(res.data)
-                console.log(res.data.results[0].formatted_address)
                 this.setState({
                     latitude: res.data.results[0].geometry.location.lat,
                     longitude: res.data.results[0].geometry.location.lng,
                     venueAddress: res.data.results[0].formatted_address,
                     checkLocation: true,
+                    mapUpdate: false
                 })
             })
     }
@@ -70,16 +70,13 @@ export default class Schedule extends Component {
             start_date, end_date, latitude, longitude
         }
         axios.post('/api/createEvent', obj).then(res => {
-            console.log(res.data)
-            console.log(res.data[0])
-            this.props.history.push(`/${groupURLName}/events/${res.data[0]}`)
+            this.props.history.push(`/${groupURLName}/events/${res.data[0].event_id}`)
         })
     }
 
     render() {
-        console.log(this.state)
-        const { startDate, endDate, venueAddress, venue_name,
-            checkLocation, latitude, longitude } = this.state
+        const { startTimeInput, endTimeInput, startDate, endDate, venueAddress, venue_name,
+            checkLocation, latitude, longitude, mapUpdate } = this.state
         return (
             <div className='schedule'>
                 <div className='scheduleContainer'>
@@ -97,13 +94,13 @@ export default class Schedule extends Component {
                                     onChange={(event, date) => this.setState({ startDate: date, endDate: date })} 
                                     id='startDate'
                                     autoOk={true}/>
-                        <input type='time' onChange={e => this.setState({ startTimeInput: e.target.value })} />
+                        <input value={startTimeInput} type='time' onChange={e => this.setState({ startTimeInput: e.target.value })} />
                         <h5>End time</h5>
                         <DatePicker value={endDate} locale='en-US' 
                                     onChange={(event, date) => this.setState({ endDate: date })} 
                                     id='endDate'
                                     autoOk={true}/>
-                        <input type='time' onChange={e => this.setState({ endTimeInput: e.target.value })} />
+                        <input value={endTimeInput} type='time' onChange={e => this.setState({ endTimeInput: e.target.value })} />
                         <h6>Recommended 2 hours</h6>
                     </div>
                     <div>
@@ -122,7 +119,7 @@ export default class Schedule extends Component {
                                 <div>
                                     <h5>{venue_name}</h5>
                                     <h6>{venueAddress}</h6>
-                                    <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={true} />
+                                    <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={mapUpdate} />
                                     <h5>How to find us</h5>
                                     <input placeholder='e.g. Meet us at the red umbrella at the back' onChange={e => this.setState({ venue_directions: e.target.value })} />
                                 </div>

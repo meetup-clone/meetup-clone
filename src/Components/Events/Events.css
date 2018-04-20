@@ -279,7 +279,7 @@
 }
 
 .eventsMap {
-    max-width: 340px;
+    width: 340px;
     /* height: 400px; */
     background: white;
     border-radius: 10px;
