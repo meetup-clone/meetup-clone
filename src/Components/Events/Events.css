@@ -15,7 +15,7 @@
     text-decoration: none;
 }
 
-.eventsTopContent h4 {
+.eventDateString {
     color: var(--gray);
     font-weight: 300;
     font-size: 16px;
@@ -131,6 +131,53 @@
 
 /* ------------------------------------------------ */
 
+.eventsHiddenMenu {
+    width: 100%;
+    height: 71px;
+    box-sizing: border-box;
+    padding: 8px 0px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 4px 8px rgba(46,62,72,.12);
+    z-index: 2;
+    position: fixed;
+    top:0;
+    transition: .5s;
+    margin-top: -71px;
+}
+
+.eventsHiddenToggle {
+    margin-top: 0;
+}
+
+.hiddenContainer {
+    min-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 14%;
+}
+
+.hiddenContentHolder {
+    display: flex;
+}
+
+#dateString {
+    font-size: 14px;
+}
+
+#hiddenBtns {
+    margin: 0;
+    padding: 0;
+    min-width: 330px;
+}
+
+
+/* ------------------------------------------------ */
+
 .eventsBody {
     text-align: left;
     min-height: 700px;
@@ -146,6 +193,8 @@
 .eventsBody h2 {
     font-size: 20px;
 }
+
+
 
 .eventsBodyContent {
     max-width: 700px;
@@ -280,7 +329,6 @@
 
 .eventsMap {
     width: 340px;
-    /* height: 400px; */
     background: white;
     border-radius: 10px;
     box-sizing: border-box;
@@ -291,6 +339,12 @@
     color: #666;
     position: sticky;
     top: 30px;
+    transition: .5s;
+}
+
+.eventsMapToggle {
+    margin-top: 71px;
+    top: 111px;
 }
 
 .eventsTimeHolder {

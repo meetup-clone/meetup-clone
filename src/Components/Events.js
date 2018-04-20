@@ -25,7 +25,8 @@ export default class Events extends Component {
             attendees: [{}],
             commentInput: '',
             comments: [],
-            currentUser: {}
+            currentUser: {},
+            scrollCheck: false
         }
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -39,6 +40,7 @@ export default class Events extends Component {
         this.cancelAttend = this.cancelAttend.bind(this)
         this.postComment = this.postComment.bind(this)
         this.typingComment = this.typingComment.bind(this)
+        this.scrollToggle = this.scrollToggle.bind(this)
     }
 
     componentDidMount() {
@@ -67,25 +69,25 @@ export default class Events extends Component {
             this.setState({ comments: res.data })
         })
         axios.get('/auth/me').then(res => {
-            this.setState({currentUser: res.data})
+            this.setState({ currentUser: res.data })
         })
     }
 
     attendEvent() {
-        const {attendees, currentUser} = this.state
+        const { attendees, currentUser } = this.state
         for (let i = 0; i < attendees.length; i++) {
-            if(attendees[i].user_id === currentUser.user_id) {
+            if (attendees[i].user_id === currentUser.user_id) {
                 return
             }
         }
         axios.post('/api/attendevent', { eventId: this.props.match.params.event }).then(res => {
-            this.setState({ attendees: res.data })            
-        })        
+            this.setState({ attendees: res.data })
+        })
     }
 
     cancelAttend() {
         axios.delete(`/api/cancelattend/${this.props.match.params.event}`).then(res => {
-            this.setState({ attendees: res.data})
+            this.setState({ attendees: res.data })
         })
     }
 
@@ -97,35 +99,47 @@ export default class Events extends Component {
         let monthAbb = currentMonth.toLowerCase()
         let monthFinal = monthAbb.replace(monthAbb[0], monthAbb[0].toUpperCase())
         let day = monthFinal + ' ' + today
-        
-        axios.post('/api/postcomment', {user_id: this.state.currentUser.user_id, 
-                                        comment: this.state.commentInput,
-                                        event_id: this.props.match.params.event,
-                                        date: day}).then(res => {
-                                            this.setState({comments: res.data, commentInput: ''})
-                                        })
+
+        axios.post('/api/postcomment', {
+            user_id: this.state.currentUser.user_id,
+            comment: this.state.commentInput,
+            event_id: this.props.match.params.event,
+            date: day
+        }).then(res => {
+            this.setState({ comments: res.data, commentInput: '' })
+        })
 
     }
 
     typingComment(e) {
-        this.setState({commentInput: e.target.value})
+        this.setState({ commentInput: e.target.value })
+    }
+
+    scrollToggle() {
+        if (window.pageYOffset > 263) {
+            this.setState({ scrollCheck: true })
+        }
+        else {
+            this.setState({ scrollCheck: false })
+        }
     }
 
     render() {
-        console.log(this.state.event)
         const { event_description, event_name, venue_address,
-                venue_city, venue_directions, venue_name,
-                group_name, latitude, longitude } = this.state.event
-        const { attendees, comments, currentUser, commentInput, mapUpdate } = this.state
+            venue_city, venue_directions, venue_name,
+            group_name, latitude, longitude } = this.state.event
+        const { attendees, comments, currentUser, commentInput, mapUpdate, scrollCheck } = this.state
 
         let eightAttendees = attendees.slice(0, 8)
         const mappedAttendees = eightAttendees.map((x, i) => {
-            return <AttendeeCard key={x.user_id+i*2} index={i} image={x.image} username={x.username} />
+            return <AttendeeCard key={x.user_id + i * 2} index={i} image={x.image} username={x.username} />
         })
 
         const mappedComments = comments.map((x, i) => {
             return <EventComment key={x.comment_id} comment={x.comment} date={x.date} image={x.image} username={x.username} />
         })
+
+        window.onscroll = this.scrollToggle
         return (
             <div>
                 <Header />
@@ -137,7 +151,7 @@ export default class Events extends Component {
                                 <p>{this.monthAbbrv}</p>
                             </div>
                             <div className='eventsTopContent'>
-                                <h4>{this.dateString}</h4>
+                                <h4 className='eventDateString'>{this.dateString}</h4>
                                 <h2>{event_name}</h2>
                                 <div className='eventsTopImageContent'>
                                     <img className='eventCardAvatar' id='organizerAvatar' src={attendees.length ? attendees[0].image : null} alt="img" />
@@ -166,6 +180,26 @@ export default class Events extends Component {
                     </div>
 
                     {/* ---------------------------------------------------- */}
+
+                        <section className={scrollCheck ? 'eventsHiddenMenu eventsHiddenToggle' : 'eventsHiddenMenu'}>
+                            <div className='hiddenContainer'>
+                                <div className='hiddenContentHolder'>
+                                    <div className='eventCardDate' id='eventDateIcon'>
+                                        <p>{this.dateNumber}</p>
+                                        <p>{this.monthAbbrv}</p>
+                                    </div>
+                                    <div>
+                                        <h4 className='eventDateString' id='dateString'>{this.dateString}</h4>
+                                        <h3>{event_name}</h3>
+                                    </div>
+                                </div>
+                                <div className='eventsGoingBtns' id='hiddenBtns'>
+                                    <button onClick={() => this.attendEvent()}>✔</button>
+                                    <button onClick={() => this.cancelAttend()}>X</button>
+                                </div>
+                            </div>
+                        </section>
+
                     <div className='eventsBody'>
                         <section className='eventsBodyContent'>
                             <div className='eventsDetails'>
@@ -183,7 +217,7 @@ export default class Events extends Component {
                             </div>
                             <div className='eventsComments'>
                                 <h2>Comments</h2>
-                                <CommentInput image={currentUser.image} comment={commentInput} postComment={this.postComment} typingComment={this.typingComment}/>
+                                <CommentInput image={currentUser.image} comment={commentInput} postComment={this.postComment} typingComment={this.typingComment} />
                                 <div>
                                     {mappedComments}
                                 </div>
@@ -198,7 +232,7 @@ export default class Events extends Component {
                         </section>
 
                         <section className='eventsSticky'>
-                            <section className='eventsMap'>
+                            <section className={scrollCheck ? 'eventsMap eventsMapToggle' : 'eventsMap'}>
                                 <div className='eventsTimeHolder'>
                                     <img src={clock} alt="img" />
                                     <div>
@@ -215,7 +249,7 @@ export default class Events extends Component {
                                         <h6>{venue_directions}</h6>
                                     </div>
                                 </div>
-                                <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={mapUpdate}/>
+                                <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={mapUpdate} />
                             </section>
                         </section>
                     </div>
