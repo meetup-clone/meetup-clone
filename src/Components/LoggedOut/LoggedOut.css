@@ -130,9 +130,11 @@ video {
     grid-area: 5 / 1 / 6 / 2;   
     z-index: 1;
     background: white; 
-    padding-left: 20%;
     text-align: left;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* EventCards --------------------------- */
@@ -140,7 +142,7 @@ video {
 .eventCards {
     display: flex;
     flex-direction: column;
-    max-width: 1030px;
+    width: 1076px;
 }
 
 .eventCards h2:nth-child(1) {
@@ -165,6 +167,12 @@ video {
     box-shadow: 0px 3px 5px #bbb;
     cursor: pointer;
     margin-right: 20px;
+    transition: .3s
+}
+
+.eventCard:hover {
+    box-shadow: 0px 4px 6px #999;
+    transform: translate(0px, -2px);
 }
 
 #thirdEvent {
@@ -252,16 +260,26 @@ video {
 
 /* ----------------------------------- */
 
-.exploreBy {
-    margin-top: 100px;
-    margin-bottom: 25px;
-    padding-right: 16px;
-    padding-bottom: 16px;
+.categoryGrid {
+    max-width: 1076px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 100px;
 }
 
-.categoryGrid {
+.exploreBy {
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 25px;
+}
+
+.categoryGridContainer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .gridCategoryRow {
@@ -295,14 +313,12 @@ video {
     width: 100%;
     min-height: 330px;
     box-sizing: border-box;
-    padding-top: 64px;
+    padding-top: 50px;
     background: var(--black);
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    left: 0;
     margin-top: 120px;
 }
 
@@ -353,22 +369,25 @@ video {
 
 .getTheApp {
     width: 100%;
-    height: 320px;
+    height: 300px;
     display: flex;
     justify-content: center;
 }
 
 .getTheAppContent {
     text-align: left;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 .getTheApp h2 {
     font-size: 32px;
 }
 
+.appButtonsHolder {
+    padding-top: 52px;
+}
+
 .getTheApp img {
-    margin-top: 48px;
     max-width: 160px;
     cursor: pointer;
     margin-right: 20px;

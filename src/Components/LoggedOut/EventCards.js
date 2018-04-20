@@ -1,63 +1,28 @@
 import React from 'react'
-import laptop from '../../Assets/laptop.jpg'
-import lake from '../../Assets/lake.jpg'
-import tennis from '../../Assets/tennis.jpg'
-import thumb1 from '../../Assets/thumb1.jpeg'
-import thumb2 from '../../Assets/thumb2.jpeg'
-import thumb3 from '../../Assets/thumb3.jpeg'
 
-
-export default function EventCards() {
+export default function EventCards(props) {
+    let monthsAbbrv = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let date = new Date(Date.now())
+    let today = days[date.getDay()]
+    let dateNumber = date.getDate()
+    let month = months[date.getMonth()]
+    let monthAbbrv = monthsAbbrv[date.getMonth()]
     return (
-        <div className='eventCards'>
-            <h2>Popular Meetups nearby</h2>
-            <div className='eventsHolder'>
             <section className='eventCard'>
-                <img src={laptop} alt="img"/>
+                <img src={props.img} alt="img"/>
                 <div className='eventCardDate'>
-                    <p>11</p>
-                    <p>APR</p>
+                    <p>{dateNumber}</p>
+                    <p>{monthAbbrv}</p>
                 </div>
                 <div className='eventCardContent'>
-                    <h4>Wednesday, April 11, 6:30 AM</h4>
-                    <h2>Core Body Boot Camp</h2>
-                    <img className='eventCardAvatar' src={thumb1} alt="img"/>
-                    <h4 className='hosted'>Hosted by Anthony B.</h4>
-                    <h2 className='from'><span id='from'>From</span>The Rise</h2>
+                    <h4>{`${today}, ${month} ${dateNumber}, ${props.time}`}</h4>
+                    <h2>{props.title}</h2>
+                    <img className='eventCardAvatar' src={props.person} alt="img"/>
+                    <h4 className='hosted'>{`Hosted by ${props.host}`}</h4>
+                    <h2 className='from'><span id='from'>From</span>{props.from}</h2>
                 </div>
             </section>
-
-            <section className='eventCard'>
-                <img src={tennis} alt="img"/>
-                <div className='eventCardDate'>
-                    <p>11</p>
-                    <p>APR</p>
-                </div>
-                <div className='eventCardContent'>
-                    <h4>Wednesday, April 11, 6:30 AM</h4>
-                    <h2>Core Body Boot Camp</h2>
-                    <img className='eventCardAvatar' src={thumb2} alt="img"/>
-                    <h4 className='hosted'>Hosted by Anthony B.</h4>
-                    <h2 className='from'><span id='from'>From</span>The Rise</h2>
-                </div>
-            </section>
-            
-            <section className='eventCard' id='thirdEvent'>
-                <img src={lake} alt="img"/>
-                <div className='eventCardDate'>
-                    <p>11</p>
-                    <p>APR</p>
-                </div>
-                <div className='eventCardContent'>
-                    <h4>Wednesday, April 11, 6:30 AM</h4>
-                    <h2>Core Body Boot Camp</h2>
-                    <img className='eventCardAvatar' src={thumb3} alt="img"/>
-                    <h4 className='hosted'>Hosted by Anthony B.</h4>
-                    <h2 className='from'><span id='from'>From</span>The Rise</h2>
-                </div>
-            </section>
-            </div>
-            
-        </div>
     )
 }
