@@ -101,6 +101,11 @@
     background: white;
     border: 1px solid #d7d9db;
     color: #7F868C;
+    transition: .3s;
+}
+.whiteBtn:hover {
+    box-shadow: 0px 4px 6px #ccc;
+    transform: translate(0px, -2px);
 }
 .memberBtn {
     height: 40px;
@@ -109,7 +114,12 @@
     border: 1px solid #d7d9db;
     font-size: 14px;
     line-height: 1.6;
-    color: var(--black)
+    color: var(--black);
+    transition: .3s;
+}
+.memberBtn:hover {
+    box-shadow: 0px 4px 6px #ccc;
+    transform: translate(0px, -2px);
 }
 .memberBtn img {
     margin-left: 5px;
@@ -470,9 +480,12 @@ vertical-align: middle;
     margin-bottom: 10px;
     margin-top: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     transition: .3s;
+    color: var(--gray);
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 .groupOrganizerCard:hover {
     box-shadow: 0px 4px 6px #ccc;
@@ -482,6 +495,14 @@ vertical-align: middle;
 width: 72px;
 height: 72px;
 border-radius: 50%;
+}
+.memberMessageDiv {
+    display: flex;
+    justify-content: space-around;
+    width: 155px;
+    border-left: solid 1px #E5E7E8;
+    align-items: center;
+    height: 58%;
 }
 /* -----------------------Discussion Card -------------------- */
 .discussionCardMain {
@@ -591,7 +612,6 @@ border-radius: 50%;
 }
 /* ---------------------- */
 .groupTagItem {
-    height: 30px;
     border-radius: 4px;
     padding: 4px 16px;
     background-color: #D2D8DD;
