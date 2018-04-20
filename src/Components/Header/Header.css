@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 830px) {
     .header .logo {
         height: 50px;
         width: 50px;
