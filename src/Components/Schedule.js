@@ -80,77 +80,139 @@ export default class Schedule extends Component {
     render() {
         const { startTimeInput, endTimeInput, startDate, endDate, venueAddress, venue_name,
             checkLocation, latitude, longitude, mapUpdate } = this.state
+        const datePickerStyle = {
+            width: 200, border: '1px solid rgba(46,62,72,.12)',
+            borderRadius: '4px', padding: '4px 0 4px 20px'
+        }
         return (
             <div className='schedule'>
-            <Header />
+                <Header />
                 <div className='scheduleContainer'>
-                    <div className="headingContainer">
+                    <div className='headingContainer'>
                         <h1>Schedule a Meetup</h1>
                         <h4>{this.state.groupName}</h4>
                     </div>
                     <div className='meetupSection'>
-                        <div className="meetupContent">
+                        <div className='meetupContent'>
                             <h2>Meetup Title</h2>
                             <h5>Keep it short, clear, and descriptive.*</h5>
-                            <input className="scheduleInput" onChange={(e) => this.setState({ event_name: e.target.value })} required />
+                            <input
+                                className='scheduleInput'
+                                onChange={(e) => this.setState({ event_name: e.target.value })}
+                                maxLength={50}
+                                required
+                            />
                         </div>
                     </div>
                     <div className='meetupSection'>
-                        <div className="meetupContent">
+                        <div className='meetupContent'>
                             <h2>When</h2>
                             <h5>Start time</h5>
-                            <div style={{ width: 431 }} className="flexBetween">
-                                <DatePicker textFieldStyle={{ width: 200 }} value={startDate} locale='en-US'
+                            <div style={{ width: 431 }} className='flexBetween'>
+                                <DatePicker
+                                    textFieldStyle={datePickerStyle}
+                                    underlineShow={false}
+                                    value={startDate}
+                                    locale='en-US'
                                     onChange={(event, date) => this.setState({ startDate: date, endDate: date })}
                                     id='startDate'
-                                    autoOk={true} />
-                                <input className="scheduleDateInput" value={startTimeInput} type='time' onChange={e => this.setState({ startTimeInput: e.target.value })} />
+                                    autoOk={true}
+                                />
+                                <input
+                                    className='scheduleDateInput'
+                                    value={startTimeInput}
+                                    type='time' onChange={e => this.setState({ startTimeInput: e.target.value })}
+                                />
                             </div>
                             <h5>End time</h5>
-                            <div style={{ width: 431 }} className="flexBetween">
-                                <DatePicker textFieldStyle={{ width: 200 }} value={endDate} locale='en-US'
+                            <div style={{ width: 431 }} className='flexBetween'>
+                                <DatePicker
+                                    textFieldStyle={datePickerStyle}
+                                    underlineShow={false}
+                                    value={endDate}
+                                    locale='en-US'
                                     onChange={(event, date) => this.setState({ endDate: date })}
                                     id='endDate'
-                                    autoOk={true} />
-                                <input className="scheduleDateInput" value={endTimeInput} type='time' onChange={e => this.setState({ endTimeInput: e.target.value })} />
+                                    autoOk={true}
+                                />
+                                <input
+                                    className='scheduleDateInput'
+                                    value={endTimeInput} type='time'
+                                    onChange={e => this.setState({ endTimeInput: e.target.value })}
+                                />
                             </div>
-                            <h6>Recommended 2 hours</h6>
+                            <h6>Recommended: 2 hours</h6>
                         </div>
                     </div>
                     <div className='meetupSection'>
-                        <div className="meetupContent">
+                        <div className='meetupContent'>
                             <h2>Where</h2>
                             {!checkLocation
                                 ?
                                 <div>
                                     <h5>Venue Name</h5>
-                                    <input className="scheduleInput" onChange={e => this.setState({ venue_name: e.target.value })} />
+                                    <input
+                                        className='scheduleInput'
+                                        onChange={e => this.setState({ venue_name: e.target.value })}
+                                    />
                                     <h5>Venue Address</h5>
-                                    <input className="scheduleInput" onChange={e => this.setState({ venueAddress: e.target.value })} />
-                                    <button style={{ marginTop: 20 }} className="joinBtn" onClick={() => this.geocoder()}>Find</button>
+                                    <input
+                                        className='scheduleInput'
+                                        onChange={e => this.setState({ venueAddress: e.target.value })}
+                                    />
+                                    <button
+                                        className='scheduleButton' onClick={() => this.geocoder()}
+                                    >
+                                        Find
+                                    </button>
                                 </div>
                                 :
                                 <div>
                                     <div>
                                         <h5>{venue_name}</h5>
                                         <h5>{venueAddress}</h5>
-                                        <EventMap latitude={+latitude} longitude={+longitude} mapUpdate={mapUpdate} />
+                                        <EventMap
+                                            latitude={+latitude}
+                                            longitude={+longitude}
+                                            mapUpdate={mapUpdate}
+                                        />
                                         <h5>How to find us</h5>
-                                        <input className="scheduleInput" placeholder='e.g. Meet us at the red umbrella at the back' onChange={e => this.setState({ venue_directions: e.target.value })} />
+                                        <input
+                                            className='scheduleInput'
+                                            placeholder='e.g. Meet us at the red umbrella at the back'
+                                            onChange={e => this.setState({ venue_directions: e.target.value })}
+                                        />
                                     </div>
-                                    <button style={{ marginTop: 20 }} className="joinBtn" onClick={() => this.setState({ checkLocation: false })}>Change</button>
+                                    <button
+                                        className='scheduleButton'
+                                        onClick={() => this.setState({ checkLocation: false })}
+                                    >
+                                        Change
+                                    </button>
                                 </div>
                             }
                         </div>
                     </div>
                     <div className='meetupSection'>
-                        <div className="meetupContent">
+                        <div className='meetupContent'>
                             <h2>What</h2>
-                            <textarea className="scheduleInput" onChange={e => this.setState({ event_description: e.target.value })} />
+                            <textarea
+                                className='scheduleInput'
+                                onChange={e => this.setState({ event_description: e.target.value })}
+                            />
                         </div>
-                        <div className="scheduleBtnDiv">
-                            <button style={{ width: 160, fontSize: 14, lineHeight: 1.6 }} className="whiteBtn" onClick={() => this.props.history.goBack()}>Cancel</button>
-                            <button className="joinBtn" onClick={() => this.saveEvent()}>Submit</button>
+                        <div className='scheduleBtnDiv'>
+                            <button
+                                className='scheduleCancel' onClick={() => this.props.history.goBack()}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className='scheduleButton scheduleSubmit'
+                                onClick={() => this.saveEvent()}
+                            >
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
