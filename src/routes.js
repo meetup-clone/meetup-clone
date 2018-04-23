@@ -12,7 +12,6 @@ export default (
     <Switch>
         <Route path='/' component={LoggedOut} exact />
         <Route path='/home' component={LoggedIn} />
-        <Route path='/welcome' component={Welcome} />
         <Route path='/create' component={Create} />
         <Route path='/schedule/:id' component={Schedule} />
         <Route path='/:group' component={Group} exact />
