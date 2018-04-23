@@ -29,6 +29,7 @@ export default class Group extends Component {
             newComment: "",
             members: [{}],
             attendees: [{}],
+            testAttendees: [{}],
             user: {},
             meetupToggle: true,
             meetupTimeToggle: false
@@ -46,6 +47,7 @@ export default class Group extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
         axios.get('/auth/me').then(res => this.setState({ user: res.data }))
+        axios.get('/api/testAttendees').then(res => this.setState({ testAttendees: res.data }))
         axios.get(`/api/groups/${this.props.match.params.group}`).then(res => {
             this.setState({
                 events: res.data.events,
@@ -133,10 +135,10 @@ export default class Group extends Component {
     }
 
     render() {
-        const { groupComments, events, members, attendees } = this.state;
-        const testAttendees1 = attendees.filter(x => x.event_id === 1);
-        const testAttendees2 = attendees.filter(x => x.event_id === 6);
-        const testAttendees3 = attendees.filter(x => x.event_id === 3);
+        const { groupComments, events, members, attendees, testAttendees } = this.state;
+        const testAttendees1 = testAttendees.filter(x => x.event_id === 1);
+        const testAttendees2 = testAttendees.filter(x => x.event_id === 6);
+        const testAttendees3 = testAttendees.filter(x => x.event_id === 3);
 
         let firstEventAttendees = attendees.filter(obj => obj.event_id === this.state.events[0].event_id)
         const mappedGroupComments = groupComments.map((obj, i) => {
