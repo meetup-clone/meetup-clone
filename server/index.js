@@ -12,6 +12,7 @@ const eventCtrl = require('./controllers/eventController.js')
 const groupCtrl = require('./controllers/groupController.js')
 
 const app = express()
+app.use(express.static( `${__dirname}/../build` ))
 
 massive(CONNECTION_STRING).then(db => app.set('db', db))
 
@@ -25,6 +26,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 passport.use(new Auth0Strategy({
     domain: DOMAIN,
@@ -57,8 +59,8 @@ passport.deserializeUser((id, done) => {
 // AUTH ENDPOINTS
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/home',
-    failueRedirect: 'http://localhost:3000/#/'
+    successRedirect: '/#/home',
+    failueRedirect: '/'
 }))
 app.get('/auth/me', authCtrl.checkUser)
 app.get('/auth/logout', authCtrl.logoutUser)
