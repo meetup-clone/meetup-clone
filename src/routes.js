@@ -2,7 +2,6 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LoggedOut from './Components/LoggedOut.js';
 import LoggedIn from './Components/LoggedIn.js';
-import Welcome from './Components/Welcome.js';
 import Group from './Components/Group.js'
 import Events from './Components/Events.js'
 import Create from './Components/Create.js'
