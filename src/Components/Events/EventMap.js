@@ -30,6 +30,3 @@ export default class EventMap extends Component {
         )
     }
 }
-
-
-
