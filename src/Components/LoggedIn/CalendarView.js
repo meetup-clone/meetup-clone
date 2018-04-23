@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './CalendarView.css'
 import EventCard from './EventCard.js'
+import dateTimeFuncs from './dateTimeFuncs.js'
 import Calendar from 'react-calendar'
 
 export default class CalendarView extends Component {
@@ -17,8 +18,6 @@ export default class CalendarView extends Component {
         }
         this.filterEvents = this.filterEvents.bind(this)
         this.listEvents = this.listEvents.bind(this)
-        this.compareDate = this.compareDate.bind(this)
-        this.convertTime = this.convertTime.bind(this)
         this.showMore = this.showMore.bind(this)
     }
 
@@ -60,44 +59,42 @@ export default class CalendarView extends Component {
     }
 
     listEvents() {
+        const { compareDate } = dateTimeFuncs
         let events = this.filterEvents()
         if (events.length === 0) return null
         let list = []
         for (let i = 0; i < events.length; i++) {
             // BOTH ROUNDED
-            if ((i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date))
-                && (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date))) {
+            if ((i === 0 || compareDate(events[i].start_date, events[i - 1].start_date))
+                && (i === events.length - 1 || compareDate(events[i + 1].start_date, events[i].start_date))) {
                 list.push(
                     <EventCard
                         key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={true}
                         classStyle={'event start end'}
-                        convertTime={this.convertTime}
                     />
                 )
             }
             // STARTS ROUNDED
-            else if (i === 0 || this.compareDate(events[i].start_date, events[i - 1].start_date)) {
+            else if (i === 0 || compareDate(events[i].start_date, events[i - 1].start_date)) {
                 list.push(
                     <EventCard
                         key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={true}
                         classStyle={'event start'}
-                        convertTime={this.convertTime}
                     />
                 )
             }
             // ENDS ROUNDED
-            else if (i === events.length - 1 || this.compareDate(events[i + 1].start_date, events[i].start_date)) {
+            else if (i === events.length - 1 || compareDate(events[i + 1].start_date, events[i].start_date)) {
                 list.push(
                     <EventCard
                         key={events[i].event_id + events[i].start_date + events[i].event_name + i}
                         event={events[i]}
                         date={false}
                         classStyle={'event end'}
-                        convertTime={this.convertTime}
                     />
                 )
             }
@@ -109,26 +106,11 @@ export default class CalendarView extends Component {
                         event={events[i]}
                         date={false}
                         classStyle={'event'}
-                        convertTime={this.convertTime}
                     />
                 )
             }
         }
         return list
-    }
-
-    compareDate(time1, time2) {
-        let date1 = new Date(time1)
-        let date2 = new Date(time2)
-        date1 = date1.getFullYear() + '/' + (date1.getMonth() + 1) + '/' + date1.getDate()
-        date2 = date2.getFullYear() + '/' + (date2.getMonth() + 1) + '/' + date2.getDate()
-        return date1 > date2
-    }
-
-    convertTime(milliseconds) {
-        let time = new Date(milliseconds)
-        let newTime = time.toLocaleTimeString()
-        return newTime.substr(0, newTime.length - 6) + newTime.substr(newTime.length - 3, newTime.length - 1)
     }
 
     showMore() {

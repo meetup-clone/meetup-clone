@@ -9,13 +9,13 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "massive": "^4.7.1",
+    "massive": "^4.7.2",
     "material-ui": "^0.20.0",
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.1",
-    "react": "^16.3.1",
+    "react": "^16.3.2",
     "react-calendar": "^2.14.0",
-    "react-dom": "^16.3.1",
+    "react-dom": "^16.3.2",
     "react-google-maps": "^9.4.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -25,9 +25,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "main": "server/index.js",
-  "proxy": "http://localhost:4242"
+  "proxy": "http://localhost:4242",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }

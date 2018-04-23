@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import dateTimeFuncs from './dateTimeFuncs.js'
 
 export default function EventCard(props) {
-    const { event, date, classStyle, convertTime } = props
+    const { event, date, classStyle } = props
+    const { convertTime } = dateTimeFuncs
     return (
         <div>
             {date ?
