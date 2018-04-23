@@ -93,6 +93,7 @@
     padding-right: 56px;
     width: 160px;
     height: 38px;
+    font-family: 'Nunito', sans-serif;
 
 }
 .whiteBtn {
@@ -102,6 +103,7 @@
     border: 1px solid #d7d9db;
     color: #7F868C;
     transition: .3s;
+    font-family: 'Nunito', sans-serif;
 }
 .whiteBtn:hover {
     box-shadow: 0px 4px 6px #ccc;
@@ -116,6 +118,7 @@
     line-height: 1.6;
     color: var(--black);
     transition: .3s;
+    font-family: 'Nunito', sans-serif;
 }
 .memberBtn:hover {
     box-shadow: 0px 4px 6px #ccc;
@@ -165,6 +168,9 @@
     flex-direction: column;
     width: 727px;
     height: 100%;
+}
+.innerRightAligner {
+    min-width: 310px;
 }
 
 /* ---------------- Group Event Card --------------- */
