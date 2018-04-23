@@ -54,7 +54,7 @@ export default class Header extends Component {
                                     <div className='fiveGroups'>
                                         {groupList}
                                         <div className='showAllGroups' >
-                                            <Link to='/home'><h5>Show All My Groups</h5></Link>
+                                            <Link to={{ pathname: '/home', query: { viewToggle: false}}}><h5>Show All My Groups</h5></Link>
                                         </div>
                                     </div>
                                     :
