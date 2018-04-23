@@ -108,7 +108,6 @@ export default class Events extends Component {
         }).then(res => {
             this.setState({ comments: res.data, commentInput: '' })
         })
-
     }
 
     typingComment(e) {
