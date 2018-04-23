@@ -88,14 +88,14 @@
 
 .header .dropdown {
     position: absolute;
+    top: 65px;
+    right: 20px;
     height: auto;
     width: 500px;
     background: white;
     box-shadow: rgba(0,0,0,0.54) 0 3px 8px 0.5px;
     border-radius: 3px;
-    min-width: auto;
-    top: 65px;
-    right: 20px;
+    padding: 10px;
     display: flex;
 }
 

@@ -156,7 +156,7 @@ export default class LoggedIn extends Component {
                                     onClick={() => this.setState({ category: 'friends', meetupsToggle: false })}
                                 >
                                     <img src={twoAvatars} alt='twoAvatars' className='twoAvatars' />
-                                    Meetups with friends
+                                    Friends Meetups
                                 </div>
                                 {this.filterTopicsButtons()}
                             </div>
