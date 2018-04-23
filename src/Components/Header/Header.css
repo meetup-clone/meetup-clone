@@ -97,6 +97,7 @@
     border-radius: 3px;
     padding: 10px;
     display: flex;
+    z-index: 79;
 }
 
 .header .links {
