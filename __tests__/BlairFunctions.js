@@ -9,4 +9,8 @@ module.exports = {
         let milliseconds = new Date(correctTime).getTime()
         return milliseconds
     },
+    createStringDate: function(dateInput) {
+        let stringDate = dateInput.toString()
+        return stringDate        
+    },
 }
