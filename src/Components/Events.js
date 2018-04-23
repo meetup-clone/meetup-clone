@@ -127,7 +127,7 @@ export default class Events extends Component {
     render() {
         const { event_description, event_name, venue_address,
             venue_city, venue_directions, venue_name,
-            group_name, latitude, longitude } = this.state.event
+            group_name, url_name, latitude, longitude } = this.state.event
         const { attendees, comments, currentUser, commentInput, mapUpdate, scrollCheck } = this.state
 
         let eightAttendees = attendees.slice(0, 8)
@@ -157,7 +157,7 @@ export default class Events extends Component {
                                     <img className='eventCardAvatar' id='organizerAvatar' src={attendees.length ? attendees[0].image : null} alt="img" />
                                     <div>
                                         <h5>Hosted by <span>{attendees.length ? attendees[0].username : null}</span></h5>
-                                        <Link to={`/${group_name}`}><h5>From <span>{group_name}</span></h5></Link>
+                                        <Link to={`/${url_name}`}><h5>From <span>{group_name}</span></h5></Link>
                                     </div>
                                 </div>
                             </div>
