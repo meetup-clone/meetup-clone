@@ -55,6 +55,11 @@ module.exports = {
         req.app.get('db').cancelGroup([req.user.user_id, req.params.id]).then(members => {
             res.status(200).send(members)
         })
+    },
+    getTestAttendees: (req, res) => {
+        req.app.get('db').getTestAttendees().then(attendees => {
+            res.status(200).send(attendees)
+        })
     }
     
 }
