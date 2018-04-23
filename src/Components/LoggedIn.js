@@ -31,6 +31,9 @@ export default class LoggedIn extends Component {
 
     componentDidMount() {
         window.scrollTo(0, 0)
+        if (this.props.location.query) {
+            this.setState({ viewToggle: this.props.location.query.viewToggle })
+        }
         axios.get('/auth/me').then(res => this.setState({ user: res.data }))
         axios.get('/api/myEvents').then(res => this.setState({ myEvents: res.data }))
         axios.get('/api/myGroupEvents').then(res => this.setState({ myGroupEvents: res.data }))
