@@ -160,7 +160,7 @@ export default class Group extends Component {
                             <img className="groupCardLogo" src={this.state.group.img} alt="logo" /> : <img className="groupCardLogo" src={defaultImage} alt="logo" />}
                     </div>
                     <div className="groupInfo">
-                        <h1 style={{ marginTop: -10 }}>{this.state.group.group_name}</h1>
+                        <h1 style={{ marginTop: 0 }}>{this.state.group.group_name}</h1>
                         <div className="groupInfoHolder">
                             <div>
                                 <p className="tinyText">Location</p>
