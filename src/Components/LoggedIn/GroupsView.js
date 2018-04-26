@@ -30,7 +30,7 @@ export default class GroupsView extends Component {
     filterAllGroups() {
         const { myGroups, allGroups, category } = this.props
         if (allGroups.length === 0) return []
-        if (myGroups.length === 0) return allGroups
+        if (myGroups.length === 0) return allGroups.slice(0, this.state.numToShow)
         let idArray = myGroups.map(e => e.group_id)
         let filteredAllGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
         return filteredAllGroups.slice(0, this.state.numToShow)
