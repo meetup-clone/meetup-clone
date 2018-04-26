@@ -9,7 +9,7 @@ module.exports = {
     },
     logoutUser: (req, res) => {
         req.logOut()
-        res.redirect('/')
+        res.redirect('http://localhost:3000/')
     },
     createUser: (req, res) => {
         const db = req.app.get('db')
