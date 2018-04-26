@@ -57,6 +57,14 @@ button {
     grid-template-rows: 165px 172px 120px 70px 1931px;
 }
 
+.videoContainer {
+    grid-area: 1 / 1 / 4 / 2;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+}
+
 video {
     min-width: 100%;
     min-height: 100%;
@@ -65,12 +73,21 @@ video {
     grid-area: 1 / 1 / 6 / 2;
 }
 
+.videoOpacity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.2);
+    height: 100%;
+    width: 100%;
+}
+
 .videoContent {
-    grid-area:  2 / 1 / 3 / 2;
-    z-index: 1;
     color: white;
-    margin: auto;
     text-align: center;
+    position: relative;
+    margin: auto;
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 .videoContent h2 {
