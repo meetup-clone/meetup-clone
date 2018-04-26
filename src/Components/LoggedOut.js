@@ -16,9 +16,9 @@ import google from '../Assets/downloadGoogle.png'
 import Footer from '../Components/Footer'
 
 export default function LoggedOut() {
-    let eventCards = [{ title: 'Coffee and Coding', host: 'Anthony B.', from: 'Codeology', time: '7:00 PM', img: laptop, person: thumb1},
-    { title: 'Morning Tennis', host: 'Anthony B.', from: 'Casual Tennis Time', time: '6:30 AM', img: tennis, person: thumb2},
-    { title: 'Rock Skipping', host: 'Anthony B.', from: 'Skippers on the Rocks', time: '2:00 PM', img: lake, person: thumb3}]
+    let eventCards = [{ title: 'Coffee and Coding', host: 'Anthony B.', from: 'Codeology', time: '7:00 PM', img: laptop, person: thumb1 },
+    { title: 'Morning Tennis', host: 'Anthony B.', from: 'Casual Tennis Time', time: '6:30 AM', img: tennis, person: thumb2 },
+    { title: 'Rock Skipping', host: 'Anthony B.', from: 'Skippers on the Rocks', time: '2:00 PM', img: lake, person: thumb3 }]
 
     let mappedCards = eventCards.map(x => {
         return <EventCards key={x.title} title={x.title} host={x.host} from={x.from} time={x.time} img={x.img} person={x.person} />
@@ -34,11 +34,14 @@ export default function LoggedOut() {
                 </section>
             </header>
             <div className='bigGrid'>
-                <video src='https://www.meetup.com/mu_static/en-US/dddafbfe4574fc19c6718950691dcb78.mp4' autoPlay loop />
-                <div className='videoContent'>
-                    <h2>What do you love?</h2>
-                    <h4>Do more of it with Meetup</h4>
-                    <a href={process.env.REACT_APP_LOGIN}><button className='pinkBtn'>Sign Up</button></a>
+                <div className='videoContainer'>
+                    <video src='https://www.meetup.com/mu_static/en-US/dddafbfe4574fc19c6718950691dcb78.mp4' autoPlay loop />
+                    <div className='videoOpacity'></div>
+                    <div className='videoContent'>
+                        <h2>What do you love?</h2>
+                        <h4>Do more of it with Meetup</h4>
+                        <a href={process.env.REACT_APP_LOGIN}><button className='pinkBtn'>Sign Up</button></a>
+                    </div>
                 </div>
                 <div className='categoryRow'>
                     <button className='grayBtn'>Join a movement</button>

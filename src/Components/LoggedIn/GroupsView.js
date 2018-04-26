@@ -29,7 +29,8 @@ export default class GroupsView extends Component {
 
     filterAllGroups() {
         const { myGroups, allGroups, category } = this.props
-        if (myGroups.length === 0 || allGroups.length === 0) return []
+        if (allGroups.length === 0) return []
+        if (myGroups.length === 0) return allGroups
         let idArray = myGroups.map(e => e.group_id)
         let filteredAllGroups = allGroups.filter(e => !idArray.includes(e.group_id) && e.categories.includes(category))
         return filteredAllGroups.slice(0, this.state.numToShow)
@@ -53,6 +54,7 @@ export default class GroupsView extends Component {
                             :
                             <img src={defaultImg} alt='default-img' />
                         }
+                        <div className='groupCardOpacity'></div>
                         <div className='groupCardText'>
                             <h3>{e.group_name}</h3>
                             <p>{`We're ${e.members} Members`}</p>

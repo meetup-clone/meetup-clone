@@ -39,7 +39,15 @@
     margin: 5px;
     padding: 0;
     position: relative;
-    background-image: linear-gradient(rgba(15,20,31,0) 0,rgba(15,20,31,.1) 25%,rgba(15,20,31,.8) 100%);
+}
+
+.groupsView .groupCardOpacity {
+    background: linear-gradient(rgba(15,20,31,0) 0,rgba(15,20,31,.1) 25%,rgba(15,20,31,.8) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .groupsView .allGroupsCards {
